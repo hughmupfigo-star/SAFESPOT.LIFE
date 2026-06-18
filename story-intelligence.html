@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Story Intelligence — SAFE</title>
+<meta name="description" content="Real-time insights from youth around the world. See what's actually happening beyond the headlines.">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+.dashboard-hero {
+  background: var(--off);
+  padding: 60px 20px;
+  border-bottom: 1px solid var(--border);
+}
+
+.dashboard-hero-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.dashboard-eyebrow {
+  font-family: var(--mono);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--mid);
+  margin-bottom: 20px;
+  font-weight: 500;
+}
+
+.dashboard-title {
+  font-size: 48px;
+  font-weight: 300;
+  line-height: 1.2;
+  margin-bottom: 24px;
+  max-width: 600px;
+}
+
+.dashboard-desc {
+  font-size: 16px;
+  line-height: 1.8;
+  color: var(--mid);
+  max-width: 600px;
+}
+
+.dashboard-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 80px 20px;
+}
+
+.month-report {
+  margin-bottom: 120px;
+}
+
+.report-header {
+  margin-bottom: 60px;
+}
+
+.report-month {
+  font-family: var(--mono);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--mid);
+  margin-bottom: 12px;
+}
+
+.report-title {
+  font-size: 36px;
+  font-weight: 300;
+  line-height: 1.3;
+  margin-bottom: 20px;
+}
+
+.report-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 40px;
+  margin-bottom: 60px;
+}
+
+.stat-card {
+  border: 1px solid var(--border);
+  padding: 24px;
+  border-radius: 4px;
+}
+
+.stat-number {
+  font-size: 32px;
+  font-weight: 400;
+  color: var(--black);
+  margin-bottom: 8px;
+}
+
+.stat-label {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--mid);
+  font-weight: 500;
+}
+
+.insights-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 40px;
+  margin-bottom: 60px;
+}
+
+.insight-card {
+  border: 1px solid var(--border);
+  padding: 32px;
+  border-radius: 4px;
+  background: var(--off);
+}
+
+.insight-emoji {
+  font-size: 28px;
+  margin-bottom: 16px;
+  display: block;
+}
+
+.insight-category {
+  font-family: var(--mono);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--mid);
+  margin-bottom: 8px;
+}
+
+.insight-title {
+  font-size: 18px;
+  font-weight: 400;
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+
+.insight-desc {
+  font-size: 14px;
+  line-height: 1.8;
+  color: var(--mid);
+  margin-bottom: 16px;
+}
+
+.insight-stat {
+  font-size: 12px;
+  color: var(--black);
+  font-weight: 500;
+}
+
+.topic-breakdown {
+  background: var(--off);
+  padding: 40px;
+  border-radius: 4px;
+  margin-bottom: 60px;
+}
+
+.breakdown-title {
+  font-size: 18px;
+  font-weight: 400;
+  margin-bottom: 24px;
+}
+
+.topic-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.topic-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.topic-name {
+  font-size: 14px;
+}
+
+.topic-count {
+  font-size: 14px;
+  color: var(--mid);
+}
+
+/* Bar chart for topic breakdown */
+.topic-bar-row {
+  margin-bottom: 12px;
+}
+
+.topic-bar-label {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  margin-bottom: 4px;
+}
+
+.topic-bar-track {
+  background: var(--border);
+  border-radius: 2px;
+  height: 6px;
+  overflow: hidden;
+}
+
+.topic-bar-fill {
+  height: 100%;
+  background: var(--black);
+  border-radius: 2px;
+  transition: width 0.6s ease;
+}
+
+/* Loading / fallback */
+#loadingMessage {
+  text-align: center;
+  padding: 60px 20px;
+  color: var(--mid);
+}
+
+.data-note {
+  font-family: var(--mono);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--mid);
+  opacity: 0.7;
+  margin-top: 12px;
+}
+
+.cta-section-intel {
+  background: var(--off);
+  padding: 60px 20px;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  text-align: center;
+  margin: 80px 0;
+}
+
+.cta-intel-inner {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.cta-intel-title {
+  font-size: 28px;
+  font-weight: 300;
+  margin-bottom: 16px;
+}
+
+.cta-intel-desc {
+  font-size: 14px;
+  color: var(--mid);
+  line-height: 1.8;
+  margin-bottom: 24px;
+}
+
+.cta-intel-btn {
+  display: inline-block;
+  padding: 14px 32px;
+  background: var(--black);
+  color: var(--white);
+  border: none;
+  border-radius: 2px;
+  font-family: var(--mono);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  font-weight: 500;
+  text-decoration: none;
+  transition: background 0.15s;
+}
+
+.cta-intel-btn:hover {
+  background: var(--mid);
+}
+
+html[data-theme="dark"] .cta-intel-btn {
+  background: #0a0a0a;
+}
+
+html[data-theme="dark"] .cta-intel-btn:hover {
+  background: #333333;
+}
+
+html[data-theme="dark"] .insight-card {
+  background: #1a1a1a;
+}
+
+html[data-theme="dark"] .cta-section-intel {
+  background: #161616;
+}
+
+html[data-theme="dark"] .stat-card {
+  background: transparent;
+}
+
+html[data-theme="dark"] .topic-breakdown {
+  background: #1a1a1a;
+}
+
+html[data-theme="dark"] .topic-bar-fill {
+  background: #e0e0e0;
+}
+
+/* ── Who Benefits ─────────────────────────────────────────────────────────── */
+.who-section {
+  background: var(--off);
+  padding: 80px 20px;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.who-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.who-intro {
+  max-width: 680px;
+  margin-bottom: 64px;
+}
+
+.who-intro h2 {
+  font-size: 36px;
+  font-weight: 300;
+  line-height: 1.3;
+  margin-bottom: 20px;
+}
+
+.who-intro p {
+  font-size: 15px;
+  line-height: 1.9;
+  color: var(--mid);
+}
+
+.who-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 64px;
+}
+
+.who-card {
+  background: var(--white);
+  padding: 32px 28px;
+}
+
+html[data-theme="dark"] .who-card {
+  background: #111;
+}
+
+.who-card-icon {
+  font-size: 24px;
+  margin-bottom: 14px;
+  display: block;
+}
+
+.who-card-title {
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 10px;
+  line-height: 1.3;
+}
+
+.who-card-desc {
+  font-size: 13px;
+  line-height: 1.8;
+  color: var(--mid);
+}
+
+/* Impact statement */
+.impact-statement {
+  border-left: 3px solid var(--black);
+  padding: 0 0 0 28px;
+  max-width: 700px;
+}
+
+.impact-statement p {
+  font-size: 20px;
+  font-weight: 300;
+  line-height: 1.7;
+  color: var(--black);
+}
+
+html[data-theme="dark"] .impact-statement {
+  border-color: #e0e0e0;
+}
+
+/* ── Monthly Highlights ───────────────────────────────────────────────────── */
+.highlights-section {
+  padding: 80px 20px;
+  border-bottom: 1px solid var(--border);
+}
+
+.highlights-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.highlights-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 48px;
+  flex-wrap: wrap;
+}
+
+.highlights-header-text h2 {
+  font-size: 32px;
+  font-weight: 300;
+  line-height: 1.3;
+  margin-bottom: 12px;
+}
+
+.highlights-header-text p {
+  font-size: 14px;
+  color: var(--mid);
+  line-height: 1.7;
+  max-width: 520px;
+}
+
+.highlights-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.highlight-card {
+  background: var(--white);
+  padding: 40px 32px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+html[data-theme="dark"] .highlight-card {
+  background: #111;
+}
+
+.highlight-format {
+  font-family: var(--mono);
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--mid);
+  margin-bottom: 16px;
+  font-weight: 500;
+}
+
+.highlight-title {
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1.35;
+  margin-bottom: 16px;
+  flex: 1;
+}
+
+.highlight-title em {
+  font-style: italic;
+  color: var(--mid);
+}
+
+.highlight-desc {
+  font-size: 13px;
+  line-height: 1.8;
+  color: var(--mid);
+  margin-bottom: 24px;
+}
+
+.highlight-coming {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--mono);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--mid);
+  border: 1px solid var(--border);
+  padding: 6px 12px;
+  border-radius: 2px;
+  align-self: flex-start;
+}
+
+.highlight-coming::before {
+  content: '';
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #e65100;
+}
+
+@media (max-width: 768px) {
+  .dashboard-title {
+    font-size: 32px;
+  }
+
+  .report-title {
+    font-size: 24px;
+  }
+
+  .insights-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .report-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .who-intro h2 {
+    font-size: 26px;
+  }
+
+  .who-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .highlights-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .highlights-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .impact-statement p {
+    font-size: 17px;
+  }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode">
+    <svg class="theme-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="18" height="18">
+      <circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+    </svg>
+  </button>
+
+  <button class="nav-toggle" aria-label="Open menu" aria-haspopup="dialog" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" width="20" height="20"><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2.5"/><path d="M 18 8 L 20 6 L 22 8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+
+  <a class="nav-logo" href="index.html">S·A·F·E</a>
+
+  <div class="nav-right">
+    <a class="nav-link" href="index.html">Home</a>
+    <a class="nav-link" href="mission.html">Mission</a>
+    <a class="nav-link" href="hub.html">The Hub</a>
+    <a class="nav-link" href="news.html">News</a>
+    <a class="nav-link active" href="story-intelligence.html">Intelligence</a>
+    <a class="nav-link" href="youth-stories.html">Youth Stories</a>
+    <a class="nav-link" href="shop.html">Shop</a>
+    <a class="nav-link" href="careers.html">Careers</a>
+    <a class="nav-link" href="library.html">Library</a>
+    <a class="nav-link" href="course.html">Courses</a>
+  </div>
+</nav>
+
+<section class="dashboard-hero">
+  <div class="dashboard-hero-inner">
+    <p class="dashboard-eyebrow">Story Intelligence</p>
+    <h1 class="dashboard-title">What's Actually Happening<br>Beyond the Headlines</h1>
+    <p class="dashboard-desc">Every month, we analyse real stories from young people around the world. Not curated. Not filtered. Authentic youth voice. Here's what we're seeing.</p>
+  </div>
+</section>
+
+<section class="dashboard-container" id="reportsContainer">
+  <!-- Loading state: shown while story-intelligence.js fetches live data -->
+  <div id="loadingMessage" aria-live="polite" aria-label="Loading insights">Loading latest insights…</div>
+
+  <!-- ── FALLBACK / SAMPLE REPORT ─────────────────────────────────────────
+       This content is visible immediately and will be replaced if
+       story-intelligence.js successfully loads live data.
+       Remove or hide this block once live data is confirmed working.
+  ──────────────────────────────────────────────────────────────────────── -->
+  <div id="fallbackReport" style="display:none;">
+
+    <div class="month-report">
+      <div class="report-header">
+        <p class="report-month">June 2026 — Sample Report</p>
+        <h2 class="report-title">Mental health and economic anxiety are dominating youth narratives globally</h2>
+        <p class="data-note">Sample data — will be replaced by live submissions once the pipeline is active</p>
+      </div>
+
+      <div class="report-stats">
+        <div class="stat-card">
+          <div class="stat-number">247</div>
+          <div class="stat-label">Stories submitted</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">38</div>
+          <div class="stat-label">Countries represented</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">14–24</div>
+          <div class="stat-label">Age range (median: 18)</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">62%</div>
+          <div class="stat-label">Submitted anonymously</div>
+        </div>
+      </div>
+
+      <div class="insights-grid">
+        <div class="insight-card">
+          <span class="insight-emoji" aria-hidden="true">🧠</span>
+          <p class="insight-category">Mental Health</p>
+          <h3 class="insight-title">Burnout is hitting younger every year</h3>
+          <p class="insight-desc">Stories from 14–17 year-olds describe symptoms once associated with overworked adults: chronic fatigue, emotional numbness, inability to experience joy. School systems and social media are cited most often.</p>
+          <p class="insight-stat">↑ 34% more mentions than last month</p>
+        </div>
+        <div class="insight-card">
+          <span class="insight-emoji" aria-hidden="true">💸</span>
+          <p class="insight-category">Poverty &amp; Economics</p>
+          <h3 class="insight-title">Youth unemployment is reshaping futures</h3>
+          <p class="insight-desc">Across Europe and South America, submitters describe qualifying for jobs they can't afford to take—entry-level roles that don't cover transport, housing, or food in the cities where the work exists.</p>
+          <p class="insight-stat">41 stories from 12 countries this month</p>
+        </div>
+        <div class="insight-card">
+          <span class="insight-emoji" aria-hidden="true">🏘️</span>
+          <p class="insight-category">Community</p>
+          <h3 class="insight-title">Third places are disappearing</h3>
+          <p class="insight-desc">Libraries, youth clubs, and community centres that young people relied on are closing. What's left? The mall. The phone. Nowhere that doesn't cost money or screen time to exist in.</p>
+          <p class="insight-stat">Mentioned in 28 stories across 9 countries</p>
+        </div>
+        <div class="insight-card">
+          <span class="insight-emoji" aria-hidden="true">🌍</span>
+          <p class="insight-category">Environment</p>
+          <h3 class="insight-title">Climate grief is real and unaddressed</h3>
+          <p class="insight-desc">Submitters describe a specific hopelessness: caring deeply about environmental collapse while feeling utterly powerless. Rarely discussed in schools. Almost never addressed by mental health services.</p>
+          <p class="insight-stat">↑ 19% increase in environmental stories</p>
+        </div>
+      </div>
+
+      <div class="topic-breakdown">
+        <h3 class="breakdown-title">Topic breakdown this month</h3>
+        <div>
+          <div class="topic-bar-row">
+            <div class="topic-bar-label"><span>Mental Health</span><span>31%</span></div>
+            <div class="topic-bar-track"><div class="topic-bar-fill" style="width:31%"></div></div>
+          </div>
+          <div class="topic-bar-row">
+            <div class="topic-bar-label"><span>Education</span><span>22%</span></div>
+            <div class="topic-bar-track"><div class="topic-bar-fill" style="width:22%"></div></div>
+          </div>
+          <div class="topic-bar-row">
+            <div class="topic-bar-label"><span>Poverty &amp; Economics</span><span>17%</span></div>
+            <div class="topic-bar-track"><div class="topic-bar-fill" style="width:17%"></div></div>
+          </div>
+          <div class="topic-bar-row">
+            <div class="topic-bar-label"><span>Community &amp; Belonging</span><span>11%</span></div>
+            <div class="topic-bar-track"><div class="topic-bar-fill" style="width:11%"></div></div>
+          </div>
+          <div class="topic-bar-row">
+            <div class="topic-bar-label"><span>Environment</span><span>9%</span></div>
+            <div class="topic-bar-track"><div class="topic-bar-fill" style="width:9%"></div></div>
+          </div>
+          <div class="topic-bar-row">
+            <div class="topic-bar-label"><span>Inequality &amp; Systems</span><span>6%</span></div>
+            <div class="topic-bar-track"><div class="topic-bar-fill" style="width:6%"></div></div>
+          </div>
+          <div class="topic-bar-row">
+            <div class="topic-bar-label"><span>Other</span><span>4%</span></div>
+            <div class="topic-bar-track"><div class="topic-bar-fill" style="width:4%"></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /#fallbackReport -->
+</section>
+
+<!-- ── WHO BENEFITS ──────────────────────────────────────────────────────── -->
+<section class="who-section">
+  <div class="who-inner">
+
+    <div class="who-intro">
+      <p class="s-label">Who this report serves</p>
+      <h2>Intelligence that helps the people who need to act most</h2>
+      <p>Youth voices are gathered. Patterns are surfaced. What happens next depends on who reads it. Story Intelligence is designed to be genuinely useful to the organisations, institutions, and individuals with the power to make change—not just to watch it.</p>
+    </div>
+
+    <div class="who-grid">
+
+      <div class="who-card">
+        <span class="who-card-icon" aria-hidden="true">🏛️</span>
+        <h3 class="who-card-title">Department of Education</h3>
+        <p class="who-card-desc">Unfiltered data on what's actually happening inside classrooms, schools, and the lives of students—before it becomes a crisis that lands on a minister's desk. Useful for curriculum review, pastoral policy, and early intervention strategy.</p>
+      </div>
+
+      <div class="who-card">
+        <span class="who-card-icon" aria-hidden="true">🗣️</span>
+        <h3 class="who-card-title">Youth Councils</h3>
+        <p class="who-card-desc">Evidence that young people can bring to the table. Story Intelligence gives youth representatives a structured, credible dataset to support advocacy—not just anecdote. Stronger voice. Harder to ignore.</p>
+      </div>
+
+      <div class="who-card">
+        <span class="who-card-icon" aria-hidden="true">🤝</span>
+        <h3 class="who-card-title">NGOs — Barnardo's, Save the Children &amp; others</h3>
+        <p class="who-card-desc">Real-time intelligence on where need is highest. Useful for grant applications, programme design, and directing resources toward emerging issues before they're mainstream. Data direct from the young people these organisations exist to serve.</p>
+      </div>
+
+      <div class="who-card">
+        <span class="who-card-icon" aria-hidden="true">🔬</span>
+        <h3 class="who-card-title">University Researchers</h3>
+        <p class="who-card-desc">A qualitative dataset of youth narratives spanning geography, age, and topic—updated monthly. Available as primary source material for social science, public health, education, and media studies research.</p>
+      </div>
+
+      <div class="who-card">
+        <span class="who-card-icon" aria-hidden="true">📰</span>
+        <h3 class="who-card-title">Media Outlets</h3>
+        <p class="who-card-desc">Story leads that exist nowhere else. Journalists covering youth, education, or social affairs can use Story Intelligence to identify underreported issues, find real voices, and get ahead of the stories that matter before they break.</p>
+      </div>
+
+      <div class="who-card">
+        <span class="who-card-icon" aria-hidden="true">🏘️</span>
+        <h3 class="who-card-title">Local Government</h3>
+        <p class="who-card-desc">Granular, community-level insight. Councils can see what young people in their area are actually experiencing—separate from national trends—and make better decisions on services, spaces, and youth programme funding.</p>
+      </div>
+
+      <div class="who-card">
+        <span class="who-card-icon" aria-hidden="true">📚</span>
+        <h3 class="who-card-title">Schools — as a Research Tool</h3>
+        <p class="who-card-desc">For teachers, pastoral leads, and school leaders who want to understand what's happening in students' lives beyond the school gate. Useful for PSHE planning, safeguarding awareness, and informing staff development.</p>
+      </div>
+
+    </div>
+
+    <div class="impact-statement">
+      <p>The same data that shows a mental health crisis in 14-year-olds in Bristol can inform a local authority budget decision, a Barnardo's programme launch, a university research paper, and a Guardian feature—simultaneously. That's what makes it worth collecting.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── MONTHLY HIGHLIGHTS ────────────────────────────────────────────────── -->
+<section class="highlights-section">
+  <div class="highlights-inner">
+
+    <div class="highlights-header">
+      <div class="highlights-header-text">
+        <p class="s-label">Free monthly highlights</p>
+        <h2>Published for everyone. Built to create real change.</h2>
+        <p>Every month we publish three free formats on site. No paywall. No registration. These aren't summaries—they're analysis pieces designed to be shared, cited, and acted on. The free reports are what build trust with the organisations that eventually become partners.</p>
+      </div>
+    </div>
+
+    <div class="highlights-grid">
+
+      <div class="highlight-card">
+        <p class="highlight-format">Monthly Format 01</p>
+        <h3 class="highlight-title">Top 5 Issues in Youth Communities This Month</h3>
+        <p class="highlight-desc">A ranked list of the most prevalent themes in that month's submissions — with direct quotes, geographic spread, and a short editorial note on what's driving each issue. Readable in five minutes. Useful for a decade.</p>
+        <span class="highlight-coming">First issue coming soon</span>
+      </div>
+
+      <div class="highlight-card">
+        <p class="highlight-format">Monthly Format 02</p>
+        <h3 class="highlight-title">How Mainstream Media Got It Wrong</h3>
+        <p class="highlight-desc">A comparison piece. We take a major story about young people from the previous month's press coverage and set it against what youth actually submitted about the same topic. The gap is usually significant. Sometimes it's damning.</p>
+        <span class="highlight-coming">First issue coming soon</span>
+      </div>
+
+      <div class="highlight-card">
+        <p class="highlight-format">Monthly Format 03</p>
+        <h3 class="highlight-title">Emerging Crisis: <em>[Topic]</em></h3>
+        <p class="highlight-desc">When a new pattern appears in submissions that isn't yet on anyone's radar, we name it here first. Not speculation — pattern recognition from real submissions. These are the issues that become tomorrow's headlines and this month's policy gaps.</p>
+        <span class="highlight-coming">First issue coming soon</span>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<section class="cta-section-intel">
+  <div class="cta-intel-inner">
+    <h2 class="cta-intel-title">Your story shapes the data</h2>
+    <p class="cta-intel-desc">When you submit your story, you're not just sharing—you're contributing to the world's most authentic picture of what young people are really dealing with.</p>
+    <a class="cta-intel-btn" href="youth-stories.html">Submit Your Story</a>
+  </div>
+</section>
+
+<footer>
+  <span class="footer-left">S·A·F·E — Steps Approaching Future Earth</span>
+  <span class="footer-right" style="display: flex; gap: 24px; font-size: 11px;">
+    <a href="help.html" style="color: inherit; text-decoration: none;">Help</a>
+    <a href="careers.html" style="color: inherit; text-decoration: none;">Careers</a>
+    <a href="privacy.html" style="color: inherit; text-decoration: none;">Privacy</a>
+    <a href="terms.html" style="color: inherit; text-decoration: none;">Terms</a>
+    <a href="privacy-choices.html" style="color: inherit; text-decoration: none;">Choices</a>
+    <a href="accessibility.html" style="color: inherit; text-decoration: none;">Access</a>
+    <a href="https://hughcorduroy.bandcamp.com/" target="_blank" rel="noopener" style="color: inherit; text-decoration: none;">Music</a>
+  </span>
+</footer>
+
+<script src="theme.js"></script>
+<script src="bento.js" defer></script>
+<script>
+// Show the fallback report until story-intelligence.js populates live data.
+// story-intelligence.js should call window.onIntelLoaded() when it has data,
+// which will hide the fallback and show the live content instead.
+window.onIntelLoaded = function() {
+  document.getElementById('loadingMessage').style.display = 'none';
+  document.getElementById('fallbackReport').style.display = 'none';
+};
+
+// If story-intelligence.js hasn't resolved in 3s, show the fallback.
+setTimeout(function() {
+  const loading = document.getElementById('loadingMessage');
+  const fallback = document.getElementById('fallbackReport');
+  if (loading && loading.style.display !== 'none') {
+    loading.style.display = 'none';
+    fallback.style.display = 'block';
+  }
+}, 3000);
+</script>
+<script src="story-intelligence.js"></script>
+</body>
+</html>

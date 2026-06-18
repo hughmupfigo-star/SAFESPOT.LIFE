@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Publishing — SAFE</title>
+<meta name="description" content="Independent voices on truth. Submit your manuscript. 100% of proceeds go to the author.">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+.publishing-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 60px 20px;
+}
+
+.submit-intro {
+  margin-bottom: 48px;
+  padding: 32px;
+  background: var(--bg);
+  border-left: 4px solid var(--black);
+}
+
+.submit-intro h2 {
+  font-size: 24px;
+  font-weight: 400;
+  margin: 0 0 16px 0;
+  color: var(--black);
+}
+
+.submit-intro p {
+  font-size: 14px;
+  line-height: 1.8;
+  color: var(--black);
+  margin: 0;
+}
+
+.form-section {
+  margin-bottom: 40px;
+}
+
+.form-label {
+  display: block;
+  font-family: var(--mono);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--mid);
+  margin-bottom: 12px;
+}
+
+.form-input,
+.form-textarea,
+.form-select {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1px solid var(--border, #e0e0e0);
+  border-radius: 2px;
+  font-family: var(--sans);
+  font-size: 14px;
+  color: var(--black);
+  background: var(--white);
+  box-sizing: border-box;
+  transition: border 0.2s;
+}
+
+.form-input:focus,
+.form-textarea:focus,
+.form-select:focus {
+  outline: none;
+  border-color: var(--black);
+}
+
+.form-textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.form-hint {
+  font-size: 13px;
+  color: var(--mid);
+  margin-top: 8px;
+  line-height: 1.6;
+}
+
+.form-required {
+  color: #d32f2f;
+  margin-left: 4px;
+}
+
+.submit-btn {
+  padding: 16px 40px;
+  background: var(--black);
+  color: var(--white);
+  border: none;
+  border-radius: 2px;
+  font-family: var(--mono);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background 0.15s;
+}
+
+.submit-btn:hover {
+  background: var(--mid);
+}
+
+.success-message {
+  display: none;
+  padding: 24px;
+  background: #e8f5e9;
+  border: 1px solid #4caf50;
+  border-radius: 2px;
+  color: #2e7d32;
+  margin-bottom: 24px;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.success-message.show {
+  display: block;
+}
+
+.error-message {
+  display: none;
+  padding: 24px;
+  background: #ffebee;
+  border: 1px solid #f44336;
+  border-radius: 2px;
+  color: #c62828;
+  margin-bottom: 24px;
+  font-size: 14px;
+}
+
+.error-message.show {
+  display: block;
+}
+
+.criteria-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 24px;
+  margin-top: 32px;
+}
+
+.criteria-item {
+  padding: 24px;
+  border: 1px solid var(--border, #e0e0e0);
+  border-radius: 2px;
+  background: var(--bg-alt);
+}
+
+.criteria-item h3 {
+  font-size: 16px;
+  font-weight: 400;
+  margin: 0 0 12px 0;
+  color: var(--black);
+}
+
+.criteria-item p {
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--mid);
+  margin: 0;
+}
+
+.how-it-works {
+  margin-top: 60px;
+  padding: 60px 0;
+  background: var(--bg-alt);
+  border-top: 1px solid var(--border, #e0e0e0);
+  border-bottom: 1px solid var(--border, #e0e0e0);
+}
+
+.steps-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 48px;
+  margin-top: 48px;
+}
+
+.step {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.step-number {
+  font-size: 48px;
+  font-weight: 300;
+  color: var(--mid);
+  opacity: 0.5;
+  font-family: var(--mono);
+}
+
+.step-title {
+  font-size: 20px;
+  font-weight: 400;
+  color: var(--black);
+  margin: 0;
+}
+
+.step-desc {
+  font-size: 14px;
+  line-height: 1.8;
+  color: var(--black);
+  margin: 0;
+}
+
+@media (prefers-color-scheme: dark) {
+  .submit-intro {
+    background: #1a1a1a;
+    border-left-color: var(--white);
+  }
+
+  .form-input,
+  .form-textarea,
+  .form-select {
+    background: #1a1a1a;
+    border-color: #333;
+    color: var(--white);
+  }
+
+  .form-input:focus,
+  .form-textarea:focus,
+  .form-select:focus {
+    border-color: var(--white);
+  }
+
+  .criteria-item {
+    background: #0a0a0a;
+    border-color: #333;
+  }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode">
+    <svg class="theme-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="18" height="18">
+      <circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+    </svg>
+  </button>
+
+  <button class="nav-toggle" aria-label="Open menu" aria-haspopup="dialog" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" width="20" height="20"><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2.5"/><path d="M 18 8 L 20 6 L 22 8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+
+  <button class="cart-toggle" id="cartToggle" aria-label="Shopping cart">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="18" height="18">
+      <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M 1 1 h 4 l 2.68 13.39a2 2 0 0 0 2 1.61h 9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+    </svg>
+    <span class="cart-count" id="cartCount">0</span>
+  </button>
+</nav>
+
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <p class="page-hero-eyebrow">Publishing — Independent Voices</p>
+    <h1 class="page-hero-title">We're building a library<br>of<br><em>truth.</em></h1>
+    <p class="page-hero-desc">
+      Not every truth gets published by the big houses. Not every author who writes about prevention, systems, healing, and real education has access to distribution. We're changing that. Independent authors. Youth-centred writing. Non-fiction that unmasks systems. You keep 100% of the proceeds. We just get to say: this is good writing, this person sees clearly, and this belongs in the world.
+    </p>
+  </div>
+</section>
+
+<section style="padding: 60px 0;">
+  <div class="publishing-container">
+
+    <!-- WHAT WE'RE LOOKING FOR -->
+    <div style="margin-bottom: 60px;">
+      <div style="max-width: 640px; margin-bottom: 40px;">
+        <p style="font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--mid); margin: 0 0 24px 0;">What we look for</p>
+        <p style="font-size: 14px; line-height: 1.8; color: var(--black); margin: 0;">
+          Does your book serve young people? Does it tell truth about systems, identity, prevention, healing, or real education? We want to read it.
+        </p>
+      </div>
+
+      <div class="criteria-grid">
+        <div class="criteria-item">
+          <h3>Non-fiction</h3>
+          <p>Books grounded in reality, research, and lived experience. Not theory divorced from how systems actually work.</p>
+        </div>
+
+        <div class="criteria-item">
+          <h3>Youth-centred</h3>
+          <p>Written WITH young people in mind. Not AT them. Books they'll actually read and understand.</p>
+        </div>
+
+        <div class="criteria-item">
+          <h3>Truth-focused</h3>
+          <p>Books that unmask systems. That show what's hidden. That help young people understand the architecture they're inside.</p>
+        </div>
+
+        <div class="criteria-item">
+          <h3>Systems-aware</h3>
+          <p>Books about identity, prevention, healing, power, relationships, media, money. Books that name how systems shape us.</p>
+        </div>
+
+        <div class="criteria-item">
+          <h3>Pathways, not just problems</h3>
+          <p>You don't just show what's broken. You show how young people move through it differently. Prevention, not just crisis response.</p>
+        </div>
+
+        <div class="criteria-item">
+          <h3>Independent voice</h3>
+          <p>Books that see what mainstream publishing misses. Ideas that matter. Writing that serves people, not algorithms.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- SUBMIT YOUR MANUSCRIPT -->
+    <div style="margin-bottom: 60px;">
+      <div class="submit-intro">
+        <h2>Submit Your Manuscript</h2>
+        <p>Send us what you've written. We'll read it. If we think it serves young people and tells truth, we'll publish it. You keep everything you earn.</p>
+      </div>
+
+      <div class="success-message" id="successMessage">
+        <strong>Thank you. We've received your manuscript.</strong> We'll read it and reach out within 4 weeks. If we think it serves young people and tells truth, we'll create a payment link. Everything you earn is yours.
+      </div>
+
+      <div class="error-message" id="errorMessage">
+        <strong>Something went wrong.</strong> Please fill in all required fields and try again.
+      </div>
+
+      <form id="manuscriptForm">
+
+        <!-- NAME & EMAIL -->
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 32px;">
+          <div class="form-section">
+            <label class="form-label">Your name <span class="form-required">*</span></label>
+            <input type="text" name="name" class="form-input" placeholder="First and last name" required>
+          </div>
+
+          <div class="form-section">
+            <label class="form-label">Email address <span class="form-required">*</span></label>
+            <input type="email" name="email" class="form-input" placeholder="your@email.com" required>
+          </div>
+        </div>
+
+        <!-- BOOK TITLE -->
+        <div class="form-section">
+          <label class="form-label">Book title <span class="form-required">*</span></label>
+          <input type="text" name="title" class="form-input" placeholder="What is your book called?" required>
+        </div>
+
+        <!-- WHAT'S THIS BOOK ABOUT -->
+        <div class="form-section">
+          <label class="form-label">What's this book about? <span class="form-required">*</span></label>
+          <textarea name="about" class="form-textarea" placeholder="Describe the core idea. What's the central truth your book explores?" required></textarea>
+          <p class="form-hint">Give us the essence. What question does your book answer? What system does it unmask?</p>
+        </div>
+
+        <!-- WHO IS THIS FOR -->
+        <div class="form-section">
+          <label class="form-label">Who is this book for? <span class="form-required">*</span></label>
+          <textarea name="audience" class="form-textarea" placeholder="Young people aged X-X who... What's their situation? What do they need?" required></textarea>
+          <p class="form-hint">Be specific about the young people this serves. What do they experience? What are they navigating?</p>
+        </div>
+
+        <!-- WHY DID YOU WRITE THIS -->
+        <div class="form-section">
+          <label class="form-label">Why did you write this? <span class="form-required">*</span></label>
+          <textarea name="why" class="form-textarea" placeholder="What truth is missing? What does the world get wrong? Why did you have to write it?" required></textarea>
+          <p class="form-hint">What inspired this? What gap does it fill? Why does it matter?</p>
+        </div>
+
+        <!-- HOW DOES IT SERVE YOUNG PEOPLE -->
+        <div class="form-section">
+          <label class="form-label">How does it serve the next generation? <span class="form-required">*</span></label>
+          <textarea name="serves" class="form-textarea" placeholder="What do readers understand after they finish? What changes in how they see the world?" required></textarea>
+          <p class="form-hint">What's the transformation? What do they walk away able to do differently?</p>
+        </div>
+
+        <!-- WORD COUNT & PAGES -->
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 32px;">
+          <div class="form-section">
+            <label class="form-label">Word count <span class="form-required">*</span></label>
+            <input type="number" name="wordcount" class="form-input" placeholder="Approximate word count" required>
+          </div>
+
+          <div class="form-section">
+            <label class="form-label">Estimated pages <span class="form-required">*</span></label>
+            <input type="number" name="pages" class="form-input" placeholder="Approximate number of pages" required>
+          </div>
+        </div>
+
+        <!-- GENRE/CATEGORY -->
+        <div class="form-section">
+          <label class="form-label">Genre or category <span class="form-required">*</span></label>
+          <input type="text" name="category" class="form-input" placeholder="e.g., Healing, Systems, Identity, Prevention, Education, Relationships" required>
+          <p class="form-hint">What category does your book fit? (Systems, Prevention, Healing, Identity, Education, Relationships, Media, Money, etc.)</p>
+        </div>
+
+        <!-- MANUSCRIPT LINK -->
+        <div class="form-section">
+          <label class="form-label">Manuscript or draft link <span class="form-required">*</span></label>
+          <input type="url" name="manuscript" class="form-input" placeholder="https://drive.google.com/... or link to PDF" required>
+          <p class="form-hint">Share your manuscript via Google Drive, Dropbox, or a PDF link. Make sure we have view access.</p>
+        </div>
+
+        <!-- WRITING BACKGROUND (OPTIONAL) -->
+        <div class="form-section">
+          <label class="form-label">Your writing platform or background (optional)</label>
+          <textarea name="background" class="form-textarea" placeholder="Have you published before? Where else do people read your work? What's your background with this topic?" style="min-height: 100px;"></textarea>
+          <p class="form-hint">Help us understand your credibility. Have you worked with young people? Written about this before? Do you have lived experience?</p>
+        </div>
+
+        <!-- ANYTHING ELSE -->
+        <div class="form-section">
+          <label class="form-label">Anything else we should know? (optional)</label>
+          <textarea name="additional" class="form-textarea" placeholder="Context, urgency, previous feedback, related work, anything else." style="min-height: 100px;"></textarea>
+        </div>
+
+        <!-- SUBMIT -->
+        <button type="submit" class="submit-btn">Submit Manuscript</button>
+
+      </form>
+    </div>
+
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how-it-works">
+  <div class="s-inner">
+    <div style="max-width: 640px; margin-bottom: 48px;">
+      <p style="font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--mid); margin: 0 0 24px 0;">How it works</p>
+      <h2 style="font-size: 28px; font-weight: 400; margin: 0; color: var(--black);">Three steps from submission to reader.</h2>
+    </div>
+
+    <div class="steps-grid">
+      <div class="step">
+        <div class="step-number">01</div>
+        <h3 class="step-title">You submit</h3>
+        <p class="step-desc">Send us your manuscript. Non-fiction. Youth-centred. Truth-focused. Systems-aware. That's the brief. We'll read it.</p>
+      </div>
+
+      <div class="step">
+        <div class="step-number">02</div>
+        <h3 class="step-title">We read</h3>
+        <p class="step-desc">We read everything. We're looking for clarity of thinking, writing that serves young people, content that unmasks systems and shows pathways through them. We'll get back to you within 4 weeks.</p>
+      </div>
+
+      <div class="step">
+        <div class="step-number">03</div>
+        <h3 class="step-title">You earn</h3>
+        <p class="step-desc">If we love it, we create a payment link. You set the price. We distribute it. You keep 100% of proceeds. We get to build a library of voices that matter.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY WE DO THIS -->
+<section style="padding: 60px 0;">
+  <div class="s-inner">
+    <div style="max-width: 640px;">
+      <p style="font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--mid); margin: 0 0 24px 0;">Why we publish</p>
+      <h2 style="font-size: 28px; font-weight: 400; margin: 0 0 24px 0; color: var(--black);">We value truth in good writing.</h2>
+
+      <p style="font-size: 14px; line-height: 1.8; color: var(--black); margin: 0 0 16px 0;">
+        Mainstream publishing serves profit first. We serve young people first. If a book helps them understand systems, prevent crisis, heal, or see themselves clearly—it belongs in the world. That's not a business decision. That's a mission decision.
+      </p>
+
+      <p style="font-size: 14px; line-height: 1.8; color: var(--black); margin: 0;">
+        We take 0% of proceeds because we're not trying to monetise truth. We're trying to distribute it. We're building proof that good authors and honest writing and young people in the centre can exist together. That's how we add to SAFE's mission: one author, one book, one young person at a time.
+      </p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span class="footer-left">S·A·F·E — Steps Approaching Future Earth</span>
+  <span class="footer-right" style="display: flex; gap: 24px; font-size: 11px;">
+    <a href="help.html" style="color: inherit; text-decoration: none;">Help</a>
+    <a href="careers.html" style="color: inherit; text-decoration: none;">Careers</a>
+    <a href="privacy.html" style="color: inherit; text-decoration: none;">Privacy</a>
+    <a href="terms.html" style="color: inherit; text-decoration: none;">Terms</a>
+    <a href="privacy-choices.html" style="color: inherit; text-decoration: none;">Choices</a>
+    <a href="accessibility.html" style="color: inherit; text-decoration: none;">Access</a>
+    <a href="https://hughcorduroy.bandcamp.com/" target="_blank" rel="noopener" style="color: inherit; text-decoration: none;">Music</a>
+  </span>
+</footer>
+
+<script src="theme.js"></script>
+<script src="session.js"></script>
+<script src="language.js"></script>
+<script src="bento.js"></script>
+
+<script>
+document.getElementById('manuscriptForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+
+  const formData = new FormData(this);
+  const data = {
+    name: formData.get('name'),
+    email: formData.get('email'),
+    title: formData.get('title'),
+    about: formData.get('about'),
+    audience: formData.get('audience'),
+    why: formData.get('why'),
+    serves: formData.get('serves'),
+    wordcount: formData.get('wordcount'),
+    pages: formData.get('pages'),
+    category: formData.get('category'),
+    manuscript: formData.get('manuscript'),
+    background: formData.get('background'),
+    additional: formData.get('additional'),
+    submittedAt: new Date().toISOString()
+  };
+
+  // Validate required fields
+  if (!data.name || !data.email || !data.title || !data.about || !data.audience || !data.why || !data.serves || !data.wordcount || !data.pages || !data.category || !data.manuscript) {
+    document.getElementById('errorMessage').classList.add('show');
+    setTimeout(() => {
+      document.getElementById('errorMessage').classList.remove('show');
+    }, 5000);
+    return;
+  }
+
+  // Validate email format
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRegex.test(data.email)) {
+    document.getElementById('errorMessage').classList.add('show');
+    setTimeout(() => {
+      document.getElementById('errorMessage').classList.remove('show');
+    }, 5000);
+    return;
+  }
+
+  // Validate manuscript URL
+  try {
+    new URL(data.manuscript);
+  } catch {
+    document.getElementById('errorMessage').classList.add('show');
+    setTimeout(() => {
+      document.getElementById('errorMessage').classList.remove('show');
+    }, 5000);
+    return;
+  }
+
+  // Log to console for testing (in production, this would POST to a backend)
+  console.log('Manuscript submission:', data);
+
+  // Show success message
+  document.getElementById('successMessage').classList.add('show');
+
+  // Reset form
+  this.reset();
+
+  // Hide success message after 8 seconds
+  setTimeout(() => {
+    document.getElementById('successMessage').classList.remove('show');
+  }, 8000);
+});
+</script>
+
+</body>
+</html>

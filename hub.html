@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Hub — SAFE</title>
+<meta name="description" content="The SAFE Hub: one building, seven rooms, designed to scale. Visualisations, masterplan and downloadable booklet.">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<nav>
+  <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode">
+    <svg class="theme-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="18" height="18">
+      <circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+    </svg>
+  </button>
+
+  <button class="nav-toggle" aria-label="Open menu" aria-haspopup="dialog" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" width="20" height="20"><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2.5"/><path d="M 18 8 L 20 6 L 22 8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+
+  <button class="cart-toggle" id="cartToggle" aria-label="Shopping cart">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="18" height="18">
+      <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M 1 1 h 4 l 2.68 13.39a2 2 0 0 0 2 1.61h 9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+    </svg>
+    <span class="cart-count" id="cartCount">0</span>
+  </button>
+</nav>
+
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <p class="page-hero-eyebrow">The Hub — 002 · One building, seven rooms</p>
+    <h1 class="page-hero-title">One building.<br><em>Seven rooms.</em><br>Designed to scale.</h1>
+    <p class="page-hero-desc">
+      The SAFE Hub is a holistic youth development facility. Every room addresses a specific human need — body, mind, voice, identity, knowledge, stillness, nourishment — and every room connects to every other. Below are the concept visualisations and the masterplan for the first build in the UK.
+    </p>
+  </div>
+</section>
+
+<div class="marquee-line">
+  <span class="marquee-inner">
+    Kitchen &nbsp;·&nbsp; Dojo &nbsp;·&nbsp; Kinetic Lab &nbsp;·&nbsp; Meditation &nbsp;·&nbsp; Recording Studio &nbsp;·&nbsp; Identity Studio &nbsp;·&nbsp; Learning Centre &nbsp;·&nbsp; Gardening Zone &nbsp;·&nbsp; Carpentry Pavilion &nbsp;·&nbsp; Basketball Court &nbsp;·&nbsp; Kitchen &nbsp;·&nbsp; Dojo &nbsp;·&nbsp; Kinetic Lab &nbsp;·&nbsp; Meditation &nbsp;·&nbsp; Recording Studio &nbsp;·&nbsp; Identity Studio &nbsp;·&nbsp; Learning Centre &nbsp;·&nbsp; Gardening Zone &nbsp;·&nbsp; Carpentry Pavilion &nbsp;·&nbsp; Basketball Court &nbsp;·&nbsp;
+  </span>
+</div>
+
+<!-- PLANS -->
+<section>
+  <div class="s-inner">
+    <div class="rooms-header">
+      <p class="s-label">The Plans</p>
+      <p class="s-num">A</p>
+    </div>
+    <div class="hub-plan">
+      <div class="hub-card">
+        <img src="images/masterplan.png" alt="Holistic Development Hub Masterplan">
+        <p class="hub-card-label">Masterplan</p>
+        <p class="hub-card-title">Holistic Development Hub — Masterplan</p>
+        <p class="hub-card-desc">The organising diagram. Every room is positioned so that no discipline is dominant and no young person has to choose between body, mind and voice.</p>
+      </div>
+      <div class="hub-card">
+        <img src="images/siteplan.png" alt="Holistic Development Hub Site Plan">
+        <p class="hub-card-label">Site Plan</p>
+        <p class="hub-card-title">Site Plan</p>
+        <p class="hub-card-desc">Outdoor and indoor flow. Gardening, carpentry and the basketball court sit in dialogue with the indoor disciplines.</p>
+      </div>
+    </div>
+    <div class="hub-plan" style="margin-top:32px">
+      <div class="hub-card">
+        <img src="images/structural.png" alt="Structural Plan of Building">
+        <p class="hub-card-label">Structural</p>
+        <p class="hub-card-title">Structural Plan of the Building</p>
+        <p class="hub-card-desc">Engineering-led. The SAFE Hub is buildable, costable and replicable — not a mood board.</p>
+      </div>
+      <div class="hub-card">
+        <img src="images/learning.png" alt="Collaborative learning space with greenery">
+        <p class="hub-card-label">Collaborative Space</p>
+        <p class="hub-card-title">Collaborative Learning Space</p>
+        <p class="hub-card-desc">Shared green-facing workspace. Where mentors, students and peers meet without hierarchy.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ROOMS GALLERY -->
+<section>
+  <div class="s-inner">
+    <div class="rooms-header">
+      <p class="s-label">The Rooms</p>
+      <p class="s-num">B</p>
+    </div>
+
+    <div class="hub-gallery">
+      <div class="hub-card" id="kitchen">
+        <img src="images/kitchen.png" alt="Botanical apothecary kitchen and clinic">
+        <p class="hub-card-label">01 · Alchemist's Kitchen</p>
+        <p class="hub-card-title">Botanical Apothecary Kitchen &amp; Clinic</p>
+        <p class="hub-card-desc">A teaching kitchen and nutritional clinic in one room. Food as the first language of safety — and as medicine. Young people learn to cook, prep and understand what enters the body as both fuel and regulation.</p>
+      </div>
+
+      <div class="hub-card" id="dojo">
+        <img src="images/dojo.png" alt="Martial arts dojo (discipline + self-regulation)">
+        <p class="hub-card-label">02 · Warrior Dojo</p>
+        <p class="hub-card-title">Martial Arts Dojo — Discipline &amp; Self-Regulation</p>
+        <p class="hub-card-desc">A dojo is not a gym. It is a structured environment for converting aggression into precision, impulse into discipline, and fear into presence. Core to the SAFE physical curriculum.</p>
+      </div>
+
+      <div class="hub-card" id="kinetic">
+        <img src="images/kinetic.png" alt="Kinetic movement lab (skate + parkour)">
+        <p class="hub-card-label">03 · Kinetic Lab</p>
+        <p class="hub-card-title">Kinetic Movement Lab — Skate &amp; Parkour</p>
+        <p class="hub-card-desc">Controlled risk. Flow state. Public skate and parkour structures, indoors, year-round. Physical literacy through environments young people actually want to spend time in.</p>
+      </div>
+
+      <div class="hub-card" id="meditation">
+        <img src="images/meditation.png" alt="Meditation room">
+        <p class="hub-card-label">04 · Silence Sanctuary</p>
+        <p class="hub-card-title">Meditation Room</p>
+        <p class="hub-card-desc">The programme that makes all the others possible. Breathwork, stillness, guided practice. A room where doing nothing is the curriculum.</p>
+      </div>
+
+      <div class="hub-card" id="music">
+        <img src="images/music.png" alt="Music production and recording studio (creative expression)">
+        <p class="hub-card-label">05 · Resonance Booth</p>
+        <p class="hub-card-title">Music Production &amp; Recording Studio</p>
+        <p class="hub-card-desc">A working studio. Not a youth club setup — professional grade equipment in a room designed to tell a young person that their voice is worth capturing properly.</p>
+      </div>
+
+      <div class="hub-card" id="fashion">
+        <img src="images/fashion-lab.png" alt="Fashion and identity lab (confidence and personal development)">
+        <p class="hub-card-label">06 · Identity Studio</p>
+        <p class="hub-card-title">Fashion &amp; Identity Lab</p>
+        <p class="hub-card-desc">Confidence and personal development through dress, construction and self-presentation. The question is not "what do you wear" — it is "who are you when nobody is telling you".</p>
+      </div>
+
+      <div class="hub-card" id="art">
+        <img src="images/fashion.png" alt="Young people painting and expressing themselves through art">
+        <p class="hub-card-label">06b · Expression Studio</p>
+        <p class="hub-card-title">Painting &amp; Expression Through Art</p>
+        <p class="hub-card-desc">Canvas, brush, colour, silence. A room where young people put what they cannot yet say into paint. Expression as release, expression as evidence. The image on the wall is a record of the day they chose to make something instead of carry it.</p>
+      </div>
+
+      <div class="hub-card" id="learning">
+        <img src="images/learning.png" alt="Architect's library and learning centre">
+        <p class="hub-card-label">07 · Architect's Library</p>
+        <p class="hub-card-title">Tech &amp; Learning Centre</p>
+        <p class="hub-card-desc">Books, devices, bandwidth, mentors. Knowledge is not the problem. Access is. This room closes the access gap.</p>
+      </div>
+
+      <div class="hub-card" id="carpentry">
+        <img src="images/carpentry.png" alt="Outdoor carpentry pavilion">
+        <p class="hub-card-label">Outdoor · Carpentry</p>
+        <p class="hub-card-title">Carpentry Pavilion</p>
+        <p class="hub-card-desc">Outdoor, open-sided. Timber, tools and craft. Making something with your hands is one of the fastest ways to tell yourself you are not powerless.</p>
+      </div>
+
+      <div class="hub-card" id="gardening">
+        <img src="images/gardening.png" alt="Outdoor gardening zone">
+        <p class="hub-card-label">Outdoor · Gardening</p>
+        <p class="hub-card-title">Gardening Zone</p>
+        <p class="hub-card-desc">Food grown on site feeds the kitchen. Soil, seed, patience — all of it transferable to how a young person eventually grows themselves.</p>
+      </div>
+
+      <div class="hub-card" id="basketball">
+        <img src="images/basketball.png" alt="Outdoor basketball court">
+        <p class="hub-card-label">Outdoor · Basketball</p>
+        <p class="hub-card-title">Outdoor Basketball Court</p>
+        <p class="hub-card-desc">The front door of the building. Open, visible, rules-based, community-owned. Any young person in the neighbourhood is welcome — a SAFE member or not.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DOWNLOAD BAND — booklet -->
+<section class="download-band" id="booklet" style="display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 400px;">
+  <div style="text-align: center;">
+    <h2>Take the Hub<br><em>home with you.</em></h2>
+    <p>Download the complete booklet · share it · print it · hand it out</p>
+    <div style="display:flex;flex-wrap:wrap;gap:16px;justify-content:center;margin-top:32px">
+      <a class="download-btn" href="SAFE_Booklet.pdf" target="_blank" rel="noopener">Open Booklet</a>
+      <a class="download-btn" href="SAFE_Booklet.pdf" download style="background:transparent;color:var(--white);border:1px solid rgba(255,255,255,0.3)">Save to Computer</a>
+    </div>
+    <p style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:rgba(255,255,255,0.35);margin-top:40px;letter-spacing:0.08em">
+      12 pages · 11 architectural renders · all information you need to understand and share SAFE
+    </p>
+  </div>
+</section>
+
+<footer>
+  <span class="footer-left">S·A·F·E — Steps Approaching Future Earth</span>
+  <span class="footer-right" style="display: flex; gap: 24px; font-size: 11px;">
+    <a href="help.html" style="color: inherit; text-decoration: none;">Help</a>
+    <a href="careers.html" style="color: inherit; text-decoration: none;">Careers</a>
+    <a href="privacy.html" style="color: inherit; text-decoration: none;">Privacy</a>
+    <a href="terms.html" style="color: inherit; text-decoration: none;">Terms</a>
+    <a href="privacy-choices.html" style="color: inherit; text-decoration: none;">Choices</a>
+    <a href="accessibility.html" style="color: inherit; text-decoration: none;">Access</a>
+    <a href="https://hughcorduroy.bandcamp.com/" target="_blank" rel="noopener" style="color: inherit; text-decoration: none;">Music</a>
+  </span>
+</footer>
+
+
+<!-- Cart Count Badge -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const cartToggle = document.getElementById('cartToggle');
+  const cartCount = document.getElementById('cartCount');
+
+  if(!cartToggle || !cartCount) return;
+
+  function updateCartCount() {
+    const cart = JSON.parse(localStorage.getItem('safeCart')) || [];
+    cartCount.textContent = cart.length;
+  }
+
+  cartToggle.addEventListener('click', function() {
+    window.location.href = 'shop.html';
+  });
+
+  updateCartCount();
+  setInterval(updateCartCount, 1000);
+});
+</script>
+
+<script src="theme.js"></script>
+<script src="bento.js" defer></script>
+</body>
+</html>

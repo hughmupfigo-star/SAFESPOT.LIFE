@@ -1,0 +1,9 @@
+{
+  "name": "safe-website",
+  "version": "1.0.0",
+  "description": "SAFE Shop with Stripe checkout",
+  "dependencies": {
+    "stripe": "^14.0.0",
+    "dotenv": "^16.3.1"
+  }
+}

@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Line You Didn't Get — SAFE</title>
+<meta name="description" content="What a good parent, carer, teacher or coach would have said in that moment. Write down a thing that happened — today or a long time ago — and read the words you should have heard. Not therapy. Just the line. Nothing stored.">
+<meta property="og:title" content="The Line You Didn't Get — SAFE">
+<meta property="og:description" content="The words you should have heard, written out for you now. From SAFE.">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="reparenting.html">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+.rp { max-width: 760px; margin: 0 auto; padding: 40px 24px 80px; }
+.rp-eyebrow { font-family: var(--mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--mid); margin: 0 0 14px; }
+.rp h1 { font-family: "Playfair Display", Georgia, serif; font-size: clamp(36px, 6.5vw, 64px); font-weight: 400; line-height: 1.02; letter-spacing: -0.02em; margin: 0 0 18px; }
+.rp h1 em { font-style: italic; }
+.rp-lede { font-size: 16px; line-height: 1.7; color: var(--mid); max-width: 600px; margin: 0 0 8px; }
+.rp-promise { font-family: var(--mono); font-size: 11px; color: var(--mid); text-transform: uppercase; letter-spacing: 0.08em; margin: 18px 0 32px; }
+
+.rp-form { background: var(--off); border: 1px solid var(--border); border-radius: 8px; padding: 26px; }
+.rp-field { margin-bottom: 18px; }
+.rp-field:last-of-type { margin-bottom: 22px; }
+.rp-label { display: block; font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--mid); margin: 0 0 8px; }
+.rp-label .opt { color: var(--mid); opacity: 0.6; margin-left: 4px; }
+.rp-textarea, .rp-input, .rp-select {
+  width: 100%; box-sizing: border-box;
+  padding: 14px 16px;
+  font-family: var(--mono); font-size: 14px; line-height: 1.55;
+  border: 1px solid var(--border); border-radius: 5px;
+  background: var(--white); color: var(--black);
+  transition: border-color 0.15s;
+}
+.rp-textarea { min-height: 150px; resize: vertical; }
+.rp-textarea:focus, .rp-input:focus, .rp-select:focus { outline: none; border-color: var(--black); }
+.rp-row { display: grid; grid-template-columns: 1fr 1.4fr; gap: 14px; }
+.rp-submit {
+  display: inline-block;
+  padding: 14px 28px;
+  background: var(--black); color: white;
+  border: 0; border-radius: 4px; cursor: pointer;
+  font-family: var(--mono); font-size: 12px;
+  text-transform: uppercase; letter-spacing: 0.1em;
+  transition: opacity 0.15s;
+}
+.rp-submit:hover { opacity: 0.86; }
+.rp-submit:disabled { opacity: 0.5; cursor: wait; }
+
+.rp-error {
+  display: none;
+  margin-top: 16px; padding: 14px 18px;
+  background: #fff3cd; border-left: 3px solid #cc7a00;
+  border-radius: 3px;
+  font-size: 13px; line-height: 1.6; color: #663d00;
+}
+.rp-error.show { display: block; }
+
+@keyframes pulse { 0%,100% { opacity: 0.35; } 50% { opacity: 1; } }
+.rp-loading {
+  display: none;
+  margin-top: 22px;
+  font-family: var(--mono); font-size: 12px;
+  color: var(--mid);
+  text-transform: uppercase; letter-spacing: 0.12em;
+}
+.rp-loading.show { display: block; animation: pulse 1.6s ease-in-out infinite; }
+
+.rp-results { display: none; margin-top: 36px; }
+.rp-results.show { display: block; }
+
+.rp-safety {
+  background: #fff3cd; border-left: 4px solid #cc7a00;
+  padding: 18px 22px; border-radius: 4px;
+  margin-bottom: 28px;
+}
+.rp-safety h3 { font-family: var(--mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.12em; color: #663d00; margin: 0 0 10px; font-weight: 500; }
+.rp-safety p { font-size: 14px; line-height: 1.7; color: #663d00; margin: 0 0 8px; }
+.rp-safety a { color: #663d00; font-weight: 500; }
+.rp-safety strong { font-weight: 500; font-family: var(--mono); font-size: 14px; letter-spacing: 0.02em; }
+
+.rp-block { margin-bottom: 32px; }
+.rp-block-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--mid);
+  margin: 0 0 14px;
+}
+
+.rp-in-moment {
+  background: var(--off);
+  border-left: 4px solid var(--black);
+  padding: 28px 30px;
+  border-radius: 4px;
+}
+.rp-in-moment .quote {
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(20px, 3vw, 26px);
+  font-weight: 400;
+  font-style: italic;
+  line-height: 1.4;
+  color: var(--black);
+  margin: 0;
+  position: relative;
+}
+.rp-in-moment .quote::before { content: open-quote; opacity: 0.4; margin-right: 4px; }
+.rp-in-moment .quote::after  { content: close-quote; opacity: 0.4; margin-left: 4px; }
+
+.rp-adult-now {
+  background: var(--off);
+  border: 1px solid var(--border);
+  padding: 26px 28px;
+  border-radius: 4px;
+}
+.rp-adult-now p {
+  font-size: 16px;
+  line-height: 1.8;
+  color: var(--black);
+  margin: 0;
+}
+
+.rp-hold {
+  text-align: center;
+  padding: 40px 24px;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  margin-top: 8px;
+}
+.rp-hold-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--mid);
+  margin: 0 0 14px;
+}
+.rp-hold-line {
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(22px, 3.5vw, 30px);
+  font-weight: 400;
+  font-style: italic;
+  line-height: 1.35;
+  color: var(--black);
+  max-width: 540px;
+  margin: 0 auto;
+  letter-spacing: -0.005em;
+}
+
+.rp-actions {
+  display: flex; gap: 14px; justify-content: center;
+  margin-top: 36px;
+}
+.rp-actions button {
+  background: transparent; border: 1px solid var(--border); color: var(--black);
+  padding: 12px 22px; border-radius: 4px;
+  font-family: var(--mono); font-size: 11px;
+  text-transform: uppercase; letter-spacing: 0.1em;
+  cursor: pointer;
+  transition: border-color 0.15s;
+}
+.rp-actions button:hover { border-color: var(--black); }
+
+.rp-footer-note {
+  margin-top: 56px;
+  padding: 22px 24px;
+  background: var(--off);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  font-size: 12px; line-height: 1.75;
+  color: var(--mid);
+}
+.rp-footer-note strong { color: var(--black); font-weight: 500; }
+
+html[data-theme="dark"] .rp-form,
+html[data-theme="dark"] .rp-in-moment,
+html[data-theme="dark"] .rp-adult-now,
+html[data-theme="dark"] .rp-footer-note { background: #1a1a1a; border-color: #444; }
+html[data-theme="dark"] .rp-in-moment .quote,
+html[data-theme="dark"] .rp-adult-now p,
+html[data-theme="dark"] .rp-hold-line { color: #f5f5f5; }
+html[data-theme="dark"] .rp-in-moment { border-left-color: #f5f5f5; }
+html[data-theme="dark"] .rp-textarea, html[data-theme="dark"] .rp-input, html[data-theme="dark"] .rp-select { background: #0e0e0e; color: #f5f5f5; border-color: #444; }
+html[data-theme="dark"] .rp-safety { background: #332200; color: #ffd699; border-color: #cc7a00; }
+html[data-theme="dark"] .rp-safety h3, html[data-theme="dark"] .rp-safety p, html[data-theme="dark"] .rp-safety a { color: #ffd699; }
+
+@media (max-width: 600px) {
+  .rp-row { grid-template-columns: 1fr; }
+  .rp { padding: 24px 18px 60px; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode">
+    <svg class="theme-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="18" height="18">
+      <circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+    </svg>
+  </button>
+  <button class="nav-toggle" aria-label="Open menu" aria-haspopup="dialog" aria-expanded="false">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" width="20" height="20">
+      <circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2.5"/><path d="M 18 8 L 20 6 L 22 8" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </button>
+  <a class="nav-logo" href="index.html">S&middot;A&middot;F&middot;E</a>
+</nav>
+
+<main class="rp">
+  <header>
+    <p class="rp-eyebrow">SAFE Tools &middot; 003</p>
+    <h1>The line you <em>didn't</em> get.</h1>
+    <p class="rp-lede">What a good parent, carer, teacher or coach would have said in that moment. Write down a thing that happened &mdash; to you, today or a long time ago &mdash; and read the words you should have heard.</p>
+    <p class="rp-promise">Not therapy &mdash; not stored &mdash; not judged.</p>
+  </header>
+
+  <form class="rp-form" id="rp-form" autocomplete="off">
+    <div class="rp-field">
+      <label class="rp-label" for="rp-text">What happened?</label>
+      <textarea class="rp-textarea" id="rp-text" placeholder="e.g. I dropped a glass when I was 7 and my dad called me an idiot in front of his mates. e.g. I told my mum I was scared at school and she said I was being dramatic." aria-label="Describe what happened"></textarea>
+    </div>
+
+    <div class="rp-row">
+      <div class="rp-field">
+        <label class="rp-label" for="rp-age">How old were you?<span class="opt">(optional)</span></label>
+        <input class="rp-input" id="rp-age" type="number" min="0" max="40" placeholder="e.g. 8">
+      </div>
+      <div class="rp-field">
+        <label class="rp-label" for="rp-who">Who was it?<span class="opt">(optional)</span></label>
+        <select class="rp-select" id="rp-who">
+          <option value="">— choose —</option>
+          <option value="parent">A parent</option>
+          <option value="mum">Mum</option>
+          <option value="dad">Dad</option>
+          <option value="step-parent">Step-parent</option>
+          <option value="carer">Carer / foster carer</option>
+          <option value="grandparent">Grandparent</option>
+          <option value="teacher">Teacher</option>
+          <option value="coach">Coach / youth worker</option>
+          <option value="friend's parent">A friend's parent</option>
+          <option value="older sibling">Older sibling</option>
+          <option value="partner">A partner</option>
+          <option value="boss">A boss</option>
+          <option value="other adult">Another adult</option>
+        </select>
+      </div>
+    </div>
+
+    <button class="rp-submit" id="rp-submit" type="submit">Give me the line</button>
+
+    <div class="rp-error" id="rp-error" role="alert"></div>
+    <div class="rp-loading" id="rp-loading">Listening&hellip;</div>
+  </form>
+
+  <section class="rp-results" id="rp-results" aria-live="polite"></section>
+
+  <div class="rp-footer-note">
+    <strong>This is not therapy and it is not your relationship.</strong>
+    It is the line that should have existed. Reading it might bring something up.
+    If it does, talk to someone real:
+    <strong>Samaritans</strong> 116 123 (free, 24/7),
+    <strong>Childline</strong> 0800 1111 (under 19, free, confidential),
+    or text <strong>SHOUT</strong> to 85258.
+    For anything happening now that isn't safe, 999.
+    Your text is sent to our server, used to write the lines, and immediately forgotten. We don't log it. We don't train on it. Anthropic's API doesn't train on it either.
+  </div>
+</main>
+
+<footer>
+  <span class="footer-left">S&middot;A&middot;F&middot;E &mdash; Steps Approaching Future Earth</span>
+  <span class="footer-right" style="display: flex; gap: 24px; font-size: 11px;">
+    <a href="help.html" style="color: inherit; text-decoration: none;">Help</a>
+    <a href="careers.html" style="color: inherit; text-decoration: none;">Careers</a>
+    <a href="privacy.html" style="color: inherit; text-decoration: none;">Privacy</a>
+    <a href="terms.html" style="color: inherit; text-decoration: none;">Terms</a>
+    <a href="privacy-choices.html" style="color: inherit; text-decoration: none;">Choices</a>
+    <a href="accessibility.html" style="color: inherit; text-decoration: none;">Access</a>
+    <a href="https://instagram.com/safespot.life" target="_blank" rel="noopener" style="color: inherit; text-decoration: none;">Instagram</a>
+  </span>
+</footer>
+
+<script>
+(function(){
+  'use strict';
+  var form    = document.getElementById('rp-form');
+  var text    = document.getElementById('rp-text');
+  var age     = document.getElementById('rp-age');
+  var who     = document.getElementById('rp-who');
+  var btn     = document.getElementById('rp-submit');
+  var errorEl = document.getElementById('rp-error');
+  var loading = document.getElementById('rp-loading');
+  var results = document.getElementById('rp-results');
+
+  function showError(m){ errorEl.textContent = m; errorEl.classList.add('show'); }
+  function hideError(){ errorEl.classList.remove('show'); }
+  function setLoading(on){
+    btn.disabled = on;
+    btn.textContent = on ? 'Listening...' : 'Give me the line';
+    loading.classList.toggle('show', on);
+  }
+  function esc(s){
+    if (s == null) return '';
+    return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+                    .replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+  }
+
+  form.addEventListener('submit', async function(e){
+    e.preventDefault();
+    hideError();
+    results.classList.remove('show'); results.innerHTML = '';
+
+    var t = text.value.trim();
+    if (t.length < 20) { showError("Tell me a little more — even one or two extra sentences. I'm reading carefully."); return; }
+    if (t.length > 4000) { showError("That's a lot. Try giving me the one specific moment that matters most."); return; }
+
+    var ageNum = parseInt(age.value, 10);
+    var payload = {
+      moment: t,
+      age: (!isNaN(ageNum) && ageNum > 0 && ageNum < 100) ? ageNum : null,
+      who: who.value || null,
+    };
+
+    setLoading(true);
+    try {
+      var res = await fetch('/api/reparenting', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+      if (res.status === 404) throw new Error('not-deployed');
+      if (!res.ok) {
+        var msg = await res.text();
+        throw new Error(msg || ('Error ' + res.status));
+      }
+      var data = await res.json();
+      render(data);
+    } catch (err) {
+      if (err && err.message === 'not-deployed') {
+        showError("This tool isn't wired up on this server yet. (Dev note: drop /api/reparenting.js into your Vercel project and set ANTHROPIC_API_KEY.)");
+      } else {
+        showError("Something went wrong. Try again in a moment.");
+      }
+      console.error(err);
+    } finally {
+      setLoading(false);
+    }
+  });
+
+  function render(d){
+    var html = '';
+    var rel = d.named_relationship && d.named_relationship.trim() ? d.named_relationship.trim() : 'a good parent';
+
+    if (d.safety_flag) {
+      var sf = safetyBlock(d.safety_flag);
+      if (sf) html += sf;
+    }
+
+    if (d.in_the_moment) {
+      html += '<div class="rp-block rp-block-in">'
+            + '<p class="rp-block-label">The line you needed in that moment</p>'
+            + '<div class="rp-in-moment"><p class="quote">' + esc(d.in_the_moment) + '</p></div>'
+            + '</div>';
+    }
+
+    if (d.for_the_adult_now) {
+      html += '<div class="rp-block">'
+            + '<p class="rp-block-label">What ' + esc(rel) + ' would say to you now, as the adult you have become</p>'
+            + '<div class="rp-adult-now"><p>' + esc(d.for_the_adult_now) + '</p></div>'
+            + '</div>';
+    }
+
+    if (d.hold_this) {
+      html += '<div class="rp-hold">'
+            + '<p class="rp-hold-label">Hold this</p>'
+            + '<p class="rp-hold-line">' + esc(d.hold_this) + '</p>'
+            + '</div>';
+    }
+
+    html += '<div class="rp-actions">'
+          + '<button type="button" id="rp-another">Tell me another</button>'
+          + '<button type="button" id="rp-reset">Start over</button>'
+          + '</div>';
+
+    results.innerHTML = html;
+    results.classList.add('show');
+    results.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+    var anotherBtn = document.getElementById('rp-another');
+    if (anotherBtn) anotherBtn.addEventListener('click', function(){
+      text.value = ''; results.classList.remove('show'); results.innerHTML = '';
+      text.focus(); window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+    var resetBtn = document.getElementById('rp-reset');
+    if (resetBtn) resetBtn.addEventListener('click', function(){
+      text.value = ''; age.value = ''; who.value = '';
+      results.classList.remove('show'); results.innerHTML = '';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+
+  function safetyBlock(flag){
+    if (flag === 'crisis') {
+      return '<div class="rp-safety"><h3>Read this first</h3>'
+           + '<p>What you wrote sounds like you might be in crisis right now. Please don’t do this alone.</p>'
+           + '<p>Samaritans, free, 24/7: <strong>116 123</strong>. Or text <strong>SHOUT</strong> to <strong>85258</strong> if you can’t talk.</p>'
+           + '<p>If you’re in immediate danger, call <strong>999</strong>.</p></div>';
+    }
+    if (flag === 'ongoing_abuse') {
+      return '<div class="rp-safety"><h3>Something is still happening</h3>'
+           + '<p>The line below is true. But what you described sounds like it’s still going on. You’re allowed to ask for help with that, today.</p>'
+           + '<p>Childline (under 19): <strong>0800 1111</strong>. Refuge (domestic abuse, 24/7): <strong>0808 2000 247</strong>. NSPCC adult helpline: <strong>0808 800 5000</strong>.</p></div>';
+    }
+    if (flag === 'minor_at_risk') {
+      return '<div class="rp-safety"><h3>Someone else is at risk</h3>'
+           + '<p>If a child is being hurt right now, the NSPCC adult helpline is <strong>0808 800 5000</strong> (free, 24/7). They can act without you giving your name.</p>'
+           + '<p>If it’s urgent: <strong>999</strong>. Non-urgent police: <strong>101</strong>.</p></div>';
+    }
+    if (flag === 'historic_severe') {
+      return '<div class="rp-safety"><h3>Take this gently</h3>'
+           + '<p>What you described was serious. The line below is true. So is this: you can talk to someone trained, free, today.</p>'
+           + '<p>Samaritans: <strong>116 123</strong>. NAPAC (adult survivors): <strong>0808 801 0331</strong>. Childline (under 19): <strong>0800 1111</strong>.</p></div>';
+    }
+    return '';
+  }
+})();
+</script>
+
+<script src="theme.js"></script>
+<script src="bento.js" defer></script>
+</body>
+</html>

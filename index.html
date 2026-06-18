@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SAFE — Real advice. No gatekeepers.</title>
+<meta name="description" content="Plain-English answers for young people on therapy, housing, jobs, rights, mutual aid and mental health. Plus an evidence base of lived experience. Built to become the UK's first holistic youth hub.">
+<meta property="og:title" content="SAFE — Real advice. No gatekeepers.">
+<meta property="og:description" content="Plain-English answers for young people. Therapy, housing, jobs, rights. Plus an evidence base of lived experience.">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="index.html">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+.home-blog { padding: 60px 20px; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.home-blog-head { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: end; margin-bottom: 36px; }
+.home-blog-head h2 { font-size: 28px; font-weight: 300; line-height: 1.25; margin: 16px 0 0; }
+.home-blog-head .lead { font-size: 14px; color: var(--mid); line-height: 1.8; margin: 0; }
+.home-blog-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 4px; overflow: hidden; }
+.home-blog-card { background: var(--white); padding: 28px 26px; display: flex; flex-direction: column; gap: 10px; text-decoration: none; color: inherit; transition: background 0.2s ease; min-height: 220px; }
+.home-blog-card:hover { background: var(--off); }
+.home-blog-card .meta { font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--mid); display: flex; justify-content: space-between; gap: 16px; }
+.home-blog-card h3 { font-size: 18px; font-weight: 400; line-height: 1.35; margin: 0; color: var(--black); }
+.home-blog-card p { font-size: 13px; line-height: 1.65; color: var(--mid); margin: 0; flex: 1; }
+.home-blog-card .read { font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--black); margin-top: 6px; }
+.home-blog-foot { margin-top: 32px; display: flex; justify-content: space-between; align-items: center; gap: 24px; flex-wrap: wrap; }
+.home-blog-foot a { color: var(--black); font-family: var(--mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; text-decoration: none; border-bottom: 1px solid currentColor; padding-bottom: 2px; }
+.home-blog-foot .promise { font-size: 12px; color: var(--mid); font-style: italic; }
+html[data-theme="dark"] .home-blog-card { background: #111; }
+html[data-theme="dark"] .home-blog-card:hover { background: #1a1a1a; }
+html[data-theme="dark"] .home-blog-grid { background: #333; border-color: #333; }
+@media (max-width: 768px) {
+  .home-blog-head { grid-template-columns: 1fr; gap: 16px; }
+  .home-blog-grid { grid-template-columns: 1fr; }
+  #intelligence .s-inner > div, #youth-stories .s-inner > div { grid-template-columns: 1fr !important; gap: 32px !important; }
+}
+
+.home-tool { padding: 60px 20px; border-bottom: 1px solid var(--border); background: var(--off); }
+.home-tool-inner { max-width: 880px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1.4fr; gap: 60px; align-items: center; }
+.home-tool .eyebrow { font-family: var(--mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--mid); margin: 0 0 10px; }
+.home-tool h2 { font-size: clamp(28px, 4vw, 40px); font-weight: 300; line-height: 1.1; margin: 0 0 18px; letter-spacing: -0.015em; }
+.home-tool h2 em { font-style: italic; }
+.home-tool p.tool-lead { font-size: 14px; color: var(--mid); line-height: 1.7; margin: 0 0 22px; }
+.home-tool .tool-cta { display: inline-block; padding: 14px 26px; background: var(--black); color: white; text-decoration: none; border-radius: 4px; font-family: var(--mono); font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; transition: opacity 0.15s; }
+.home-tool .tool-cta:hover { opacity: 0.85; }
+.home-tool-demo { background: var(--white); border: 1px solid var(--border); border-radius: 6px; padding: 22px 24px; font-family: var(--mono); font-size: 12px; line-height: 1.65; color: var(--mid); position: relative; }
+.home-tool-demo .badge { position: absolute; top: -10px; left: 18px; padding: 4px 10px; background: var(--black); color: white; font-family: var(--mono); font-size: 9px; text-transform: uppercase; letter-spacing: 0.12em; border-radius: 2px; }
+.home-tool-demo strong { color: var(--black); font-weight: 500; }
+html[data-theme="dark"] .home-tool { background: #0e0e0e; }
+html[data-theme="dark"] .home-tool-demo { background: #1a1a1a; border-color: #444; }
+@media (max-width: 768px) { .home-tool-inner { grid-template-columns: 1fr; gap: 28px; } }
+
+
+.home-tool-soft { background: var(--white); border-top: 1px solid var(--border); }
+.home-tool-soft h2 { font-family: "Playfair Display", Georgia, serif; font-weight: 400; font-style: normal; }
+.home-tool-soft h2 em { font-style: italic; }
+.home-tool-soft .home-tool-demo { background: var(--off); font-family: "Playfair Display", Georgia, serif; font-size: 17px; line-height: 1.55; font-style: italic; color: var(--black); padding: 28px 32px; }
+.home-tool-soft .home-tool-demo .badge { font-family: var(--mono); font-style: normal; }
+html[data-theme="dark"] .home-tool-soft { background: #0a0a0a; }
+html[data-theme="dark"] .home-tool-soft .home-tool-demo { background: #1a1a1a; color: #f5f5f5; }
+
+.si-lead { padding: 76px 20px; background: #0a0a0a; color: #ffffff; border-bottom: 1px solid var(--border); }
+.si-lead-inner { max-width: 1100px; margin: 0 auto; }
+.si-lead .eyebrow { font-family: var(--mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.12em; color: rgba(255,255,255,0.55); margin: 0 0 22px; display: flex; gap: 14px; align-items: center; }
+.si-lead .eyebrow .num { color: rgba(255,255,255,0.32); }
+.si-lead h2 { font-size: clamp(32px, 5vw, 56px); font-weight: 300; line-height: 1.04; letter-spacing: -0.02em; margin: 0 0 24px; color: white; max-width: 17ch; }
+.si-lead h2 em { font-style: italic; font-weight: 400; }
+.si-lead-grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: 56px; align-items: end; }
+.si-lead .si-intro { font-size: 15px; line-height: 1.85; color: rgba(255,255,255,0.78); margin: 0 0 28px; max-width: 48ch; }
+.si-lead .si-ctas { display: flex; gap: 14px; flex-wrap: wrap; }
+.si-lead .si-cta { display: inline-block; padding: 14px 24px; border-radius: 4px; font-family: var(--mono); font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; text-decoration: none; transition: opacity 0.15s; }
+.si-lead .si-cta.primary { background: #ffffff; color: #0a0a0a; }
+.si-lead .si-cta.ghost { border: 1px solid rgba(255,255,255,0.32); color: white; }
+.si-lead .si-cta:hover { opacity: 0.85; }
+.si-lead .si-foot { font-family: var(--mono); font-size: 11px; letter-spacing: 0.05em; color: rgba(255,255,255,0.5); margin: 30px 0 0; }
+.si-formats { display: flex; flex-direction: column; gap: 1px; background: rgba(255,255,255,0.14); border: 1px solid rgba(255,255,255,0.14); border-radius: 6px; overflow: hidden; }
+.si-formats .row { background: #0d0d0d; padding: 18px 22px; display: flex; flex-direction: column; gap: 7px; }
+.si-formats .row .fmt { font-family: var(--mono); font-size: 9px; text-transform: uppercase; letter-spacing: 0.12em; color: rgba(255,255,255,0.45); }
+.si-formats .row .title { font-size: 15px; font-weight: 400; line-height: 1.35; color: white; }
+.si-formats .row.soon .title { color: rgba(255,255,255,0.5); font-style: italic; }
+@media (max-width: 768px) { .si-lead-grid { grid-template-columns: 1fr; gap: 32px; align-items: start; } }
+
+.si-model { padding: 64px 20px; background: var(--off); border-bottom: 1px solid var(--border); }
+.si-model-inner { max-width: 1000px; margin: 0 auto; }
+.si-model .eyebrow { font-family: var(--mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--mid); margin: 0 0 14px; }
+.si-model h2 { font-size: clamp(26px, 3.6vw, 38px); font-weight: 300; line-height: 1.12; letter-spacing: -0.015em; margin: 0 0 14px; color: var(--black); max-width: 22ch; }
+.si-model h2 em { font-style: italic; }
+.si-model .lead { font-size: 15px; line-height: 1.8; color: var(--mid); margin: 0 0 40px; max-width: 56ch; }
+.si-model-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 6px; overflow: hidden; }
+.si-model-grid .cell { background: var(--white); padding: 28px 26px; display: flex; flex-direction: column; gap: 10px; }
+.si-model-grid .cell .tag { font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--mid); }
+.si-model-grid .cell h3 { font-size: 17px; font-weight: 400; margin: 0; color: var(--black); }
+.si-model-grid .cell p { font-size: 13px; line-height: 1.65; color: var(--mid); margin: 0; }
+.si-model .guardrail { margin-top: 24px; background: #0a0a0a; color: #ffffff; border-radius: 6px; padding: 24px 28px; display: flex; gap: 20px; align-items: flex-start; }
+.si-model .guardrail .gr-label { font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.12em; color: rgba(255,255,255,0.55); white-space: nowrap; padding-top: 3px; }
+.si-model .guardrail p { font-size: 14px; line-height: 1.7; margin: 0; color: rgba(255,255,255,0.9); }
+.si-model .guardrail p strong { color: #ffffff; font-weight: 500; }
+@media (max-width: 768px) { .si-model-grid { grid-template-columns: 1fr; } .si-model .guardrail { flex-direction: column; gap: 10px; } }
+</style>
+</head>
+<body>
+
+<nav>
+  <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode">
+    <svg class="theme-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="18" height="18">
+      <circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+    </svg>
+  </button>
+
+  <button class="nav-toggle" aria-label="Open menu" aria-haspopup="dialog" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" width="20" height="20"><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2.5"/><path d="M 18 8 L 20 6 L 22 8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+
+  <a class="nav-logo" href="index.html">S·A·F·E</a>
+
+  <div class="nav-right">
+    <a class="nav-link active" href="index.html">Home</a>
+    <a class="nav-link" href="blog.html">Blog</a>
+    <a class="nav-link" href="story-intelligence.html">Stories</a>
+    <a class="nav-link" href="mission.html">Mission</a>
+    <a class="nav-link" href="hub.html">The Hub</a>
+    <a class="nav-link" href="news.html">News</a>
+    <a class="nav-link" href="course.html">Courses</a>
+    <a class="nav-link" href="library.html">Book Store</a>
+    <a class="nav-link" href="shop.html">Shop</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-ticker">
+    <span class="ticker-inner">
+      Real advice. No gatekeepers. &nbsp;·&nbsp; No young person should apologise for existing &nbsp;·&nbsp; Built from the inside out &nbsp;·&nbsp; One hub in every country &nbsp;·&nbsp; Funded by the people &nbsp;·&nbsp; Real advice. No gatekeepers. &nbsp;·&nbsp; No young person should apologise for existing &nbsp;·&nbsp; Built from the inside out &nbsp;·&nbsp;
+    </span>
+  </div>
+
+  <div class="hero-content">
+    <p class="hero-eyebrow">S·A·F·E — Est. 2014</p>
+    <h1 class="hero-title">
+      No young<br>
+      person should<br>
+      <em>apologise</em><br>
+      for existing.
+    </h1>
+    <div class="hero-bottom">
+      <p class="hero-desc">Plain-English answers for young people on therapy, housing, jobs, rights and mental health. An evidence base of lived experience. And a long-term mission to build holistic youth hubs — one in every country. The UK is first.</p>
+      <div class="hero-stats">
+        <div class="stat"><span class="stat-n">07</span><span class="stat-l">Rooms</span></div>
+        <div class="stat"><span class="stat-n">195</span><span class="stat-l">Countries</span></div>
+        <div class="stat"><span class="stat-n">01</span><span class="stat-l">Earth</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 001 — STORY INTELLIGENCE (lead feature) -->
+<section id="intelligence" class="si-lead">
+  <div class="si-lead-inner">
+    <p class="eyebrow"><span class="num">001</span> Story Intelligence — the SAFE record</p>
+    <div class="si-lead-grid">
+      <div>
+        <h2>What young people are <em>actually</em> dealing with — before it becomes a headline.</h2>
+        <p class="si-intro">Not a survey. Not a focus group. Real first-hand stories from young people, analysed for patterns and published every month. Built for the Department for Education, NGOs, youth councils, researchers and journalists — anyone with the power to act on what they find. This is the heart of SAFE: the evidence base no one else is keeping.</p>
+        <div class="si-ctas">
+          <a class="si-cta primary" href="story-intelligence.html">Read the Intelligence Report →</a>
+          <a class="si-cta ghost" href="youth-stories.html">Add your story →</a>
+        </div>
+        <p class="si-foot">Published monthly · Built from lived experience · Anonymised, always</p>
+      </div>
+      <div class="si-formats">
+        <div class="row"><span class="fmt">Format 01</span><span class="title">Top 5 Issues in Youth Communities This Month</span></div>
+        <div class="row"><span class="fmt">Format 02</span><span class="title">How Mainstream Media Got It Wrong</span></div>
+        <div class="row soon"><span class="fmt">Format 03</span><span class="title">Emerging Crisis — first issue coming soon</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STORY INTELLIGENCE — THE FUNDING MODEL -->
+<section id="model" class="si-model">
+  <div class="si-model-inner">
+    <p class="eyebrow">How SAFE works</p>
+    <h2>Free for young people. <em>Funded</em> by the people who need the data.</h2>
+    <p class="lead">SAFE isn't a charity asking for your sympathy — we're building something different. The advice stays free and unconditional. The Story Intelligence report pays for it. That's how a service like this survives without ever becoming another gatekeeper.</p>
+
+    <div class="si-model-grid">
+      <div class="cell">
+        <span class="tag">The free side</span>
+        <h3>Always free. No catch.</h3>
+        <p>Every guide, every tool, every answer — free and unconditional. No sign-up, no means test, no waiting list. If you're young and you need it, it's yours.</p>
+      </div>
+      <div class="cell">
+        <span class="tag">The paid side</span>
+        <h3>The monthly report.</h3>
+        <p>Anonymised pattern analysis of what young people are actually facing — bought by the DfE, councils, NGOs, researchers and journalists who need to understand it before it becomes a headline.</p>
+      </div>
+      <div class="cell">
+        <span class="tag">The principle</span>
+        <h3>Independence, not charity.</h3>
+        <p>The paid side funds the free side. So SAFE never depends on the institutions it routes young people around — and never has to soften the truth to keep a funder happy.</p>
+      </div>
+    </div>
+
+    <div class="guardrail">
+      <span class="gr-label">The guardrail</span>
+      <p>We <strong>never</strong> sell anything that could identify a young person. Aggregated patterns only, always anonymised. That isn't just our ethics — it's the entire point. The data has value <strong>because</strong> the trust behind it is real.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 002 — BLOG: the lifeline. What SAFE does for you right now. -->
+<section id="home-blog" class="home-blog">
+  <div class="s-inner">
+    <div class="home-blog-head">
+      <div>
+        <p class="s-label">Real Advice</p>
+        <p class="s-num">002</p>
+        <h2>Answers to the questions a 16-year-old types into Google at 2am.</h2>
+      </div>
+      <p class="lead">Written for young people in plain English. Therapy when your parents are the problem. Emergency housing. Jobs without applications. Mutual aid. Your actual rights. No charity tone. No gatekeepers.</p>
+    </div>
+
+    <div class="home-blog-grid">
+
+      <a class="home-blog-card" href="blog-beyond-the-ban.html">
+        <div class="meta"><span>18 June 2026</span><span>Digital Rights</span></div>
+        <h3>Beyond the Ban: The Right Diagnosis, the Wrong Prescription</h3>
+        <p>Keir Starmer's under-16 social media ban is the right diagnosis with the wrong prescription. Five gaps it leaves unaddressed, what other countries are learning, and what an internet worth growing up in would actually look like.</p>
+        <span class="read">Read article →</span>
+      </a>
+
+      <a class="home-blog-card" href="blog-alternative-connections.html">
+        <div class="meta"><span>17 June 2026</span><span>Community &amp; Resources</span></div>
+        <h3>Alternative Connections: Where Your Real People Are Hiding</h3>
+        <p>For the disabled, LGBTQ+, neurodivergent or isolated teenager, social media wasn't entertainment — it was the only place they'd found people like them. Here are the moderated spaces and in-person alternatives that are still legal and worth your time.</p>
+        <span class="read">Read article →</span>
+      </a>
+
+      <a class="home-blog-card" href="blog-fantastic-planet.html">
+        <div class="meta"><span>15 June 2026</span><span>Culture &amp; Mind</span></div>
+        <h3>From Headset to Meditation: A Fantastic Planet Analysis</h3>
+        <p>A 1973 French animation about giant blue aliens keeping tiny humans as pets. And the most accurate film ever made about your relationship with your phone in 2026. Stay with us.</p>
+        <span class="read">Read article →</span>
+      </a>
+
+      <a class="home-blog-card" href="blog-forget-anyway.html">
+        <div class="meta"><span>12 June 2026</span><span>Mental Health &amp; Family</span></div>
+        <h3>"They'll Forget It Anyway": How Parents Use a Child's Age to Avoid Accountability</h3>
+        <p>"They're too young to remember" is psychological cowardice. What the body actually records. For the parent who needs to face it and the young person who deserves to be heard.</p>
+        <span class="read">Read article →</span>
+      </a>
+
+    </div>
+
+    <div class="home-blog-foot">
+      <span class="promise">New plain-English guides every week.</span>
+      <a href="blog.html">All articles →</a>
+    </div>
+  </div>
+</section>
+
+<!-- 003 — SAFE TOOL: Translate This Letter -->
+<section class="home-tool" id="home-tool">
+  <div class="home-tool-inner">
+    <div>
+      <p class="eyebrow">SAFE Tools — 003</p>
+      <h2>Translate this <em>letter</em>.</h2>
+      <p class="tool-lead">Paste any official letter you've been scared to open — a Section 21 from your landlord, a Universal Credit decision, a college exclusion, a debt collector, a court summons. We'll explain it in plain English, pull out the dates, tell you what to do, and who to call for free help. Nothing is stored.</p>
+      <a class="tool-cta" href="translate-letter.html">Open the translator →</a>
+    </div>
+    <div class="home-tool-demo">
+      <span class="badge">Example output</span>
+      <p style="margin:0 0 10px"><strong>Letter type:</strong> Section 21 eviction notice</p>
+      <p style="margin:0 0 10px"><strong>What this is saying:</strong> Your landlord is asking you to leave by 25 August. They cannot lawfully evict you before that date and must apply to court if you don't leave.</p>
+      <p style="margin:0"><strong>Watch out for:</strong> Two months' notice is the legal minimum. Don't leave the property before this date.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 004 - SAFE TOOL: The Line You Didn't Get -->
+<section class="home-tool home-tool-soft" id="home-tool-reparenting">
+  <div class="home-tool-inner">
+    <div>
+      <p class="eyebrow">SAFE Tools - 004</p>
+      <h2>The line you <em>didn't</em> get.</h2>
+      <p class="tool-lead">What a good parent, carer, teacher or coach would have said in that moment. Write down a thing that happened - to you, today or a long time ago - and read the words you should have heard. Not therapy. Just the line.</p>
+      <a class="tool-cta" href="reparenting.html">Hear the line &rarr;</a>
+    </div>
+    <div class="home-tool-demo">
+      <span class="badge">Example</span>
+      "You're not an idiot. You dropped a cup. That's all that happened. Come here. Let's pick it up together."
+    </div>
+  </div>
+</section>
+
+
+<!-- 005 — YOUTH STORIES -->
+<section id="youth-stories" style="padding: 25px 20px; border-bottom: 1px solid var(--border);">
+  <div class="s-inner">
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start;">
+      <div style="border: 1px solid var(--border); padding: 32px; border-radius: 4px; background: var(--off);">
+        <p style="font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--mid); margin-bottom: 14px;">What we're hearing</p>
+        <p style="font-size: 18px; font-weight: 300; line-height: 1.7; font-style: italic; color: var(--black); margin: 0;">"No one talks about what it actually feels like to be young right now. The system isn't built for us — it's built around us."</p>
+        <p style="font-size: 12px; color: var(--mid); margin-top: 16px; font-family: var(--mono); margin-bottom: 0;">— Submitted anonymously, UK</p>
+      </div>
+      <div>
+        <p class="s-label">Youth Stories</p>
+        <p class="s-num">005</p>
+        <h2 style="font-size: 28px; font-weight: 300; line-height: 1.35; margin: 20px 0;">Mainstream media misses the real stories. We don't.</h2>
+        <p style="font-size: 14px; color: var(--mid); line-height: 1.8; margin-bottom: 28px;">First-hand accounts from young people worldwide — the good, the bad, the complicated. Every submission shapes the monthly intelligence report. Every voice contributes to the record.</p>
+        <a href="youth-stories.html" style="color: var(--black); font-family: var(--mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; text-decoration: none; border-bottom: 1px solid currentColor; padding-bottom: 2px;">Submit Your Story →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 006 — THE LONG MISSION / HUB VISION -->
+<section id="what">
+  <div class="s-inner">
+    <div class="what-grid">
+      <div>
+        <p class="s-label">The Long Mission</p>
+        <p class="s-num">006</p>
+      </div>
+      <div class="what-body">
+        Not a youth centre. Not a charity. Not a programme.<br><br>
+        A <em>permanent foundation</em> — one building, seven rooms, designed from lived experience of what was missing. Physical discipline. Creative expression. Mental strategy. Emotional support. All in one place.
+        <p style="font-size:14px;color:var(--mid);margin-top:32px;font-weight:300;line-height:1.8">
+          <a href="mission.html" style="color:var(--black);border-bottom:1px solid var(--black);text-decoration:none;padding-bottom:2px">Read the full mission →</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <h2 class="cta-title">Sign.<br><em>Share.</em><br>Build.</h2>
+  <p class="cta-sub">30 seconds. No money. Just your name.</p>
+  <a class="cta-btn" href="https://www.change.org/p/build-the-uk-s-first-holistic-youth-development-hub-to-transform-at-risk-lives" target="_blank" rel="noopener">Sign the Petition</a>
+</section>
+
+<footer>
+  <span class="footer-left">S·A·F·E — Steps Approaching Future Earth</span>
+  <span class="footer-right" style="display: flex; gap: 24px; font-size: 11px;">
+    <a href="help.html" style="color: inherit; text-decoration: none;">Help</a>
+    <a href="careers.html" style="color: inherit; text-decoration: none;">Careers</a>
+    <a href="privacy.html" style="color: inherit; text-decoration: none;">Privacy</a>
+    <a href="terms.html" style="color: inherit; text-decoration: none;">Terms</a>
+    <a href="privacy-choices.html" style="color: inherit; text-decoration: none;">Choices</a>
+    <a href="accessibility.html" style="color: inherit; text-decoration: none;">Access</a>
+    <a href="https://hughcorduroy.bandcamp.com/" target="_blank" rel="noopener" style="color: inherit; text-decoration: none;">Music</a>
+  </span>
+</footer>
+
+<script src="theme.js"></script>
+<script src="session.js"></script>
+<script src="language.js"></script>
+<script src="bento.js" defer></script>
+</body>
+</html>

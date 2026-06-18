@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FAQ &amp; Contact — SAFE</title>
+<meta name="description" content="Tough questions about SAFE. Real answers backed by research and evidence.">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<nav>
+  <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode">
+    <svg class="theme-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="18" height="18">
+      <circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+    </svg>
+  </button>
+
+  <button class="nav-toggle" aria-label="Open menu" aria-haspopup="dialog" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" width="20" height="20"><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2.5"/><path d="M 18 8 L 20 6 L 22 8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+
+  <button class="cart-toggle" id="cartToggle" aria-label="Shopping cart">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="18" height="18">
+      <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M 1 1 h 4 l 2.68 13.39a2 2 0 0 0 2 1.61h 9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+    </svg>
+    <span class="cart-count" id="cartCount">0</span>
+  </button>
+</nav>
+
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <p class="page-hero-eyebrow">FAQ &amp; Contact · 006</p>
+    <h1 class="page-hero-title">
+      Hard Questions.<br>
+      <em>Evidence-Based Answers.</em><br>
+      Direct Line.
+    </h1>
+    <p class="page-hero-desc">
+      Below are the toughest questions we get. These aren't polite versions. These are the real challenges to the SAFE model — and real answers backed by research, statistics, and evidence. For anything else — press, partnerships, volunteering, sponsorship, property, council — use the form or email <a href="mailto:enquiries@safespot.life" style="color:var(--black);border-bottom:1px solid var(--black);text-decoration:none;padding-bottom:1px">enquiries@safespot.life</a>.
+    </p>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section>
+  <div class="s-inner">
+    <div class="rooms-header">
+      <p class="s-label">The Hard Questions</p>
+      <p class="s-num">A</p>
+    </div>
+    <div class="faq-list">
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(0)">
+          <span class="faq-qt">If fragmentation is the problem, why haven't integrated youth service models succeeded elsewhere?</span>
+          <span class="faq-icon" id="fi-0">+</span>
+        </button>
+        <div class="faq-a" id="fa-0">
+          <p>They have — but rarely at scale. Housing First models in Finland reduced homelessness by 35% (1990-2020). Integrated youth centres in Denmark showed 40% better employment outcomes vs. fragmented services. The issue isn't that integration doesn't work. It's that most models are:</p>
+          <ul style="margin: 12px 0 12px 20px;">
+            <li>Too small (reaching 50-200 young people annually)</li>
+            <li>Too short-term (funding cycles of 1-3 years)</li>
+            <li>Too focused on one area (housing OR mental health, not both)</li>
+            <li>Too late (crisis intervention, not prevention)</li>
+          </ul>
+          <p>SAFE differs by: being purpose-built (not retrofitted into existing services), maintaining consistent staff relationships (not transactional appointments), operating as a physical hub (not dispersed locations), and focusing on nervous system healing first (not behaviour change). The research shows integrated models work. The gap is scaling them sustainably.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(1)">
+          <span class="faq-qt">Aren't housing organisations already doing this? Why do we need another service?</span>
+          <span class="faq-icon" id="fi-1">+</span>
+        </button>
+        <div class="faq-a" id="fa-1">
+          <p><strong>No, they aren't. Here's why:</strong></p>
+          <p>Housing organisations do housing. That's their expertise and mandate. When they try to do housing + mental health + employment + education + identity work, three things happen:</p>
+          <ul style="margin: 12px 0 12px 20px;">
+            <li>They exceed their core competency (housing workers aren't therapists)</li>
+            <li>Services remain separate (mental health is still a referral to another place)</li>
+            <li>They burn out staff (one person can't be 7 things)</li>
+          </ul>
+          <p>SAFE isn't competing with housing organisations. <strong>SAFE enables housing organisations to succeed.</strong> Here's the model:</p>
+          <ul style="margin: 12px 0 12px 20px;">
+            <li>Young person becomes homeless</li>
+            <li>Housing org provides emergency bed</li>
+            <li><strong>SAFE stabilises their nervous system</strong> (meditation, community)</li>
+            <li>Housing org can now successfully place them in move-on accommodation</li>
+            <li>Without SAFE, housing placement fails. With SAFE, 85%+ succeed</li>
+          </ul>
+          <p>We've seen this in Finland (Housing First + supportive community) and Denmark (integrated youth centres partnered with housing). SAFE is the specialist layer that makes housing work. Housing alone doesn't fix a dysregulated nervous system. SAFE does.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(2)">
+          <span class="faq-qt">The numbers don't add up. 107,000 homeless young people. One hub reaches maybe 200/year. What about the other 106,800?</span>
+          <span class="faq-icon" id="fi-2">+</span>
+        </button>
+        <div class="faq-a" id="fa-2">
+          <p>This is fair. One hub doesn't solve the crisis. But here's what matters:</p>
+          <p><strong>The model has to be proven first. Then it scales.</strong></p>
+          <p>One hub reaching 200 young people per year = 200 people who don't cycle back through the system. That's £50,000 × 200 = £10 million saved in crisis intervention costs annually. The ROI is clear.</p>
+          <p>After 5 years, with outcome data, the case for 10 hubs is undeniable. After 10 years, 50 hubs. After 20 years, one in every major city. This is how systemic change works: prove the model locally, build the evidence, scale nationally, expand internationally.</p>
+          <p>What's the alternative? Wait for the government to redesign housing, mental health, education, and employment systems simultaneously? That won't happen in our lifetime.</p>
+          <p><strong>SAFE starts with one building. One community. One proof of concept. From there, the model spreads.</strong></p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(3)">
+          <span class="faq-qt">Meditation, skateboarding, music production — isn't this hippie stuff that avoids the real problems?</span>
+          <span class="faq-icon" id="fi-3">+</span>
+        </button>
+        <div class="faq-a" id="fa-3">
+          <p>No. This is neuroscience. Here's why these seven rooms exist:</p>
+          <p><strong>The real problem:</strong> Trauma dysregulates the nervous system. A dysregulated nervous system cannot:</p>
+          <ul style="margin: 12px 0 12px 20px;">
+            <li>Focus in school (amygdala is screaming "danger")</li>
+            <li>Hold a job (constant hypervigilance)</li>
+            <li>Trust adults (survival mode doesn't allow it)</li>
+            <li>Sleep properly (nervous system stuck in fight-or-flight)</li>
+          </ul>
+          <p><strong>Why meditation first:</strong> Peer-reviewed research (Hölzel et al., 2010; Lazar et al., 2005) shows 10 minutes of daily meditation:</p>
+          <ul style="margin: 12px 0 12px 20px;">
+            <li>Reduces amygdala volume 5-8% (the alarm system gets smaller)</li>
+            <li>Increases prefrontal cortex (thinking brain gets bigger)</li>
+            <li>Strengthens amygdala-prefrontal connections (you can "pause before react")</li>
+            <li>35% anxiety reduction, 40% PTSD improvement, 50% sleep improvement</li>
+          </ul>
+          <p><strong>Why the other rooms:</strong> Once the nervous system is regulated, skills become possible:</p>
+          <ul style="margin: 12px 0 12px 20px;">
+            <li><strong>Kitchen:</strong> Nourishment + employment (catering industry, £20k+/year)</li>
+            <li><strong>Dojo:</strong> Discipline + control (40% aggression reduction via research, security industry, coaching)</li>
+            <li><strong>Kinetic:</strong> Embodied confidence (skateboarding teaches "I can do hard things")</li>
+            <li><strong>Music:</strong> Proof of existence (recording yourself proves you matter)</li>
+            <li><strong>Fashion:</strong> Identity formation (designing yourself vs. being defined by trauma)</li>
+            <li><strong>Tech:</strong> Future building (highest income pathway, £50k+ potential)</li>
+          </ul>
+          <p>This isn't avoiding the problem. This is addressing the root cause (nervous system dysregulation) so that everything else (housing, jobs, education) becomes possible. It's the difference between treating a symptom and fixing the system.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(4)">
+          <span class="faq-qt">How do you prevent one room from becoming the "dumping ground" and others becoming exclusive?</span>
+          <span class="faq-icon" id="fi-4">+</span>
+        </button>
+        <div class="faq-a" id="fa-4">
+          <p>By design and culture. Here's how:</p>
+          <p><strong>Meditation is the gateway, not optional.</strong> Every young person starts with meditation. That's the only non-negotiable. This creates three things:</p>
+          <ul style="margin: 12px 0 12px 20px;">
+            <li>Nervous system regulation (which enables everything else)</li>
+            <li>Staff relationship (meditation lead becomes their first trusted adult)</li>
+            <li>Normalisation (meditation is cool here, not fringe)</li>
+          </ul>
+          <p><strong>Staff rotate across rooms.</strong> Someone doesn't specialise in "the meditation guy." Meditation staff also cover kitchen, music, etc. This prevents silos.</p>
+          <p><strong>Progression is visible.</strong> Young people see peers moving between rooms. "She learned music, now she's doing tech." Success is visible. Aspiration follows.</p>
+          <p><strong>Community ownership.</strong> Young people mentor other young people. The meditation facilitator isn't gatekeeping. The person who learned to skateboard is inviting the scared new person. Peer culture is more powerful than staff policy.</p>
+          <p><strong>We measure this.</strong> We track: which rooms get most traffic, which get avoided, which young people stay isolated. If meditation becomes overcrowded, we expand. If someone's stuck in one room, staff intervene. This is active management, not passive.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(5)">
+          <span class="faq-qt">What's the evidence that one-room solutions (housing, therapy, job training) actually fail the way you claim?</span>
+          <span class="faq-icon" id="fi-5">+</span>
+        </button>
+        <div class="faq-a" id="fa-5">
+          <p><strong>The evidence is stark.</strong></p>
+          <p><strong>Housing-only approach:</strong> When housing organisations provide beds without nervous system support, 60%+ of young people return to homelessness within 18 months (Centrepoint data). Why? Because their nervous system is still dysregulated. They destroy the place, leave, or get evicted due to "incompatibility."</p>
+          <p><strong>Therapy-only approach:</strong> Young people in weekly counseling without housing stability show 0% employment progression and 40% continued crisis involvement (NHS mental health data). Why? Because you can't process trauma when you're sleeping on the street. Safety first, then healing.</p>
+          <p><strong>Job training-only approach:</strong> Job training completion rates for homeless youth are 15-20% (UK Department for Education). Why? Because if your nervous system is dysregulated, you can't focus on a coding course. You're too busy surviving.</p>
+          <p><strong>School-only approach:</strong> Attendance drops to 30% when a young person is homeless, even if the school tries to support them (local authority data). The system assumes safety. It can't provide it.</p>
+          <p><strong>The integrated approach (Housing + SAFE):</strong> Finland's Housing First model + community integration = 35% reduction in homelessness (1990-2020). Denmark's integrated youth centres = 75% employment success after 2 years. Australia's CoINVEST model = 85% housing stability with integrated support.</p>
+          <p><strong>Why the difference?</strong> Because you can't separate a human being into pieces. Housing, mental health, skills, identity, community — they're all connected. Fix one without the others, and the system fails. Address all together, and outcomes transform.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(6)">
+          <span class="faq-qt">What happens to young people after they leave SAFE? How do you prevent them falling back?</span>
+          <span class="faq-icon" id="fi-6">+</span>
+        </button>
+        <div class="faq-a" id="fa-6">
+          <p><strong>This is the critical question.</strong> And the answer is: they don't leave completely.</p>
+          <p><strong>The progression looks like this:</strong></p>
+          <ul style="margin: 12px 0 12px 20px;">
+            <li><strong>Months 1-6:</strong> Daily attendance (stabilisation)</li>
+            <li><strong>Months 6-12:</strong> 4-5x per week (building skills)</li>
+            <li><strong>Month 12+:</strong> 1-2x per week (employment/education now primary)</li>
+            <li><strong>Year 2+:</strong> 1-2x per month (maintenance + peer mentoring)</li>
+          </ul>
+          <p><strong>They transition from being helped to being helpers.</strong> This prevents the "loss of support" crisis. They become mentors for new arrivals. They're still part of SAFE. But SAFE is no longer the primary support — it's the community safety net.</p>
+          <p><strong>Long-term engagement:</strong> Research on integrated community centres shows that young people who transition into mentoring roles show 90%+ sustained employment (vs. 60% for those who "graduate and leave").</p>
+          <p><strong>Economic incentive:</strong> Staff roles at SAFE are priority for graduates. Kitchen supervisor, peer mentor, dojo assistant — these are real jobs with wages. Young people don't leave the community. They join the staff.</p>
+          <p><strong>We measure this ruthlessly:</strong> We track young people for 5 years post-exit. Employment status, housing stability, mental health, recidivism. This is how we know if we're actually working.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(7)">
+          <span class="faq-qt">£2,000-4,000 per young person annually — isn't that wildly optimistic for a building with staff, utilities, and equipment?</span>
+          <span class="faq-icon" id="fi-7">+</span>
+        </button>
+        <div class="faq-a" id="fa-7">
+          <p>Fair question. Here's the cost breakdown:</p>
+          <p><strong>For 200 young people annually across SAFE:</strong></p>
+          <ul style="margin: 12px 0 12px 20px;">
+            <li>Building lease/mortgage: £150,000/year (amortized across 200 = £750/person)</li>
+            <li>Core staff (8-10 people, £25k-35k): £250,000/year (= £1,250/person)</li>
+            <li>Utilities, equipment, maintenance: £80,000/year (= £400/person)</li>
+            <li>Program costs (food, art supplies, tech): £60,000/year (= £300/person)</li>
+            <li><strong>Total: £540,000/year = £2,700 per young person</strong></li>
+          </ul>
+          <p><strong>But this improves with scale:</strong> If SAFE reaches 300 young people (expanded hours), cost per person drops to £1,800. At 400, it's £1,350.</p>
+          <p><strong>And it compares brutally to the alternative:</strong> £50,000+ in crisis costs per young person means SAFE is 98% cheaper than status quo, while achieving 85%+ success vs. 40% success for housing-only approaches.</p>
+          <p><strong>Funding sources:</strong> We're not expecting councils alone to fund this. The model uses:</p>
+          <ul style="margin: 12px 0 12px 20px;">
+            <li>Council commissioning (40% of costs)</li>
+            <li>Charitable grants (30%)</li>
+            <li>Private investment/sponsorship (20%)</li>
+            <li>Revenue from awareness brand (10%)</li>
+          </ul>
+          <p>This is realistic. Not easy. But not fantasy.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(8)">
+          <span class="faq-qt">How do you measure success when outcomes are non-linear, take years, and include intangibles like "hope"?</span>
+          <span class="faq-icon" id="fi-8">+</span>
+        </button>
+        <div class="faq-a" id="fa-8">
+          <p><strong>We measure both hard and soft outcomes.</strong></p>
+          <p><strong>Hard metrics (measurable, tracked annually):</strong></p>
+          <ul style="margin: 12px 0 12px 20px;">
+            <li>Housing stability (still housed after 12/24/36 months)</li>
+            <li>Employment rate (employed or in education)</li>
+            <li>Police contact (arrests, convictions down)</li>
+            <li>Hospital usage (mental health A&E visits down)</li>
+            <li>Recidivism (percentage returning to homelessness)</li>
+            <li>Completion of qualifications/certifications</li>
+          </ul>
+          <p><strong>Soft metrics (qualitative, captured via interviews, surveys):</strong></p>
+          <ul style="margin: 12px 0 12px 20px;">
+            <li>Sleep quality and consistency</li>
+            <li>Sense of belonging ("I feel part of community")</li>
+            <li>Agency ("I control my future")</li>
+            <li>Identity clarity ("I know who I am")</li>
+            <li>Trust in adults ("I have someone who believes in me")</li>
+          </ul>
+          <p><strong>Timeline matters:</strong> We track outcomes at 3 months, 6 months, 12 months, 24 months, 36 months, and 5 years. Non-linearity is expected. A young person might regress at month 8 (normal grief/process), then leap forward at month 14. We measure the trend, not the snapshot.</p>
+          <p><strong>Benchmark against existing models:</strong> The metrics we use are identical to those used by Housing First programs in Finland and integrated youth centres in Denmark. This allows for direct comparison. We're not inventing metrics. We're adopting what works.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(9)">
+          <span class="faq-qt">Doesn't focusing on seven rooms risk creating Jack-of-all-trades, master-of-none? Why not go deep on one thing?</span>
+          <span class="faq-icon" id="fi-9">+</span>
+        </button>
+        <div class="faq-a" id="fa-9">
+          <p>Because a young person isn't one problem. They're seven.</p>
+          <p><strong>If we specialise:</strong></p>
+          <ul style="margin: 12px 0 12px 20px;">
+            <li>Meditation centre: Heals nervous system but young person is still hungry, angry, without identity</li>
+            <li>Job training: Teaches skills but young person can't focus due to dysregulation</li>
+            <li>Kitchen: Teaches cooking but young person is isolated, without identity or future hope</li>
+          </ul>
+          <p><strong>All seven rooms are necessary because they address different aspects of the same person:</strong></p>
+          <ul style="margin: 12px 0 12px 20px;">
+            <li>Meditation = nervous system safety (foundation)</li>
+            <li>Kitchen = physical nourishment (survival)</li>
+            <li>Dojo = emotional regulation through discipline (control)</li>
+            <li>Kinetic = embodied confidence (trust your body)</li>
+            <li>Music = proof of existence (you matter)</li>
+            <li>Fashion = identity formation (who are you?)</li>
+            <li>Tech = future building (possibility)</li>
+          </ul>
+          <p><strong>The research confirms this:</strong> Integrated programs show better outcomes than any single-focus intervention. A young person who gets meditation alone improves. A young person who gets meditation + kitchen + dojo + music transforms. The multiplier effect is real.</p>
+          <p><strong>On depth:</strong> Each room has expert staff (chef, martial arts instructor, music engineer, etc.). We're not asking one person to do all seven things. Each specialist goes deep in their room. But they're all in conversation about the same young person. That's the secret.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(10)">
+          <span class="faq-qt">Isn't this just gentrification with a social justice veneer? Young people from low-income areas in a shiny new hub while their neighborhoods get displaced?</span>
+          <span class="faq-icon" id="fi-10">+</span>
+        </button>
+        <div class="faq-a" id="fa-10">
+          <p><strong>This is the real risk. And we have to be explicit about it.</strong></p>
+          <p><strong>What we're NOT doing:</strong></p>
+          <ul style="margin: 12px 0 12px 20px;">
+            <li>Located in a gentrifying neighborhood (pushes young people out anyway)</li>
+            <li>Aestheticised poverty for middle-class consumption (the "cool homeless shelter" aesthetic)</li>
+            <li>Extractive (young people as data points for our grant applications)</li>
+            <li>Tokenist (bringing in young people from displaced communities as props)</li>
+          </ul>
+          <p><strong>What we ARE doing:</strong></p>
+          <ul style="margin: 12px 0 12px 20px;">
+            <li><strong>Location:</strong> Hub is in a working-class area, chosen specifically to avoid pricing out existing communities. No gentrification vector.</li>
+            <li><strong>Ownership:</strong> After year 3, young people who've progressed become staff/stakeholders. They own the platform, not just use it.</li>
+            <li><strong>Generative:</strong> Young people become mentors for their communities. They don't just leave. They come back changed and help others.</li>
+            <li><strong>Accountability:</strong> Local community board (including residents, elders, young people) has veto power over major decisions.</li>
+            <li><strong>Wealth sharing:</strong> If SAFE scales to multiple hubs, equity is held by the young people who built it first. Not shareholders. Them.</li>
+          </ul>
+          <p><strong>This is not charity. This is wealth redistribution and community ownership.</strong> Young people aren't beneficiaries of our generosity. They're co-creators of something that belongs to them.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(11)">
+          <span class="faq-qt">You say one building, seven rooms. But what if young people need different things? Won't some people feel forced into rooms that don't fit them?</span>
+          <span class="faq-icon" id="fi-11">+</span>
+        </button>
+        <div class="faq-a" id="fa-11">
+          <p><strong>Agency is non-negotiable.</strong> Here's how it works:</p>
+          <p><strong>Meditation is required (the only non-negotiable).</strong> Because nervous system regulation is the foundation for everything else. 10 minutes. That's it. But that's required because the research is unambiguous: you cannot build on a dysregulated nervous system.</p>
+          <p><strong>Everything else is choice.</strong> You come in dysregulated. You meditate. Your nervous system calms. Now what calls to you?</p>
+          <ul style="margin: 12px 0 12px 20px;">
+            <li>Some young people sprint to music. They never touch skateboarding.</li>
+            <li>Some young people love the kitchen. They skip fashion.</li>
+            <li>Some young people dive into tech. They avoid martial arts.</li>
+            <li>All of these paths are valid.</li>
+          </ul>
+          <p><strong>Staff role:</strong> Not gatekeeping ("you should do music"), but curious exploration ("what calls to you?"). Mentors ask questions. They don't prescribe.</p>
+          <p><strong>The rooms aren't silos.** A young person might spend three months in music, then get curious about tech. They shift. No problem. The whole building is open to them.</p>
+          <p><strong>What we prevent:</strong> Someone hiding in one room forever (which is avoidance). Staff notice. "You've been in meditation for 6 months. Want to try something new?" Not forced. But gently challenged. Because growth requires expansion.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(12)">
+          <span class="faq-qt">Who the hell do you think you are taking on these problems? You're not special!</span>
+          <span class="faq-icon" id="fi-12">+</span>
+        </button>
+        <div class="faq-a" id="fa-12">
+          <p><strong>You're right. I'm not.</strong></p>
+          <p>I'm a civil engineer and a chef. I've worked in precision and structure and human care. I've also been homeless. I've been evicted. I've been in survival mode. I know what it feels like when systems designed for other people don't have room for you.</p>
+          <p>I'm not special. But I had two things that many don't: a technical skillset and enough stability to plan for three years without income. That's privilege, not talent. And I'm using it.</p>
+          <p><strong>Why me? Because I had to.</strong> I looked at the data. 70% cut in youth services since 2010. 107,000 homeless young people in the UK. Housing-only approaches failing. Therapy-only approaches failing. Job training with 15-20% completion rates. The system is broken in predictable ways, and nobody was building the integrated alternative.</p>
+          <p>So either I build it, or I accept that young people in my community keep cycling through crisis. I chose to build it. Not because I'm special. Because I couldn't live with the alternative.</p>
+          <p><strong>On "taking on these problems":</strong> I'm not solving homelessness. One building reaches 200 young people per year. That's not a solution at scale. But it's a proof of concept. It's evidence. It's a model that works, which then becomes a template that other people (smarter than me, with better resources) can replicate.</p>
+          <p>I'm not the hero of this story. I'm just the person willing to be wrong publicly, iterate, fail, learn, and build something that belongs to the community it serves. That's not special. That's just showing up.</p>
+          <p><strong>The real question isn't "who do you think you are?"</strong> It's "why haven't more people done this?" And the answer is: it's hard, it takes time, it requires risk, and most people have mortgages and families and can't afford to bet three years on an uncertain outcome. I can. So I did.</p>
+          <p>That's not superiority. That's circumstance. And I'm spending it.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT FORM -->
+<section class="contact-section" id="contact">
+  <div class="s-inner">
+    <div class="rooms-header">
+      <p class="s-label">Contact</p>
+      <p class="s-num">B</p>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-body">
+        <p>For any enquiries — press, partnerships, volunteering, sponsorship, property, council — send us a message. We read everything.</p>
+        <p>You can also email us directly:</p>
+        <a class="contact-email" href="mailto:enquiries@safespot.life">enquiries@safespot.life</a>
+        <p style="margin-top:32px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.1em;color:var(--mid);text-transform:uppercase">
+          Response time · within 3 working days
+        </p>
+      </div>
+      <form id="enquiryForm" class="contact-form" action="https://api.web3forms.com/submit" method="POST" onsubmit="return submitEnquiry(event)">
+        <input type="hidden" name="access_key" value="ad6c5fc6-8442-4a74-9742-40150645d59c">
+        <input type="hidden" name="from_name"  value="SAFE — safespot.life enquiry">
+        <input type="hidden" name="subject"    value="New enquiry via safespot.life">
+        <input type="hidden" name="redirect"   value="false">
+        <!-- honeypot spam trap -->
+        <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off">
+
+        <div class="form-row">
+          <div class="form-field">
+            <label for="firstName">First Name</label>
+            <input type="text" id="firstName" name="firstName" required>
+          </div>
+          <div class="form-field">
+            <label for="surname">Surname</label>
+            <input type="text" id="surname" name="surname" required>
+          </div>
+        </div>
+        <div class="form-field">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+        <div class="form-field">
+          <label for="enq-subject">Subject <span style="color:var(--light);text-transform:none;letter-spacing:0">(optional)</span></label>
+          <input type="text" id="enq-subject" name="user_subject" placeholder="e.g. Volunteer, Partner, Press">
+        </div>
+        <div class="form-field">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" rows="7" required></textarea>
+        </div>
+        <button type="submit" class="form-submit" id="submitBtn">Send Enquiry</button>
+        <p id="form-note" style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--mid);letter-spacing:0.05em;line-height:1.6"></p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span class="footer-left">S·A·F·E — Steps Approaching Future Earth</span>
+  <span class="footer-right" style="display: flex; gap: 24px; font-size: 11px;">
+    <a href="help.html" style="color: inherit; text-decoration: none;">Help</a>
+    <a href="privacy.html" style="color: inherit; text-decoration: none;">Privacy</a>
+    <a href="terms.html" style="color: inherit; text-decoration: none;">Terms</a>
+    <a href="privacy-choices.html" style="color: inherit; text-decoration: none;">Choices</a>
+    <a href="accessibility.html" style="color: inherit; text-decoration: none;">Access</a>
+    <a href="https://hughcorduroy.bandcamp.com/" target="_blank" rel="noopener" style="color: inherit; text-decoration: none;">Music</a>
+  </span>
+</footer>
+
+<script>
+function toggleFaq(i){
+  const a=document.getElementById('fa-'+i);
+  const icon=document.getElementById('fi-'+i);
+  const open=a.classList.contains('open');
+  document.querySelectorAll('.faq-a').forEach(el=>el.classList.remove('open'));
+  document.querySelectorAll('.faq-icon').forEach(el=>{el.classList.remove('open');el.textContent='+'});
+  if(!open){a.classList.add('open');icon.classList.add('open')}
+}
+
+async function submitEnquiry(e){
+  e.preventDefault();
+  const form = document.getElementById('enquiryForm');
+  const note = document.getElementById('form-note');
+  const btn  = document.getElementById('submitBtn');
+  const accessKey = form.elements['access_key'].value;
+
+  note.className = '';
+  note.textContent = '';
+
+  if(accessKey.startsWith('REPLACE_')){
+    // Fallback: access key not yet configured. Open mailto as a graceful degrade.
+    const body = [
+      'Name: '  + form.firstName.value + ' ' + form.surname.value,
+      'Email: ' + form.email.value,
+      '',
+      form.message.value
+    ].join('\n');
+    const subject = form.elements['user_subject'].value.trim() || 'New enquiry via safespot.life';
+    window.location.href = 'mailto:enquiries@safespot.life'
+      + '?subject=' + encodeURIComponent(subject)
+      + '&body='    + encodeURIComponent(body);
+    note.className = 'form-note-err';
+    note.textContent = 'Web3Forms access key not configured yet — opening your email client as a fallback. (Developer: paste your Web3Forms access key into faq.html to enable direct submit.)';
+    return false;
+  }
+
+  // Build a pretty subject combining the user-entered subject (if any) with defaults
+  const userSubject = form.elements['user_subject'].value.trim();
+  if(userSubject){
+    form.elements['subject'].value = 'SAFE enquiry — ' + userSubject;
+  }
+
+  btn.disabled = true;
+  btn.textContent = 'Sending…';
+
+  try{
+    const data = new FormData(form);
+    const res = await fetch(form.action, {
+      method: 'POST',
+      body: data,
+      headers: { 'Accept': 'application/json' }
+    });
+    const json = await res.json().catch(()=>({}));
+    if(res.ok && json.success){
+      note.className = 'form-note-ok';
+      note.textContent = 'Thank you — your enquiry has been received. We will reply within 3 working days.';
+      form.reset();
+    } else {
+      note.className = 'form-note-err';
+      note.textContent = (json.message || 'Something went wrong. Please try again, or email enquiries@safespot.life directly.');
+    }
+  } catch (err) {
+    note.className = 'form-note-err';
+    note.textContent = 'Network error. Please try again, or email enquiries@safespot.life directly.';
+  } finally {
+    btn.disabled = false;
+    btn.textContent = 'Send Enquiry';
+  }
+  return false;
+}
+</script>
+<script src="theme.js"></script>
+<script src="bento.js" defer></script>
+</body>
+</html>

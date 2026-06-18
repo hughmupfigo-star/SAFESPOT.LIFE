@@ -1,0 +1,889 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Emancipation, Rights, & Mutual Aid: A Plain-English Guide — SAFE</title>
+<meta name="description" content="What emancipation actually means. How mutual aid networks work. Legal rights. Emergency housing. No sugar-coating, just reality.">
+<meta property="og:title" content="Emancipation, Rights, & Mutual Aid: A Plain-English Guide — SAFE">
+<meta property="og:description" content="What emancipation actually means. How mutual aid networks work. Legal rights. Emergency housing.">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2026-06-07">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="blog-emancipation.html">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="blog-titles.css">
+<style>
+.article-container {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 60px 40px;
+}
+
+.article-header {
+  margin-bottom: 48px;
+}
+
+.article-date {
+  font-family: var(--mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--mid);
+  margin-bottom: 16px;
+}
+
+.article-title {
+  font-size: 32px;
+  font-weight: 300;
+  line-height: 1.3;
+  margin-bottom: 16px;
+}
+
+.article-excerpt {
+  font-size: 16px;
+  color: var(--mid);
+  line-height: 1.7;
+  margin-bottom: 24px;
+}
+
+.article-content {
+  font-size: 15px;
+  line-height: 1.8;
+  color: var(--black);
+}
+
+.article-content h2 {
+  font-size: 22px;
+  font-weight: 400;
+  margin-top: 40px;
+  margin-bottom: 16px;
+}
+
+.article-content h3 {
+  font-size: 18px;
+  font-weight: 500;
+  margin-top: 28px;
+  margin-bottom: 12px;
+}
+
+.article-content p {
+  margin-bottom: 16px;
+}
+
+.article-content ul, .article-content ol {
+  margin-bottom: 20px;
+  margin-left: 20px;
+}
+
+.article-content li {
+  margin-bottom: 12px;
+}
+
+.article-content strong {
+  font-weight: 500;
+}
+
+.warning-box {
+  background: #fff3cd;
+  border-left: 4px solid #ff9800;
+  padding: 20px;
+  margin: 24px 0;
+  border-radius: 2px;
+}
+
+.warning-box strong {
+  display: block;
+  margin-bottom: 8px;
+  color: #cc7a00;
+}
+
+.info-box {
+  background: var(--off);
+  border: 1px solid var(--border);
+  padding: 24px;
+  border-radius: 4px;
+  margin: 24px 0;
+}
+
+.cta-box {
+  background: var(--off);
+  border: 1px solid var(--border);
+  padding: 32px;
+  border-radius: 4px;
+  margin: 48px 0;
+  text-align: center;
+}
+
+.cta-box h3 {
+  margin-top: 0;
+}
+
+.cta-btn {
+  display: inline-block;
+  padding: 14px 28px;
+  background: var(--black);
+  color: white;
+  text-decoration: none;
+  border-radius: 2px;
+  font-family: var(--mono);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  transition: all 0.2s;
+  margin-top: 12px;
+}
+
+.cta-btn:hover {
+  background: var(--mid);
+  transform: translateX(2px);
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 32px;
+  padding: 8px 16px;
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  text-decoration: none;
+  color: var(--black);
+  font-size: 12px;
+  font-family: var(--mono);
+}
+
+.back-link:hover {
+  border-color: var(--black);
+  background: var(--white);
+}
+
+html[data-theme="dark"] .article-content {
+  color: #f5f5f5;
+}
+
+html[data-theme="dark"] .cta-box {
+  background: #1a1a1a;
+  border-color: #444;
+}
+
+html[data-theme="dark"] .info-box {
+  background: #1a1a1a;
+  border-color: #444;
+}
+
+html[data-theme="dark"] .warning-box {
+  background: #332200;
+  border-color: #cc7a00;
+}
+
+@media (max-width: 768px) {
+  .article-container {
+    padding: 40px 20px;
+  }
+
+  .article-title {
+    font-size: 24px;
+  }
+
+  .article-content h2 {
+    font-size: 19px;
+  }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode">
+    <svg class="theme-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="18" height="18">
+      <circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+    </svg>
+  </button>
+
+  <button class="nav-toggle" aria-label="Open menu" aria-haspopup="dialog" aria-expanded="false">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" width="20" height="20">
+      <circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2.5"/><path d="M 18 8 L 20 6 L 22 8" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </button>
+
+  <a class="nav-logo" href="index.html">S·A·F·E</a>
+</nav>
+
+<main id="main">
+<div class="article-container">
+  <a href="blog.html" class="back-link">← Back to Blog</a>
+
+  <article>
+    <header class="article-header">
+      <time class="article-date" datetime="2026-06-07">7 June 2026</time>
+      <h1 class="article-title pg-serif">Emancipation, Rights, & <em>Mutual Aid</em>: A Plain-English Guide</h1>
+      <p class="article-excerpt">What emancipation actually means (and what it doesn't). Your legal rights. How mutual aid networks work. Emergency housing. Police interactions. What to know before you need it.</p>
+    </header>
+
+    <div class="article-content">
+
+<h2>The Real Talk First</h2>
+
+<p>This is about situations where you can't stay at home safely. Not just "my parents are annoying." Serious stuff. Abuse, homelessness, survival.</p>
+
+<p>The system isn't perfect. State services are underfunded. But there are real options. This guide covers them without sugarcoating.</p>
+
+<h2>Part 1: Emancipation (What It Actually Is)</h2>
+
+<h3>What Emancipation Means</h3>
+
+<p>Emancipation is when a court legally declares you an adult before you turn 18. You get:</p>
+
+<ul>
+<li>The right to sign contracts (rental agreements, phone plans, etc.)</li>
+<li>The right to make medical decisions alone</li>
+<li>The right to keep your earnings (parents can't claim them)</li>
+<li>The right to live independently without parents being able to demand you come home</li>
+</ul>
+
+<p>You lose:</p>
+
+<ul>
+<li>Access to some services designed for minors (emergency housing specifically for under-18s)</li>
+<li>School attendance requirements (your parents aren't required to enforce education)</li>
+<li>Some legal protections designed for minors</li>
+</ul>
+
+<h3>How to Actually Get Emancipated (UK)</h3>
+
+<p>In the UK, formal emancipation is less common than in the US, but you have practical options:</p>
+
+<p><strong>Option 1: Talk to your local authority</strong></p>
+
+<ul>
+<li>Contact your local council's children's services</li>
+<li>Explain you need to live independently (abuse, unsafe home, etc.)</li>
+<li>They can help with housing, support, and sometimes declare you "looked after" (gives access to leaving care services)</li>
+</ul>
+
+<p><strong>Option 2: Formal legal declaration (rare)</strong></p>
+
+<ul>
+<li>If your council won't help, you can petition courts directly (costs £200-500)</li>
+<li>You'll need evidence: abuse documentation, threats, unsafe conditions</li>
+<li>A solicitor can help (some pro bono if you can't afford it)</li>
+</ul>
+
+<h3>Real Talk: Do You Actually Need Emancipation?</h3>
+
+<p>Probably not, actually. You can:</p>
+
+<ul>
+<li>Leave home at any age if you're in danger (emergency services will help)</li>
+<li>Access emergency housing without emancipation</li>
+<li>Get mental health support without parental permission (from age 13 in most cases)</li>
+<li>Work and earn money without emancipation (though they own your earnings under 18)</li>
+</ul>
+
+<p>Emancipation is useful for signing contracts and financial independence. But for immediate safety, you don't need to wait for it.</p>
+
+<h2>Part 2: Your Rights Right Now (Before Emancipation)</h2>
+
+<h3>Rights You Have as a Minor</h3>
+
+<ul>
+<li><strong>Right to safe housing:</strong> Even if you leave home, local authorities must provide emergency housing if you're under 18 and unsafe</li>
+<li><strong>Right to mental health care:</strong> You can access therapy/counselling without parental permission (from age 13+)</li>
+<li><strong>Right to medical decisions:</strong> For most medical care, if you "have capacity" to understand (usually 13+), you can consent alone</li>
+<li><strong>Right to privacy:</strong> Your conversations with therapists, doctors, counsellors are confidential (with rare exceptions)</li>
+<li><strong>Right to leave home:</strong> If you're in danger, you can leave. Services will help.</li>
+<li><strong>Right to protection from abuse:</strong> Physical, sexual, emotional, financial. The system can intervene.</li>
+</ul>
+
+<h3>Rights You Don't Have (Be Aware)</h3>
+
+<ul>
+<li><strong>You can't sign contracts:</strong> Rental agreements, phone plans, financial agreements. Your parents would need to co-sign.</li>
+<li><strong>Your parents own your money:</strong> If you're under 18, they legally own your earnings (though this is changing in some contexts)</li>
+<li><strong>Your parents can restrict your movement:</strong> Technically, they're responsible for you. They can try to force you home (but if there's abuse, they can't)</li>
+<li><strong>Some services won't help minors:</strong> Some shelters and services are 18+ only</li>
+</ul>
+
+<h2>Part 3: Emergency Housing & Your Rights</h2>
+
+<h3>If You Need a Place to Sleep Tonight</h3>
+
+<p><strong>You're under 16:</strong></p>
+<ul>
+<li>Call your local authority emergency duty team: [search "[your council] emergency housing"]. They're legally required to help.</li>
+<li>Call Childline: 0800 1111. They'll guide you to local services.</li>
+<li>Tell them: "I can't safely go home. I need emergency accommodation."</li>
+<li>They will assess if you're in danger and provide housing (usually via foster care or supported housing)</li>
+</ul>
+
+<p><strong>You're 16-17:</strong></p>
+<ul>
+<li>Same as above: contact your local authority or Childline</li>
+<li>You might be offered "supported lodgings" (independent living with a support worker checking in)</li>
+<li>You have more independence but still have legal protections</li>
+</ul>
+
+<p><strong>You're 18:</strong></p>
+<ul>
+<li>You're legally an adult. Local authorities still have some responsibility, but it's different</li>
+<li>If you were "looked after" before 18, you get "leaving care" services (housing support, advice, money)</li>
+<li>If not, you'll need to access adult homeless services</li>
+<li>This is harder. Plan ahead if possible.</li>
+</ul>
+
+<h3>What They'll Ask You</h3>
+
+<p>When you contact emergency services, they'll ask:</p>
+
+<ul>
+<li>Are you in immediate danger?</li>
+<li>Why can't you go home?</li>
+<li>Do you have any family you could stay with?</li>
+<li>Are there drugs or weapons at home?</li>
+<li>Is abuse happening?</li>
+</ul>
+
+<p><strong>Be honest.</strong> Even if it's complicated, tell them. They've heard it all. They're not judging. They're assessing safety.</p>
+
+<h3>What Then?</h3>
+
+<p>If they agree you're unsafe:</p>
+
+<ul>
+<li>You'll be placed in emergency accommodation (usually foster care for under-16s, supported lodgings or a hostel for older teens)</li>
+<li>A social worker will be assigned to you</li>
+<li>You'll make a plan: immediate safety, next steps, family reconciliation (if safe), independence planning</li>
+<li>You'll have access to support services: counselling, education/training help, financial advice</li>
+</ul>
+
+<p><strong>This isn't permanent unless you need it to be.</strong> It's an immediate safety net while you figure out next steps.</p>
+
+<h2>Part 4: Mutual Aid Networks (Community, Not Institutions)</h2>
+
+<p>Mutual aid is when communities support each other directly—outside government systems. It's decentralised, community-run, and for people the government system hasn't reached.</p>
+
+<h3>Types of Mutual Aid You Can Access</h3>
+
+<p><strong>Community Fridges</strong></p>
+
+<ul>
+<li>Fridges (usually outside community centres, religious organisations) stocked with free food</li>
+<li>No paperwork. No questions. You need food, you take food.</li>
+<li>Find them: search "[your city] community fridge" or ask on local Facebook groups</li>
+</ul>
+
+<p><strong>Food Banks & Meal Sharing</strong></p>
+
+<ul>
+<li>Some are official (Trussell Trust), some are community-run</li>
+<li>Official ones require referrals; community ones usually don't</li>
+<li>Meal sharing groups cook extra food and share with people who need it</li>
+<li>Find them: local community boards, neighbourhood apps</li>
+</ul>
+
+<p><strong>Clothing Swaps & Free Shops</strong></p>
+
+<ul>
+<li>Community groups where people share clothes, books, furniture, etc.</li>
+<li>No money. You take what you need. You give what you don't.</li>
+<li>Usually via Facebook groups or community noticeboards</li>
+</ul>
+
+<p><strong>Community Kitchens</strong></p>
+
+<ul>
+<li>Groups that cook free meals and teach cooking skills</li>
+<li>Often community centres, religious organisations, social enterprises</li>
+<li>Built-in community and support</li>
+</ul>
+
+<p><strong>Time Banks</strong></p>
+
+<ul>
+<li>You offer an hour of your skill/time, you get an hour of someone else's</li>
+<li>Plumber fixes your leak, you teach someone to code for an hour</li>
+<li>No money. Pure exchange.</li>
+<li>Find them: timebanks.org or local social enterprises</li>
+</ul>
+
+<h3>Why Mutual Aid Matters</h3>
+
+<p>Government systems are slow, restrictive, and often humiliating. Mutual aid is fast, judgement-free, and community-built. You're not a case number. You're a neighbour getting help from other neighbours.</p>
+
+<p><strong>But here's real talk:</strong> mutual aid doesn't replace emergency services. Use mutual aid for daily needs. Use government systems for safety/housing/legal protection.</p>
+
+<h2>Part 5: Police & Children's Social Care Interactions (What to Know)</h2>
+
+<p>If police show up or you interact with them, here's what you need to know:</p>
+
+<h3>Your Rights in a Police Interaction</h3>
+
+<ul>
+<li><strong>You have a right to silence:</strong> "I want to speak to a solicitor" and then don't answer questions until you do</li>
+<li><strong>You have a right to a solicitor:</strong> Police must provide one (free, if you can't afford it) before you're questioned</li>
+<li><strong>You have a right to a responsible adult:</strong> If you're under 18, an adult (not a police officer) must be present during questioning</li>
+<li><strong>You can refuse searches:</strong> Unless they have a warrant or there's immediate danger, they need your permission (though they may force it anyway)</li>
+</ul>
+
+<h3>When Children's Social Care Gets Involved</h3>
+
+<p><strong>A note on terms:</strong> In the UK, child protection sits with your local authority's Children's Social Care (sometimes still called "social services"). The CPS — Crown Prosecution Service — is something different (it prosecutes crime). This section is about social workers, not prosecutors.</p>
+
+<p><strong>They can remove you if:</strong></p>
+
+<ul>
+<li>You're in immediate danger at home</li>
+<li>There's evidence of abuse or neglect</li>
+<li>Your parent/guardian can't provide safe care</li>
+</ul>
+
+<p><strong>They can't just take you because:</strong></p>
+
+<ul>
+<li>Your parents are strict</li>
+<li>You're failing school</li>
+<li>You're LGBTQ+ and your family doesn't like it (though they should intervene if there's abuse)</li>
+<li>Your parents fight (unless violence is involved)</li>
+</ul>
+
+<p><strong>If they're investigating your family:</strong></p>
+
+<ul>
+<li>A social worker will visit your home</li>
+<li>You might be interviewed alone</li>
+<li>Be honest. This is for your safety, not to get your parents in trouble (though sometimes it does)</li>
+<li>You have the right to a solicitor during interviews</li>
+<li>They'll make a decision: case closed, offer support services, or remove you</li>
+</ul>
+
+<div class="warning-box">
+<strong>Important:</strong> If you're in immediate danger (violence, sexual abuse, not being fed), call 999. Don't wait for perfect conditions to report. Safety now, sorting out systems later.
+</div>
+
+<h2>Part 6: The Hard Truth</h2>
+
+<p><strong>The system isn't perfect:</strong> Social services are underfunded. Caseworkers are overwhelmed. You might not get ideal outcomes.</p>
+
+<p><strong>Leaving home is hard:</strong> Even if your home is unsafe, leaving means losing things. Stability. Family. Identity. Grief is real even when leaving is right.</p>
+
+<p><strong>Mutual aid isn't a substitute for safety:</strong> A community fridge helps you eat. But if your home is violent, you need emergency housing and legal protection too.</p>
+
+<p><strong>You might have to be the adult:</strong> Social systems expect you to advocate for yourself. That's not fair. But if you understand your rights, you're less likely to get lost in bureaucracy.</p>
+
+<h2>What To Do Right Now</h2>
+
+<p>If you're thinking about any of this:</p>
+
+<ol>
+<li><strong>Talk to someone:</strong> School counsellor, trusted adult, or crisis line. Don't solve this alone.</li>
+<li><strong>Know your local resources:</strong> Google "[your council] emergency housing" and save the number</li>
+<li><strong>Document abuse if it's safe to do so:</strong> Dates, what happened, any injuries. This matters for legal cases.</li>
+<li><strong>Keep important documents together:</strong> Birth certificate, passport, NI number, medical records (you'll need these)</li>
+<li><strong>Have a plan, even a rough one:</strong> Where you'd go, who you'd contact, what you'd need immediately</li>
+<li><strong>Connect with mutual aid now:</strong> Community fridges, meal sharing groups. Practise before you need it.</li>
+</ol>
+
+<h2>Resources</h2>
+
+<ul>
+<li><strong>Childline:</strong> 0800 1111 (24/7, free, confidential)</li>
+<li><strong>Samaritans:</strong> 116 123 (crisis support)</li>
+<li><strong>Young Minds Crisis:</strong> Text YM to 50808</li>
+<li><strong>Shelter:</strong> 0808 800 4444 (housing rights advice)</li>
+<li><strong>Stonewall (LGBTQ+ specific):</strong> Housing support and advocacy</li>
+</ul>
+
+<div class="cta-box">
+  <h3>You're Not Alone in This</h3>
+  <p>SAFE exists because young people deserve support that actually understands what you're going through. These resources are real. You have rights. Help exists.</p>
+  <a href="story-intelligence.html" class="cta-btn">Read Stories From Others →</a>
+</div>
+
+    <div class="subscribe-cta">
+  <h3>More wisdom like this?</h3>
+  <p>Get weekly advice on therapy, jobs, housing, rights. Real stuff. No spam.</p>
+  <button class="subscribe-btn" onclick="showNewsletterPopup()">Subscribe to the Blog</button>
+</div>
+
+    </div>
+  </article>
+</div>
+</main>
+
+<!-- Newsletter Popup Modal -->
+<div id="newsletter-popup" class="newsletter-popup">
+  <div class="newsletter-popup-content">
+    <button class="newsletter-close" onclick="closeNewsletterPopup()" aria-label="Close newsletter popup">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+    </button>
+    <div class="newsletter-inner">
+      <h2 class="newsletter-title">Weekly wisdom for young people.</h2>
+      <p class="newsletter-subtitle">Real advice on therapy, jobs, housing, rights. No spam. Unsubscribe anytime.</p>
+      <form class="newsletter-form" onsubmit="handleNewsletterSubmit(event)">
+        <div class="form-row">
+          <input type="text" name="name" placeholder="Your name (optional)" class="newsletter-input" autocomplete="given-name" />
+        </div>
+        <div class="form-row">
+          <input type="email" name="email" placeholder="you@example.com" class="newsletter-input" required autocomplete="email" />
+        </div>
+        <button type="submit" class="newsletter-submit">Subscribe</button>
+      </form>
+      <p class="newsletter-note">We'll send a confirmation email. Check spam if you don't see it.</p>
+    </div>
+  </div>
+</div>
+
+<style>
+.subscribe-cta {
+  background: var(--off);
+  border: 1px solid var(--border);
+  padding: 40px;
+  border-radius: 4px;
+  margin: 48px 0;
+  text-align: center;
+}
+
+.subscribe-cta h3 {
+  font-size: 20px;
+  font-weight: 400;
+  margin: 0 0 12px;
+  color: var(--black);
+}
+
+.subscribe-cta p {
+  font-size: 14px;
+  color: var(--mid);
+  margin: 0 0 24px;
+  line-height: 1.6;
+}
+
+.subscribe-btn {
+  display: inline-block;
+  padding: 14px 32px;
+  background: var(--black);
+  color: var(--white);
+  border: 1px solid var(--black);
+  border-radius: 4px;
+  font-family: var(--mono);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-weight: 500;
+}
+
+.subscribe-btn:hover {
+  background: var(--off);
+  color: var(--black);
+}
+
+html[data-theme="dark"] .subscribe-cta {
+  background: #1a1a1a;
+  border-color: #333333;
+}
+
+html[data-theme="dark"] .subscribe-cta h3 {
+  color: #f5f5f5;
+}
+
+html[data-theme="dark"] .subscribe-btn {
+  background: #f5f5f5;
+  color: #0d0d0d;
+  border-color: #f5f5f5;
+}
+
+html[data-theme="dark"] .subscribe-btn:hover {
+  background: #e0e0e0;
+}
+
+.newsletter-popup {
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 10, 10, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+  padding: 20px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+}
+
+.newsletter-popup.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.newsletter-popup-content {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  max-width: 460px;
+  width: 100%;
+  position: relative;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+  animation: slideUp 0.4s ease;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.newsletter-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: none;
+  border: none;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  cursor: pointer;
+  color: var(--mid);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s ease;
+  z-index: 10;
+}
+
+.newsletter-close:hover {
+  color: var(--black);
+}
+
+.newsletter-inner {
+  padding: 48px 40px;
+}
+
+.newsletter-title {
+  font-size: 24px;
+  font-weight: 300;
+  line-height: 1.3;
+  color: var(--black);
+  margin: 0 0 12px;
+  letter-spacing: -0.01em;
+}
+
+.newsletter-subtitle {
+  font-size: 14px;
+  color: var(--mid);
+  font-weight: 300;
+  line-height: 1.6;
+  margin: 0 0 28px;
+}
+
+.newsletter-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.form-row {
+  display: flex;
+}
+
+.newsletter-input {
+  flex: 1;
+  padding: 12px 14px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  font-family: var(--sans);
+  font-size: 14px;
+  color: var(--black);
+  background: var(--white);
+  transition: border-color 0.2s ease;
+}
+
+.newsletter-input:focus {
+  outline: none;
+  border-color: var(--black);
+  box-shadow: 0 0 0 2px rgba(10, 10, 10, 0.1);
+}
+
+.newsletter-input::placeholder {
+  color: var(--light);
+}
+
+.newsletter-submit {
+  padding: 12px 24px;
+  background: var(--black);
+  color: var(--white);
+  border: 1px solid var(--black);
+  border-radius: 4px;
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-top: 4px;
+}
+
+.newsletter-submit:hover {
+  background: var(--off);
+  color: var(--black);
+}
+
+.newsletter-submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.newsletter-note {
+  font-size: 12px;
+  color: var(--light);
+  margin: 0;
+  text-align: center;
+  font-weight: 300;
+}
+
+html[data-theme="dark"] .newsletter-popup {
+  background: rgba(0, 0, 0, 0.7);
+}
+
+html[data-theme="dark"] .newsletter-popup-content {
+  background: #1a1a1a;
+  border-color: #333333;
+}
+
+html[data-theme="dark"] .newsletter-title {
+  color: #f5f5f5;
+}
+
+html[data-theme="dark"] .newsletter-subtitle {
+  color: #b0b0b0;
+}
+
+html[data-theme="dark"] .newsletter-close {
+  color: #b0b0b0;
+}
+
+html[data-theme="dark"] .newsletter-close:hover {
+  color: #f5f5f5;
+}
+
+html[data-theme="dark"] .newsletter-input {
+  background: #0d0d0d;
+  border-color: #333333;
+  color: #f5f5f5;
+}
+
+html[data-theme="dark"] .newsletter-input::placeholder {
+  color: #666666;
+}
+
+html[data-theme="dark"] .newsletter-input:focus {
+  border-color: #f5f5f5;
+  box-shadow: 0 0 0 2px rgba(245, 245, 245, 0.1);
+}
+
+html[data-theme="dark"] .newsletter-submit {
+  background: #f5f5f5;
+  color: #0d0d0d;
+  border-color: #f5f5f5;
+}
+
+html[data-theme="dark"] .newsletter-submit:hover {
+  background: #e0e0e0;
+}
+
+html[data-theme="dark"] .newsletter-note {
+  color: #999999;
+}
+
+@media (max-width: 480px) {
+  .subscribe-cta {
+    padding: 32px 20px;
+  }
+
+  .newsletter-popup-content {
+    margin: 0 16px;
+  }
+
+  .newsletter-inner {
+    padding: 32px 24px;
+  }
+
+  .newsletter-title {
+    font-size: 20px;
+  }
+
+  .newsletter-subtitle {
+    font-size: 13px;
+    margin-bottom: 24px;
+  }
+}
+</style>
+
+<script>
+function showNewsletterPopup() {
+  const popup = document.getElementById('newsletter-popup');
+  if (popup) {
+    popup.classList.add('visible');
+  }
+}
+
+function closeNewsletterPopup() {
+  const popup = document.getElementById('newsletter-popup');
+  if (popup) {
+    popup.classList.remove('visible');
+  }
+}
+
+function handleNewsletterSubmit(e) {
+  e.preventDefault();
+  const form = e.target;
+  const email = form.querySelector('input[type="email"]').value;
+  const nameInput = form.querySelector('input[name="name"]');
+  const name = nameInput ? nameInput.value : '';
+  const submitBtn = form.querySelector('button');
+  const originalText = submitBtn.textContent;
+  submitBtn.textContent = 'Subscribing...';
+  submitBtn.disabled = true;
+
+  setTimeout(() => {
+    submitBtn.textContent = '✓ Welcome to the list!';
+    form.reset();
+    localStorage.setItem('safeNewsletterSubscribed', 'true');
+    setTimeout(() => {
+      closeNewsletterPopup();
+    }, 2000);
+  }, 800);
+}
+</script>
+
+<footer>
+  <span class="footer-left">S·A·F·E — Steps Approaching Future Earth</span>
+  <span class="footer-right" style="display: flex; gap: 24px; font-size: 11px;">
+    <a href="help.html" style="color: inherit; text-decoration: none;">Help</a>
+    <a href="careers.html" style="color: inherit; text-decoration: none;">Careers</a>
+    <a href="privacy.html" style="color: inherit; text-decoration: none;">Privacy</a>
+    <a href="terms.html" style="color: inherit; text-decoration: none;">Terms</a>
+    <a href="privacy-choices.html" style="color: inherit; text-decoration: none;">Choices</a>
+    <a href="accessibility.html" style="color: inherit; text-decoration: none;">Access</a>
+    <a href="https://instagram.com/safespot.life" target="_blank" rel="noopener" style="color: inherit; text-decoration: none;">Instagram</a>
+  </span>
+</footer>
+
+<script src="theme.js"></script>
+<script src="bento.js" defer></script>
+<script src="audio-reader.js" defer></script>
+
+</body>
+</html>

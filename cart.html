@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cart — SAFE</title>
+<meta name="description" content="Your shopping cart — SAFE">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+  .cart-container {
+    max-width: 800px;
+    margin: 60px auto;
+    padding: 0 20px;
+  }
+
+  .cart-empty {
+    text-align: center;
+    padding: 60px 20px;
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  .cart-empty a {
+    color: inherit;
+    text-decoration: underline;
+  }
+
+  .cart-items {
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    margin: 40px 0;
+  }
+
+  .cart-item {
+    padding: 24px 0;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+  }
+
+  .cart-item:last-child {
+    border-bottom: none;
+  }
+
+  .item-details h3 {
+    font-size: 16px;
+    font-weight: 500;
+    margin: 0 0 8px 0;
+  }
+
+  .item-details p {
+    font-size: 13px;
+    color: var(--mid);
+    margin: 4px 0;
+  }
+
+  .item-price {
+    font-size: 16px;
+    font-weight: 500;
+    white-space: nowrap;
+  }
+
+  .remove-btn {
+    background: none;
+    border: none;
+    color: var(--mid);
+    cursor: pointer;
+    font-size: 13px;
+    text-decoration: underline;
+    padding: 0;
+    margin-top: 8px;
+  }
+
+  .remove-btn:hover {
+    color: var(--text);
+  }
+
+  .cart-summary {
+    margin: 40px 0;
+    text-align: right;
+  }
+
+  .summary-row {
+    display: flex;
+    justify-content: flex-end;
+    gap: 40px;
+    margin: 8px 0;
+    font-size: 14px;
+  }
+
+  .summary-row.total {
+    font-size: 18px;
+    font-weight: 500;
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid var(--border);
+  }
+
+  .checkout-btn {
+    display: inline-block;
+    background: var(--text);
+    color: var(--bg);
+    padding: 12px 32px;
+    border: 1px solid var(--text);
+    border-radius: 0;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    margin-top: 24px;
+    transition: all 0.2s;
+  }
+
+  .checkout-btn:hover {
+    background: var(--bg);
+    color: var(--text);
+  }
+
+  .continue-shopping {
+    display: inline-block;
+    color: var(--text);
+    text-decoration: underline;
+    font-size: 13px;
+    margin-top: 16px;
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode">
+    <svg class="theme-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="18" height="18">
+      <circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+    </svg>
+  </button>
+
+  <button class="nav-toggle" aria-label="Open menu" aria-haspopup="dialog" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" width="20" height="20"><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2.5"/><path d="M 18 8 L 20 6 L 22 8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+
+  <button class="cart-toggle" id="cartToggle" aria-label="Shopping cart">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="18" height="18">
+      <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M 1 1 h 4 l 2.68 13.39a2 2 0 0 0 2 1.61h 9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+    </svg>
+    <span class="cart-count" id="cartCount">0</span>
+  </button>
+</nav>
+
+<section class="cart-container">
+  <h1>Your Cart</h1>
+
+  <div id="cartContent">
+    <div class="cart-empty">
+      <p>Your cart is empty.</p>
+      <a href="shop.html" class="continue-shopping">Continue shopping</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span class="footer-left">S·A·F·E — Steps Approaching Future Earth</span>
+  <span class="footer-right" style="display: flex; gap: 24px; font-size: 11px;">
+    <a href="help.html" style="color: inherit; text-decoration: none;">Help</a>
+    <a href="careers.html" style="color: inherit; text-decoration: none;">Careers</a>
+    <a href="privacy.html" style="color: inherit; text-decoration: none;">Privacy</a>
+    <a href="terms.html" style="color: inherit; text-decoration: none;">Terms</a>
+    <a href="privacy-choices.html" style="color: inherit; text-decoration: none;">Choices</a>
+    <a href="accessibility.html" style="color: inherit; text-decoration: none;">Access</a>
+    <a href="https://hughcorduroy.bandcamp.com/" target="_blank" rel="noopener" style="color: inherit; text-decoration: none;">Music</a>
+  </span>
+</footer>
+
+<script>
+function renderCart() {
+  const cart = JSON.parse(localStorage.getItem('safeCart')) || [];
+  const cartContent = document.getElementById('cartContent');
+  const cartCount = document.getElementById('cartCount');
+
+  // Update cart count
+  cartCount.textContent = cart.length;
+
+  if(cart.length === 0) {
+    cartContent.innerHTML = `
+      <div class="cart-empty">
+        <p>Your cart is empty.</p>
+        <a href="shop.html" class="continue-shopping">Continue shopping</a>
+      </div>
+    `;
+    return;
+  }
+
+  let html = '<div class="cart-items">';
+  let total = 0;
+
+  cart.forEach((item, index) => {
+    total += item.price;
+    html += `
+      <div class="cart-item">
+        <div class="item-details">
+          <h3>${item.name}</h3>
+          <p>Colour: ${item.color}</p>
+          <p>Size: ${item.size}</p>
+          <button class="remove-btn" onclick="removeItem(${index})">Remove</button>
+        </div>
+        <div style="text-align: right;">
+          <div class="item-price">£${item.price.toFixed(2)}</div>
+        </div>
+      </div>
+    `;
+  });
+
+  html += '</div>';
+  html += `
+    <div class="cart-summary">
+      <div class="summary-row">
+        <span>Subtotal:</span>
+        <span>£${total.toFixed(2)}</span>
+      </div>
+      <div class="summary-row">
+        <span>Shipping:</span>
+        <span id="shippingCost">Calculated at checkout</span>
+      </div>
+      <div class="summary-row total">
+        <span>Total:</span>
+        <span>£${total.toFixed(2)}</span>
+      </div>
+    </div>
+    <button class="checkout-btn" onclick="checkout()">Proceed to Checkout</button>
+    <br>
+    <a href="shop.html" class="continue-shopping">← Continue shopping</a>
+  `;
+
+  cartContent.innerHTML = html;
+}
+
+function removeItem(index) {
+  let cart = JSON.parse(localStorage.getItem('safeCart')) || [];
+  cart.splice(index, 1);
+  localStorage.setItem('safeCart', JSON.stringify(cart));
+  renderCart();
+}
+
+function checkout() {
+  const cart = JSON.parse(localStorage.getItem('safeCart')) || [];
+  if(cart.length === 0) return;
+
+  // Group items by their Stripe payment link
+  const groups = {};
+  cart.forEach(item => {
+    const url = item.stripe;
+    if (!url) return;
+    if (!groups[url]) groups[url] = { url, items: [] };
+    groups[url].items.push(item);
+  });
+
+  const groupList = Object.values(groups).filter(g => g.url);
+
+  if (groupList.length === 0) {
+    alert('No payment link found. Please try adding items again.');
+    return;
+  }
+
+  if (groupList.length === 1) {
+    localStorage.removeItem('safeCart');
+    window.location.href = groupList[0].url;
+    return;
+  }
+
+  if (confirm('You have ' + groupList.length + ' different items. Each will open in its own Stripe checkout tab. Proceed?')) {
+    groupList.forEach((g, i) => {
+      setTimeout(() => window.open(g.url, '_blank'), i * 400);
+    });
+    localStorage.removeItem('safeCart');
+    renderCart();
+  }
+}
+
+document.addEventListener('DOMContentLoaded', renderCart);
+</script>
+
+
+<!-- Cart Count Badge -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const cartToggle = document.getElementById('cartToggle');
+  const cartCount = document.getElementById('cartCount');
+
+  if(!cartToggle || !cartCount) return;
+
+  function updateCartCount() {
+    const cart = JSON.parse(localStorage.getItem('safeCart')) || [];
+    cartCount.textContent = cart.length;
+  }
+
+  cartToggle.addEventListener('click', function() {
+    window.location.href = 'shop.html';
+  });
+
+  updateCartCount();
+  setInterval(updateCartCount, 1000);
+});
+</script>
+
+<script src="theme.js"></script>
+<script src="bento.js" defer></script>
+</body>
+</html>

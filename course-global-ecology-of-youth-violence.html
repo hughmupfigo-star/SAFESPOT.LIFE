@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Global Ecology of Youth Violence — SAFE</title>
+<meta name="description" content="Youth violence as a global, structural, public-health phenomenon.">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+.course-container { max-width: 800px; margin: 0 auto; padding: 60px 20px; }
+.course-intro { margin-bottom: 48px; padding: 32px; border-left: 4px solid var(--black); background: var(--bg); }
+.course-intro h2 { font-size: 28px; font-weight: 400; margin: 0 0 16px 0; color: var(--black); }
+.course-intro p { font-size: 14px; line-height: 1.8; color: var(--black); margin: 0 0 12px 0; }
+.course-intro p:last-child { margin: 0; }
+.course-tagline { font-size: 13px; color: var(--mid); text-transform: uppercase; letter-spacing: 0.5px; font-weight: 400; margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--light); }
+.modules-section { margin-bottom: 48px; }
+.modules-section h3 { font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: var(--black); margin: 0 0 24px 0; }
+.module-item { padding: 24px; margin-bottom: 16px; border: 1px solid var(--light); border-radius: 4px; background: var(--white); }
+.module-number { font-family: var(--mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--mid); margin-bottom: 8px; display: block; }
+.module-title { font-size: 16px; font-weight: 500; color: var(--black); margin: 0 0 8px 0; }
+.module-description { font-size: 13px; line-height: 1.6; color: var(--mid); margin: 0; }
+.course-meta { display: flex; gap: 24px; margin-top: 24px; padding-top: 24px; border-top: 1px solid var(--light); font-size: 13px; color: var(--mid); }
+.course-meta-item { display: flex; flex-direction: column; }
+.course-meta-label { font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 4px; }
+.course-meta-value { font-size: 14px; color: var(--black); }
+.start-btn { display: inline-block; padding: 16px 40px; background: var(--black); color: var(--white); border: none; border-radius: 2px; font-family: var(--mono); font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; cursor: pointer; font-weight: 500; transition: background 0.15s; text-decoration: none; margin-top: 32px; }
+.start-btn:hover { background: var(--mid); }
+@media (prefers-color-scheme: dark) {
+  .course-intro { background: #1a1a1a; border-left-color: var(--white); }
+  .module-item { background: #1a1a1a; border-color: #333; }
+}
+@media (max-width: 768px) { .course-intro { padding: 24px; } .module-item { padding: 18px; } }
+</style>
+</head>
+<body>
+
+<nav>
+  <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode">
+    <svg class="theme-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="18" height="18">
+      <circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+    </svg>
+  </button>
+  <button class="nav-toggle" aria-label="Open menu" aria-haspopup="dialog" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" width="20" height="20"><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2.5"/><path d="M 18 8 L 20 6 L 22 8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+  <a class="nav-logo" href="index.html">S&middot;A&middot;F&middot;E</a>
+</nav>
+
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <p class="page-hero-eyebrow">Free Course &mdash; The Global Ecology of Youth Violence</p>
+    <h1 class="page-hero-title">Youth violence<br>is not random.<br><em>It is structural.</em></h1>
+    <p class="page-hero-desc">University-level and interdisciplinary — youth violence as a global, structural, public-health phenomenon, from state exploitation to peacebuilding. Six modules synthesising criminology, political economy, gender studies, digital media, climate science and conflict transformation. Free. Self-paced. Designed for undergraduates, postgraduates, practitioners, and anyone who wants to understand why young people kill and how that pattern is changed.</p>
+  </div>
+</section>
+
+<section style="padding: 60px 0;">
+  <div class="course-container">
+    <div class="course-intro">
+      <h2>The Global Ecology of Youth Violence</h2>
+      <p>A 6-module course. Self-paced. Free.</p>
+      <p class="course-tagline">Youth violence as a global, structural, public-health phenomenon.</p>
+    </div>
+
+    <div class="modules-section">
+      <h3>Course Modules</h3>
+      <div class="module-item">
+        <span class="module-number">(01)</span>
+        <h4 class="module-title">The Public Health Paradigm</h4>
+        <p class="module-description">Youth violence is not a crime story. It is a public-health phenomenon — patterned, predictable, preventable. This module reframes the field through the WHO-Lancet evidence base: violence as the leading cause of death for young men globally, the determinants that travel across borders (poverty, masculinity scripts, weapon availability, alcohol policy, urban design), and the limits of a criminal-justice-only response. Cure Violence Global, the Glasgow VRU, the Cardiff model. Why prevention works, and where it doesn't.</p>
+      </div>
+      <div class="module-item">
+        <span class="module-number">(02)</span>
+        <h4 class="module-title">The Political Economy of Recruitment</h4>
+        <p class="module-description">Gangs, militias, extremist groups and criminal syndicates all recruit the same demographic — young men aged 14 to 24, structurally unemployed, statusless, with no exit. This module treats recruitment as a labour-market phenomenon: who is hiring, what they pay, what the alternatives are, and why states fail to compete. Case studies: Sicario corridors in northern Mexico, al-Shabaab cash drops in southern Somalia, county lines and the UK drug economy, IS in Mosul. The economic ladder you climb when there isn't one.</p>
+      </div>
+      <div class="module-item">
+        <span class="module-number">(03)</span>
+        <h4 class="module-title">Gender, Masculinities & Violence</h4>
+        <p class="module-description">Most perpetrators of youth violence are young men. Most victims are too. This module takes gender seriously as analysis without using it as moral score. Hegemonic masculinity, the cost of failed manhood, honour cultures and the geography of shame. Intimate-partner violence and femicide as the largest category of gendered killing globally. What programmes that actually shift male attitudes look like — Promundo, MenEngage, the Cure Violence interrupters. Why the 'crisis of masculinity' framing is both real and weaponised.</p>
+      </div>
+      <div class="module-item">
+        <span class="module-number">(04)</span>
+        <h4 class="module-title">Digital Ecosystems & Radicalisation</h4>
+        <p class="module-description">The pipeline is no longer hypothetical. This module maps the digital infrastructure of violent radicalisation: recommendation algorithms that reward outrage, gamified extremism (Roblox cells, Discord servers, Minecraft swastikas), the manosphere-to-incel-to-attack progression, deepfake harassment and image-based abuse, and the platform-level decisions that shape who gets reached. Christchurch as a streaming event. Buffalo as a copycat. The far right, the far left, the jihadist circuit — same techniques, different costumes.</p>
+      </div>
+      <div class="module-item">
+        <span class="module-number">(05)</span>
+        <h4 class="module-title">Environment, Scarcity & Conflict</h4>
+        <p class="module-description">Climate is now a violence variable. This module maps the cascading pressures: drought-driven displacement and pastoralist conflict in the Sahel, water scarcity and youth militancy in Yemen and Syria, urban heat and homicide rates, the post-disaster recruitment window for armed actors. Eco-anxiety as a radicalisation onramp on both flanks. The economics of climate migration and the criminalisation of the migrant. What a youth peace agenda looks like in a 2°C world.</p>
+      </div>
+      <div class="module-item">
+        <span class="module-number">(06)</span>
+        <h4 class="module-title">Youth-Led Peacebuilding</h4>
+        <p class="module-description">The closing module is about what works. UNSCR 2250 and the formal recognition that young people are not just victims or perpetrators but agents. Case studies in scale: ex-combatant reintegration in Colombia and Liberia, youth-led truth commissions in post-conflict societies, dialogue programmes in Northern Ireland, gang-truce architectures in El Salvador and Boston. The evidence on what shifts a violence curve: jobs, mentors, dignity, and somebody who shows up the next week. How to design a programme that doesn't just survive its first funding cycle.</p>
+      </div>
+
+      <div class="course-meta">
+        <div class="course-meta-item">
+          <span class="course-meta-label">Modules</span>
+          <span class="course-meta-value">6</span>
+        </div>
+        <div class="course-meta-item">
+          <span class="course-meta-label">Duration</span>
+          <span class="course-meta-value">Self-paced</span>
+        </div>
+        <div class="course-meta-item">
+          <span class="course-meta-label">Cost</span>
+          <span class="course-meta-value">Free</span>
+        </div>
+      </div>
+
+      <a href="https://safelearningspot.com/global-ecology-of-youth-violence" target="_blank" rel="noopener" class="start-btn">
+        Begin Course &rarr;
+      </a>
+    </div>
+  </div>
+</section>
+
+<section style="padding: 60px 0; background: var(--bg-alt); border-top: 1px solid var(--border, #e0e0e0);">
+  <div class="course-container" style="max-width: 640px;">
+    <p style="font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--mid); margin: 0 0 24px 0;">About this course</p>
+<p style="font-size: 14px; line-height: 1.8; color: var(--black); margin: 0 0 16px 0;">This course was built because the dominant explanation of youth violence — bad individuals, bad parenting, bad culture — has produced four decades of policy failure. The public-health, structural and ecological framings, by contrast, have produced measurable reductions in homicide rates in cities as different as Boston, Glasgow, Medellín and Ciudad Juárez. The evidence is there. The translation is what's missing.</p>
+<p style="font-size: 14px; line-height: 1.8; color: var(--black); margin: 0 0 16px 0;">Each module synthesises peer-reviewed literature, NGO programme evaluation, and primary interview material from peacebuilding practitioners. Suggested reading lists are included for those who want to go deeper. The course is suitable for undergraduate social sciences, postgraduate public health and conflict studies, and continuing professional development for practitioners working with at-risk youth.</p>
+<p style="font-size: 14px; line-height: 1.8; color: var(--black); margin: 0 0 16px 0;">No prerequisites. The only thing required is a willingness to look past the headlines.</p>
+  </div>
+</section>
+
+<footer>
+  <span class="footer-left">S&middot;A&middot;F&middot;E &mdash; Steps Approaching Future Earth</span>
+  <span class="footer-right" style="display: flex; gap: 24px; font-size: 11px;">
+    <a href="help.html" style="color: inherit; text-decoration: none;">Help</a>
+    <a href="careers.html" style="color: inherit; text-decoration: none;">Careers</a>
+    <a href="privacy.html" style="color: inherit; text-decoration: none;">Privacy</a>
+    <a href="terms.html" style="color: inherit; text-decoration: none;">Terms</a>
+    <a href="privacy-choices.html" style="color: inherit; text-decoration: none;">Choices</a>
+    <a href="accessibility.html" style="color: inherit; text-decoration: none;">Access</a>
+    <a href="https://instagram.com/safespot.life" target="_blank" rel="noopener" style="color: inherit; text-decoration: none;">Instagram</a>
+  </span>
+</footer>
+
+<script src="theme.js"></script>
+<script src="bento.js" defer></script>
+</body>
+</html>

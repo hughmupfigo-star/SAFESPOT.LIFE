@@ -1,0 +1,986 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>News — SAFE</title>
+<meta name="description" content="Positive news from around the world. A globe-view of what is being built, healed, and tried — not just by SAFE. What mainstream media won't highlight.">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+  .archive-section { margin-bottom: 48px; }
+  .archive-month { font-size: 13px; font-weight: 500; margin: 48px 0 24px; color: var(--black); text-transform: uppercase; letter-spacing: 0.08em; position: relative; padding-left: 40px; }
+  .archive-month:before { content: ''; position: absolute; left: 12px; top: 50%; transform: translateY(-50%); width: 10px; height: 10px; background: var(--black); border-radius: 50%; border: 2px solid var(--white); box-shadow: 0 0 0 1px var(--black); }
+  .archive-month:after { content: ''; position: absolute; left: 16px; top: -24px; width: 1px; height: 24px; background: var(--light); }
+  .archive-month:first-of-type:after { display: none; }
+  .archive-list { display: flex; flex-direction: column; gap: 12px; }
+  .archive-item { padding: 12px 0 12px 40px; border: none; border-radius: 0; position: relative; }
+  .archive-item:before { content: ''; position: absolute; left: 16px; top: 0; width: 1px; height: 100%; background: var(--light); }
+  .archive-item:first-child:before { top: 16px; }
+  .archive-item:last-child:before { display: none; }
+  .archive-item-date { font-size: 10px; color: var(--mid); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 3px; }
+  .archive-item-title { font-size: 14px; font-weight: 500; margin-bottom: 4px; color: var(--black); }
+  .archive-item-meta { font-size: 11px; color: var(--mid); margin-bottom: 4px; }
+  .archive-item-desc { font-size: 12px; line-height: 1.5; color: var(--mid); margin-bottom: 6px; }
+  .archive-item-link { font-size: 11px; }
+  .archive-item-link a { color: var(--black); border-bottom: 1px solid var(--black); text-decoration: none; padding-bottom: 1px; }
+  .archive-item-link a:hover { opacity: 0.6; }
+  .load-more-btn { background: var(--black); color: white; border: none; padding: 12px 24px; font-family: var(--mono); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer; margin: 32px auto; display: block; transition: background 0.2s, color 0.2s; }
+  .load-more-btn:hover { opacity: 0.8; }
+  [data-theme="dark"] .load-more-btn { background: var(--white); color: var(--black); }
+  [data-theme="dark"] .load-more-btn:hover { opacity: 0.8; }
+  #archive-section { display: none; }
+  #archive-section.active { display: block; }
+</style>
+</head>
+<body>
+
+<nav>
+  <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode">
+    <svg class="theme-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="18" height="18">
+      <circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+    </svg>
+  </button>
+
+  <button class="nav-toggle" aria-label="Open menu" aria-haspopup="dialog" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" width="20" height="20"><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2.5"/><path d="M 18 8 L 20 6 L 22 8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+
+  <button class="cart-toggle" id="cartToggle" aria-label="Shopping cart">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="18" height="18">
+      <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M 1 1 h 4 l 2.68 13.39a2 2 0 0 0 2 1.61h 9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+    </svg>
+    <span class="cart-count" id="cartCount">0</span>
+  </button>
+</nav>
+
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <p class="page-hero-eyebrow">News &amp; Field Reports — 007 · What mainstream media won't highlight</p>
+    <h1 class="page-hero-title">
+      <span style="font-size:0.75em">&#127758;</span> Good things<br>
+      <em>are happening.</em>
+    </h1>
+    <p class="page-hero-desc">
+      Not just SAFE. This is a running log of positive, grounded, measurable things happening around the world — youth projects, community builds, environmental wins, scientific breakthroughs, acts of repair. If the news cycle is skewed, we balance it here. What mainstream media won't highlight.
+    </p>
+  </div>
+</section>
+
+<!-- WEEK BANNER — populated by news.js -->
+<div id="news-week" class="news-week-banner"></div>
+
+<!-- NEWS GRID — populated by news.js -->
+<section>
+  <div class="s-inner">
+    <div class="rooms-header">
+      <p class="s-label">Field Reports — Around the Earth</p>
+      <p class="s-num">A</p>
+    </div>
+
+    <div id="news-grid" class="news-grid"></div>
+
+    <p style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--mid);margin-top:16px;letter-spacing:0.08em">
+      Know a story we should log here? <a href="youth-stories.html" style="color:var(--black);border-bottom:1px solid var(--black);text-decoration:none;padding-bottom:1px">Submit your story</a>
+    </p>
+
+    <button class="load-more-btn" onclick="toggleArchive()">Load More Stories</button>
+  </div>
+</section>
+
+<!-- ARCHIVE SECTION — Hidden until Load More is clicked -->
+<section id="archive-section">
+  <div class="s-inner">
+    <div class="rooms-header">
+      <p class="s-label">Older Stories</p>
+      <p class="s-num">B</p>
+    </div>
+
+    <div class="archive-section">
+      <h2 class="archive-month">June 2026 (June 11 – June 8)</h2>
+      <div class="archive-list">
+        <div class="archive-item">
+          <div class="archive-item-date">Thursday, June 11 2026</div>
+          <div class="archive-item-title">"Ferris Bueller" 40th Anniversary Sparks Youth Film Festivals</div>
+          <div class="archive-item-meta">UK & USA · Youth Film</div>
+          <div class="archive-item-desc">To celebrate exactly 40 years since the classic comedy Ferris Bueller's Day Off hit cinemas, youth film clubs across the UK and US launched a series of retro cinema workshops today. The initiative provides free access to cameras and editing software, encouraging a new generation of teenage filmmakers to create short films about community, friendship, and everyday adventures.</div>
+          <div class="archive-item-link"><a href="https://www.bfi.org.uk" target="_blank" rel="noopener">Read &rarr;</a></div>
+        </div>
+        <div class="archive-item">
+          <div class="archive-item-date">Thursday, June 11 2026</div>
+          <div class="archive-item-title">Youth-Led "Cool-Down Networks" Mobilise Ahead of Early Summer Heatwave</div>
+          <div class="archive-item-meta">Global · Community & Climate</div>
+          <div class="archive-item-desc">With forecasters tracking a brief, intense mid-June heatwave, young volunteer networks across several major cities officially mobilised today. The student-led groups are setting up community hydration pop-ups, distributing water, and conducting door-to-door welfare checks to ensure elderly and vulnerable neighbours stay safe and cool.</div>
+          <div class="archive-item-link"><a href="https://www.metoffice.gov.uk" target="_blank" rel="noopener">Read &rarr;</a></div>
+        </div>
+        <div class="archive-item">
+          <div class="archive-item-date">Thursday, June 11 2026</div>
+          <div class="archive-item-title">Urban Tiny-Forest Initiative Hits Major Eco-Milestone</div>
+          <div class="archive-item-meta">Global · Environment & Youth</div>
+          <div class="archive-item-desc">A global youth environment coalition reported today that their urban "micro-forest" project has successfully planted its 500th mini-ecosystem since the start of 2026. These ultra-dense, fast-growing patches of native trees are entirely managed by local schoolchildren to clean the air and bring wildlife back to concrete jungle areas.</div>
+          <div class="archive-item-link"><a href="https://www.earthwatch.org.uk" target="_blank" rel="noopener">Read &rarr;</a></div>
+        </div>
+        <div class="archive-item">
+          <div class="archive-item-date">Wednesday, June 10 2026</div>
+          <div class="archive-item-title">Northern Ireland Launches Historic 'Stronger Futures' Youth Strategy</div>
+          <div class="archive-item-meta">Northern Ireland, UK · Youth Policy</div>
+          <div class="archive-item-desc">In a massive win for young people, the Department of Education launched a groundbreaking public consultation on the Stronger Futures policy. Co-designed by more than 1,500 local youth, the strategy transforms the system to guarantee every single child and teenager consistent, inclusive, and high-quality support hubs right in their own neighbourhoods.</div>
+          <div class="archive-item-link"><a href="https://www.education-ni.gov.uk" target="_blank" rel="noopener">Read &rarr;</a></div>
+        </div>
+        <div class="archive-item">
+          <div class="archive-item-date">Wednesday, June 10 2026</div>
+          <div class="archive-item-title">New Specialised Youth Hub Opens in Wallsend to Jumpstart Careers</div>
+          <div class="archive-item-meta">North Tyneside, UK · Youth Employment</div>
+          <div class="archive-item-desc">A brand-new DWP Youth Hub officially opened its doors in North Tyneside today. Operating three days a week, the dedicated hub brings together specialist coaches, local businesses, and training providers under one roof, providing a seamless, one-to-one launchpad for young people looking to step into apprenticeships and long-term employment.</div>
+          <div class="archive-item-link"><a href="https://www.gov.uk/dwp" target="_blank" rel="noopener">Read &rarr;</a></div>
+        </div>
+        <div class="archive-item">
+          <div class="archive-item-date">Wednesday, June 10 2026</div>
+          <div class="archive-item-title">Teenager Wins Global Tech Award for Low-Cost Clean Water Invention</div>
+          <div class="archive-item-meta">Global · Youth Innovation</div>
+          <div class="archive-item-desc">A 17-year-old student took home top honours at an international youth engineering summit yesterday. The young inventor designed a highly portable, completely biodegradable water purification kit using coconut husks and a solar-powered heating chamber, built to provide safe drinking water to remote rural schools.</div>
+          <div class="archive-item-link"><a href="https://www.theglobalstudentprize.org" target="_blank" rel="noopener">Read &rarr;</a></div>
+        </div>
+        <div class="archive-item">
+          <div class="archive-item-date">Tuesday, June 9 2026</div>
+          <div class="archive-item-title">"Human Library" Campus Reading Gardens Expand to the UK</div>
+          <div class="archive-item-meta">UK · Community & Wellbeing</div>
+          <div class="archive-item-desc">Following a highly successful model pioneered in Copenhagen, three major UK universities debuted outdoor "Reading Gardens" this week. The initiative allows students to "borrow" a person instead of a book — giving them the chance to sit down, share stories, and build deep cultural empathy to actively combat campus loneliness and isolation.</div>
+          <div class="archive-item-link"><a href="https://humanlibrary.org" target="_blank" rel="noopener">Read &rarr;</a></div>
+        </div>
+        <div class="archive-item">
+          <div class="archive-item-date">Tuesday, June 9 2026</div>
+          <div class="archive-item-title">Secondary Schools Report Resounding Success in Screen-Free Trials</div>
+          <div class="archive-item-meta">UK · Youth Wellbeing</div>
+          <div class="archive-item-desc">Over 100 secondary schools tracking a month-long trial published their results today, showcasing a massive surge in student wellbeing. By voluntarily trading morning social media scrolling for unstructured music jams, group sketching, and social chat zones, schools noted a 40% drop in classroom anxiety levels.</div>
+          <div class="archive-item-link"><a href="https://www.smartphonefreechildhood.co.uk" target="_blank" rel="noopener">Read &rarr;</a></div>
+        </div>
+        <div class="archive-item">
+          <div class="archive-item-date">Monday, June 8 2026</div>
+          <div class="archive-item-title">Support Networks Mobilise After NHS "Biological Missile" Cancer Drug Rollout</div>
+          <div class="archive-item-meta">UK · Health & Community</div>
+          <div class="archive-item-desc">Following last week's historic NHS approval of the landmark ovarian cancer treatment mirvetuximab soravtansine, grassroots health charities recorded a massive surge in community donations and young volunteer sign-ups today. The wave of solidarity is designed to fund transport, care packages, and emotional support networks for patients accessing this life-changing medical breakthrough.</div>
+          <div class="archive-item-link"><a href="https://www.nhs.uk" target="_blank" rel="noopener">Read &rarr;</a></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="archive-section">
+      <h2 class="archive-month">June 2026 (June 7 – May 30)</h2>
+      <div class="archive-list">
+        <div class="archive-item">
+          <div class="archive-item-date">Sunday, June 7 2026</div>
+          <div class="archive-item-title">Deer "Inaugurate" Landmark New Wildlife Crossing Bridge</div>
+          <div class="archive-item-meta">California, USA · Wildlife Conservation</div>
+          <div class="archive-item-desc">In a major win for biodiversity heavily championed by young conservationists, motion cameras captured three wild mule deer safely crossing a massive, brand-new wildlife bridge constructed over a high-traffic California highway. The successful crossing proves that these green infrastructure projects work perfectly to protect migrating wildlife from dangerous traffic collisions.</div>
+          <div class="archive-item-link"><a href="https://www.ca.gov" target="_blank" rel="noopener">Read &rarr;</a></div>
+        </div>
+        <div class="archive-item">
+          <div class="archive-item-date">Saturday, June 6 2026</div>
+          <div class="archive-item-title">The Rise of "Democratic Schools" Giving Pupils an Active Vote</div>
+          <div class="archive-item-meta">Europe · Education & Democracy</div>
+          <div class="archive-item-desc">A beautiful educational trend featured by Positive News this week highlights schools across Europe shifting away from rigid hierarchies. These "democratic schools" place the voices of children and teenagers directly at the heart of management. By allowing students to actively co-vote on school rules, budgets, and curriculum adjustments, the initiative is proving to significantly restore youth trust in community building and democracy.</div>
+          <div class="archive-item-link"><a href="https://www.positivenews.org.uk" target="_blank" rel="noopener">Read &rarr;</a></div>
+        </div>
+        <div class="archive-item">
+          <div class="archive-item-date">Friday, June 5 2026</div>
+          <div class="archive-item-title">World Environment Day: "Worst-Case" Climate Scenario Off the Table</div>
+          <div class="archive-item-meta">Global · Environment & Climate</div>
+          <div class="archive-item-desc">To mark World Environment Day, millions of young climate leaders spearheaded local restoration projects. Coinciding with the event, climate scientists published a major update announcing that the planet's absolute "worst-case emissions scenario" (which predicted a catastrophic 3.5–5.5°C rise) is now officially considered completely implausible. Massive policy changes and green youth advocacy have permanently altered the planet's trajectory for the better.</div>
+          <div class="archive-item-link"><a href="https://www.unep.org" target="_blank" rel="noopener">Read &rarr;</a></div>
+        </div>
+        <div class="archive-item">
+          <div class="archive-item-date">Thursday, June 4 2026</div>
+          <div class="archive-item-title">Gen Z Entrepreneurs Revive Britain's Historic Market Stalls</div>
+          <div class="archive-item-meta">UK · Youth Entrepreneurship</div>
+          <div class="archive-item-desc">Facing a changing corporate landscape, a brilliant wave of young UK entrepreneurs under 25 are taking over traditional, dusty market stalls across the country. Young creators are breathing fresh energy into old town squares by launching eco-friendly fashion startups, artisan craft booths, and locally sourced food businesses—re-engineering the high street on their own sustainable terms.</div>
+          <div class="archive-item-link"><a href="https://www.bbc.com/news" target="_blank" rel="noopener">Read &rarr;</a></div>
+        </div>
+        <div class="archive-item">
+          <div class="archive-item-date">Tuesday, June 2 2026</div>
+          <div class="archive-item-title">World Economic Forum Releases "Youth Pulse 2026" Report</div>
+          <div class="archive-item-meta">Global · Youth Leadership</div>
+          <div class="archive-item-desc">The WEF released its flagship report mapping insights from 4,600 young people globally, and the findings are incredibly hopeful. It reveals that Gen Z and Gen Alpha are actively rejecting digital isolation: 95% state that joining intentional youth communities is their primary tool for mental resilience, 60% are masterfully self-teaching AI to gain advanced skills, and an astonishing 1 in 3 express a direct desire to run for political office to create transparent, positive change.</div>
+          <div class="archive-item-link"><a href="https://www.weforum.org" target="_blank" rel="noopener">Read &rarr;</a></div>
+        </div>
+        <div class="archive-item">
+          <div class="archive-item-date">Monday, June 1 2026</div>
+          <div class="archive-item-title">Government Update: Respectful Tributes & Light Beams Maintained</div>
+          <div class="archive-item-meta">UK · Remembrance</div>
+          <div class="archive-item-desc">In the official June community update released by the Ministry of Housing, Communities and Local Government, officials outlined highly sensitive, respectful steps being taken alongside survivors and immersed families. While structural safety works pause to honour the anniversary, the meaningful Grenfell heart banners are being safely preserved, and permanent beams of light will continue to illuminate the night sky every single evening as a visible, enduring symbol of remembrance.</div>
+          <div class="archive-item-link"><a href="https://www.gov.uk" target="_blank" rel="noopener">Read &rarr;</a></div>
+        </div>
+        <div class="archive-item">
+          <div class="archive-item-date">Monday, June 1 2026</div>
+          <div class="archive-item-title">Grenfell Remembrance Fund Allocates Community Event Grants</div>
+          <div class="archive-item-meta">London, UK · Community Remembrance</div>
+          <div class="archive-item-desc">As the community prepares to commemorate the 9th anniversary of the Grenfell tragedy this June, the Westway Trust successfully allocated grants of up to £1,000 via the Grenfell Remembrance Fund. These funds are going directly to local grassroots groups and youth-inclusive organisations to host open community events, creative workshops, and memory gatherings to bring neighbours together in unified strength and solidarity.</div>
+          <div class="archive-item-link"><a href="https://www.grenfellfoundation.org.uk" target="_blank" rel="noopener">Read &rarr;</a></div>
+        </div>
+        <div class="archive-item">
+          <div class="archive-item-date">Sunday, May 31 2026</div>
+          <div class="archive-item-title">UNICEF Launches Boost for Inclusive Youth Education</div>
+          <div class="archive-item-meta">West Bank · Youth Education</div>
+          <div class="archive-item-desc">UNICEF officially rolled out a major initiative across the West Bank and East Jerusalem focused entirely on inclusive education and adolescent wellbeing. The programme is actively building digital and flexible learning pathways, providing psychosocial support inside learning spaces, and offering job-readiness and civic engagement programmes to help vulnerable young people confidently build their futures.</div>
+          <div class="archive-item-link"><a href="https://www.unicef.org" target="_blank" rel="noopener">Read &rarr;</a></div>
+        </div>
+        <div class="archive-item">
+          <div class="archive-item-date">Saturday, May 30 2026</div>
+          <div class="archive-item-title">Palestine: Youth & Classroom Resilience Despite Displacement</div>
+          <div class="archive-item-meta">Gaza · Education & Resilience</div>
+          <div class="archive-item-desc">A beautiful project spotlighted by OCHA and War Child highlighted the resilience of local Palestinian teachers like Salwa in Gaza. Despite being displaced to a tent herself, Salwa has established a daily classroom routine to give local children a safe haven. Through structured art, storytelling, and emotional expression activities, young students are being given a critical space to process their feelings, find routine, and feel safe and heard.</div>
+          <div class="archive-item-link"><a href="https://www.unicef.org" target="_blank" rel="noopener">Read &rarr;</a></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="archive-section">
+      <h2 class="archive-month">May 2026 (May 25-21)</h2>
+      <div class="archive-list">
+        <div class="archive-item">
+          <div class="archive-item-date">May 25 2026</div>
+          <div class="archive-item-title">"Dopamine Dressing" Trend Empowers Youth Confidence</div>
+          <div class="archive-item-meta">UK · Youth Fashion</div>
+          <div class="archive-item-desc">Wrapping up the long weekend, a new fashion report highlighted the massive rise of "dopamine dressing" among Gen Z and young adults across the UK. Instead of following rigid trends, young people are increasingly choosing to wear bright, highly individualized, and joyful clothing specifically to boost their mental health and self-expression, actively pushing back against traditional fashion anxieties.</div>
+          <div class="archive-item-link"><a href="https://www.bbc.com/news" target="_blank" rel="noopener">Read &rarr;</a></div>
+        </div>
+        <div class="archive-item">
+          <div class="archive-item-date">May 24 2026</div>
+          <div class="archive-item-title">NASA Maps Reveal Light Pollution is Actually Decreasing</div>
+          <div class="archive-item-meta">Global · Environment</div>
+          <div class="archive-item-desc">In an incredibly rare and positive environmental update, NASA's Black Marble project shared newly analysed satellite maps showing that global efforts to curb light pollution are working. Thanks to community-led "dark sky" initiatives, several regions around the world are seeing a measurable decrease in light pollution, which is vital for the health of nocturnal wildlife and migrating birds.</div>
+          <div class="archive-item-link"><a href="https://www.nasa.gov" target="_blank" rel="noopener">Read &rarr;</a></div>
+        </div>
+        <div class="archive-item">
+          <div class="archive-item-date">May 23 2026</div>
+          <div class="archive-item-title">A Mini "Baby Boom" for Endangered Whales</div>
+          <div class="archive-item-meta">Global · Marine Conservation</div>
+          <div class="archive-item-desc">Marine biologists celebrated a joyous milestone this weekend for the critically endangered North Atlantic right whale. Conservationists confirmed that a remarkable 23 new calves were born this season, offering a massive beacon of hope for the survival and recovery of the species.</div>
+          <div class="archive-item-link"><a href="https://www.fisheries.noaa.gov" target="_blank" rel="noopener">Read &rarr;</a></div>
+        </div>
+        <div class="archive-item">
+          <div class="archive-item-date">May 23 2026</div>
+          <div class="archive-item-title">Record-Breaking Puffin Season in Wales</div>
+          <div class="archive-item-meta">UK · Conservation</div>
+          <div class="archive-item-desc">Nature lovers received fantastic news today! The Wildlife Trust of South and West Wales announced that puffins are having a record-breaking breeding year on Skomer Island. Volunteers doing boots-on-the-ground research recorded phenomenal numbers, proving that local marine conservation efforts are paying off.</div>
+          <div class="archive-item-link"><a href="https://www.welshwildlife.org" target="_blank" rel="noopener">Read &rarr;</a></div>
+        </div>
+        <div class="archive-item">
+          <div class="archive-item-date">May 23 2026</div>
+          <div class="archive-item-title">Elementary Students Help Raise $10 Million to Save Eagle Habitat</div>
+          <div class="archive-item-meta">USA · Youth Action</div>
+          <div class="archive-item-desc">When elementary students in Danville, California, learned that a wildlife area housing a viral pair of bald eagles (Jackie and Shadow) was at risk of being developed, they leaped into action. The kids launched a massive grassroots campaign—writing letters, picking up leaves, washing cars, and posting flyers. Their efforts helped a local nonprofit cross the $2.6 million mark this weekend, well on their way to purchasing and permanently protecting the land.</div>
+          <div class="archive-item-link"><a href="https://www.audubon.org" target="_blank" rel="noopener">Read &rarr;</a></div>
+        </div>
+        <div class="archive-item">
+          <div class="archive-item-date">May 22 2026</div>
+          <div class="archive-item-title">Elephants Return to Eastern Zambia After 50 Years</div>
+          <div class="archive-item-meta">Africa · Conservation</div>
+          <div class="archive-item-desc">Absent from eastern Zambia for more than half a century, elephants have officially crossed back over from neighbouring Malawi! Local youth and community response teams are now learning to safely live alongside their returning neighbours by building elephant-proof grain stores and tracking the herds via satellite collars.</div>
+          <div class="archive-item-link"><a href="https://www.wildlife.org.zm" target="_blank" rel="noopener">Read &rarr;</a></div>
+        </div>
+        <div class="archive-item">
+          <div class="archive-item-date">May 22 2026</div>
+          <div class="archive-item-title">Brazil's Atlantic Forest Deforestation Hits a 40-Year Low</div>
+          <div class="archive-item-meta">Brazil · Environment</div>
+          <div class="archive-item-desc">In a monumental victory for global environmental advocates, data released today revealed that deforestation in Brazil's Atlantic Forest dropped by a staggering 40% over the last year. It is now at its lowest level since monitoring began in 1985, proving that grassroots conservation and strict protections are actively healing the planet.</div>
+          <div class="archive-item-link"><a href="https://www.inpe.gov.br" target="_blank" rel="noopener">Read &rarr;</a></div>
+        </div>
+        <div class="archive-item">
+          <div class="archive-item-date">May 22 2026</div>
+          <div class="archive-item-title">Youth Celebrate at Buckingham Palace for Gold DofE Awards</div>
+          <div class="archive-item-meta">UK · Youth Achievement</div>
+          <div class="archive-item-desc">Over 300 young people from Hertfordshire alone (and thousands across the UK) gathered at Buckingham Palace to celebrate achieving their Duke of Edinburgh's Gold Awards. The massive celebration honoured the intense determination, community volunteering, and life skills these young people have developed. Youth Ambassador Evie delivered a powerful speech on how the programme helped her find her voice and overcome disabilities.</div>
+          <div class="archive-item-link"><a href="https://www.dofe.org" target="_blank" rel="noopener">Read &rarr;</a></div>
+        </div>
+        <div class="archive-item">
+          <div class="archive-item-date">May 21 2026</div>
+          <div class="archive-item-title">Youth-Driven "Magnetic Surfboard" Shortlisted for Major Prize</div>
+          <div class="archive-item-meta">Global · Innovation</div>
+          <div class="archive-item-desc">A young team of innovators from Poland led by Przemek Ben Paczek made global headlines after their incredible invention was shortlisted for the European Inventor Award. They developed a brilliant new magnetic levitation system that can be retrofitted onto existing railways—essentially creating a clean-energy "magnetic surfboard" for freight trains that radically reduces emissions.</div>
+          <div class="archive-item-link"><a href="https://www.epo.org" target="_blank" rel="noopener">Read &rarr;</a></div>
+        </div>
+        <div class="archive-item">
+          <div class="archive-item-date">May 21 2026</div>
+          <div class="archive-item-title">Free Summer Bus Travel for UK Kids</div>
+          <div class="archive-item-meta">UK · Youth Independence</div>
+          <div class="archive-item-desc">In a massive win for families and youth independence, it was officially confirmed today that a new government scheme will provide unlimited free bus travel for every child aged 5 to 15 across England throughout the upcoming August holidays. The initiative is designed to help kids easily access local community centres, parks, and summer jobs without financial barriers.</div>
+          <div class="archive-item-link"><a href="https://www.gov.uk/transport" target="_blank" rel="noopener">Read &rarr;</a></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="archive-section">
+      <h2 class="archive-month">May 2026 (May 20-15)</h2>
+      <div class="archive-list">
+        <div class="archive-item">
+          <div class="archive-item-date">May 15 2026</div>
+          <div class="archive-item-title">Teens Invent Tamarind Powder to Erase Microplastics</div>
+          <div class="archive-item-meta">Global · Environmental Innovation</div>
+          <div class="archive-item-desc">Three brilliant teenagers were awarded the Earth Prize for Asia after inventing an incredibly simple, natural solution to water pollution. They developed a specialised powder made from tamarind seeds that easily and safely binds to microplastics in water, allowing them to be effortlessly filtered out.</div>
+          <div class="archive-item-link"><a href="https://www.goodnewsnetwork.org" target="_blank" rel="noopener">Read &rarr;</a></div>
+        </div>
+        <div class="archive-item">
+          <div class="archive-item-date">May 17 2026</div>
+          <div class="archive-item-title">Speaker Pays Off Final Year of Loans for Entire Graduating Class</div>
+          <div class="archive-item-meta">Global · Education</div>
+          <div class="archive-item-desc">In a life-changing surprise, a college commencement speaker announced from the podium that he was paying off the final year of student loans for every single graduating student in attendance. He made the massive donation in honour of his late father, instantly lifting a massive financial burden off hundreds of young adults.</div>
+          <div class="archive-item-link"><a href="https://www.goodnewsnetwork.org" target="_blank" rel="noopener">Read &rarr;</a></div>
+        </div>
+        <div class="archive-item">
+          <div class="archive-item-date">May 18 2026</div>
+          <div class="archive-item-title">Students Fundraise to Save Bald Eagle Habitat</div>
+          <div class="archive-item-meta">Global · Environmental Action</div>
+          <div class="archive-item-desc">A dedicated group of students who regularly monitored a local bald eagle nest via a livestream realized the surrounding habitat was under threat of development. Leaping into action, the young environmentalists launched a massive community fundraising campaign to purchase and protect the land, ensuring the eagle chicks and future generations have a safe home.</div>
+          <div class="archive-item-link"><a href="https://www.goodnewsnetwork.org" target="_blank" rel="noopener">Read &rarr;</a></div>
+        </div>
+        <div class="archive-item">
+          <div class="archive-item-date">May 16 2026</div>
+          <div class="archive-item-title">Students Crown Hero Principal "Prom King"</div>
+          <div class="archive-item-meta">USA · Youth Tribute</div>
+          <div class="archive-item-desc">In a deeply emotional tribute, high school students at Pauls Valley High School in Oklahoma decided to throw out the traditional prom court rules. Instead, they crowned their principal "Prom King" to the tune of the song "Hero," honouring him for his incredible bravery after he physically tackled a school shooter earlier in the year, protecting the student body.</div>
+          <div class="archive-item-link"><a href="https://www.goodgoodgood.co" target="_blank" rel="noopener">Read &rarr;</a></div>
+        </div>
+        <div class="archive-item">
+          <div class="archive-item-date">May 16 2026</div>
+          <div class="archive-item-title">New York City Launches "Soccer Streets" for Kids</div>
+          <div class="archive-item-meta">USA · Youth Recreation</div>
+          <div class="archive-item-desc">Ahead of the massive 2026 World Cup arriving in the US, New York City Mayor Zohran Mamdani announced the creation of 50 car-free "soccer streets" located right next to public schools. These safe, pedestrian-only zones are hosting youth soccer clinics, art stations, and block parties to ensure every kid in the city gets to experience the joy of the game for free.</div>
+          <div class="archive-item-link"><a href="https://www.goodgoodgood.co" target="_blank" rel="noopener">Read &rarr;</a></div>
+        </div>
+        <div class="archive-item">
+          <div class="archive-item-date">May 16 2026</div>
+          <div class="archive-item-title">Father-Daughter Duo Drive 600 Miles for an Animal Rescue</div>
+          <div class="archive-item-meta">Global · Animal Compassion</div>
+          <div class="archive-item-desc">Showing incredible compassion, a young woman named Joanna Zelman and her father drove 600 miles across the country to rescue two male calves. Because male calves cannot produce milk, they are often discarded by the dairy industry, but this family intervened to bring the babies to an animal sanctuary where they will live out their natural lives in peace.</div>
+          <div class="archive-item-link"><a href="https://www.goodgoodgood.co" target="_blank" rel="noopener">Read &rarr;</a></div>
+        </div>
+        <div class="archive-item">
+          <div class="archive-item-date">May 20 2026</div>
+          <div class="archive-item-title">Moray Youth Worker Shortlisted for Saving Students' Futures</div>
+          <div class="archive-item-meta">UK · Youth Work</div>
+          <div class="archive-item-desc">Alison Smith, a youth worker at Milne's High School in Moray, Scotland, was officially shortlisted for the prestigious National Youth Work Awards. She was nominated by her colleagues for her incredible dedication to disengaged youth. For many local teens, Alison is the sole reason they still attend school, and she successfully helped an entire group of struggling students transition into college and positive career pathways.</div>
+          <div class="archive-item-link"><a href="https://www.moray.gov.uk" target="_blank" rel="noopener">Read &rarr;</a></div>
+        </div>
+        <div class="archive-item">
+          <div class="archive-item-date">May 15 2026</div>
+          <div class="archive-item-title">UK Youth Ambassador Shapes Europe's Democratic Future</div>
+          <div class="archive-item-meta">UK · Democracy</div>
+          <div class="archive-item-desc">The National Youth Agency (NYA) celebrated Zara Okusi, a UK Youth Ambassador who represented British young people on the European stage this week. Her powerful advocacy focused on creating formalised pathways for young people to influence major political decisions, proving that Gen Z is actively stepping up to protect and shape the democratic future of the continent.</div>
+          <div class="archive-item-link"><a href="https://www.nya.org.uk" target="_blank" rel="noopener">Read &rarr;</a></div>
+        </div>
+        <div class="archive-item">
+          <div class="archive-item-date">May 15 2026</div>
+          <div class="archive-item-title">Winterstoke Academy Turns Green for Mental Health</div>
+          <div class="archive-item-meta">UK · Mental Health</div>
+          <div class="archive-item-desc">To actively break the stigma around teen anxiety, the entire staff at Winterstoke Hundred Academy in Weston-super-Mare united to wear green during Mental Health Awareness Week. The highly visible display of solidarity was designed to spark meaningful, open conversations with students, proving to the young people that their teachers are safe, supportive allies they can talk to about their wellbeing.</div>
+          <div class="archive-item-link"><a href="https://www.cabot.ac.uk" target="_blank" rel="noopener">Read &rarr;</a></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="archive-section">
+      <h2 class="archive-month">May 2026 (May 20-15)</h2>
+      <div class="archive-list">
+        <div class="archive-item">
+          <div class="archive-item-date">May 12 2026</div>
+          <div class="archive-item-title">Bermuda Launches Groundbreaking Youth Mental Health Week</div>
+          <div class="archive-item-meta">Bermuda · Mental Health</div>
+          <div class="archive-item-desc">Bermuda officially kicked off its Youth Mental Health Week this Tuesday. What makes this initiative so special is that it is entirely youth-led. Rather than adults lecturing teens, the week created a space for young people to guide town halls on digital wellness. The highlight? A midday "Puppy Therapy" session in Victoria Park designed to promote connection and reduce student stress.</div>
+          <div class="archive-item-link"><a href="https://www.bermuda.bm" target="_blank" rel="noopener">Read &rarr;</a></div>
+        </div>
+        <div class="archive-item">
+          <div class="archive-item-date">May 12 2026</div>
+          <div class="archive-item-title">Decades of Compassion for Homeless Youth Honoured</div>
+          <div class="archive-item-meta">USA · Volunteering</div>
+          <div class="archive-item-desc">Alaska's First Lady announced the 2026 Volunteer Award recipients this week, and the stories were incredibly moving. Among the winners was Theresa Rodgers, who was honoured for her three decades of volunteer work at Covenant House, where she has been a steady, compassionate, and life-saving presence for vulnerable youth experiencing homelessness.</div>
+          <div class="archive-item-link"><a href="https://www.covenantthouse.org" target="_blank" rel="noopener">Read &rarr;</a></div>
+        </div>
+        <div class="archive-item">
+          <div class="archive-item-date">May 13 2026</div>
+          <div class="archive-item-title">Young Innovators Win the 'Generation Regen Challenge'</div>
+          <div class="archive-item-meta">Global · Youth Innovation</div>
+          <div class="archive-item-desc">BMO and One Young World officially announced the winners of their inaugural Generation Regen Challenge this week. Four brilliant young innovators—Diana Virgovicova, Ranah Chavoshi, Marika Dewar-Norosky, and Emma Ekua-Bedua Hudson—were selected to receive full project funding and scholarships. Their youth-led projects are specifically focused on rebuilding and securing sustainable food systems across North America.</div>
+          <div class="archive-item-link"><a href="https://www.oneyoungworld.com" target="_blank" rel="noopener">Read &rarr;</a></div>
+        </div>
+        <div class="archive-item">
+          <div class="archive-item-date">May 13 2026</div>
+          <div class="archive-item-title">EU Proposes Radical Shift to Make Youth Train Travel Easier</div>
+          <div class="archive-item-meta">Europe · Youth Travel</div>
+          <div class="archive-item-desc">In a huge win for students and young backpackers, the EU officially proposed new rules this week to end the "excessively complex" nightmare of booking cross-border trains. The new laws will force major train operators to share their data, allowing young travellers to easily plan, book, and protect their multimodal European journeys all in one place, encouraging greener travel.</div>
+          <div class="archive-item-link"><a href="https://ec.europa.eu" target="_blank" rel="noopener">Read &rarr;</a></div>
+        </div>
+        <div class="archive-item">
+          <div class="archive-item-date">May 13 2026</div>
+          <div class="archive-item-title">Powys Youth Service Celebrates Major Quality Award</div>
+          <div class="archive-item-meta">UK · Youth Services</div>
+          <div class="archive-item-desc">A massive win for youth support in Wales: The Powys County Council's Youth Service successfully renewed its Bronze Youth Work Quality Mark. Assessors heavily praised the staff for delivering incredibly safe, inclusive, and impactful support for local young people aged 11 to 25. The best part? Young people were placed firmly at the heart of the assessment, using their voices to directly shape the service's future.</div>
+          <div class="archive-item-link"><a href="https://www.powys.gov.uk" target="_blank" rel="noopener">Read &rarr;</a></div>
+        </div>
+        <div class="archive-item">
+          <div class="archive-item-date">May 13 2026</div>
+          <div class="archive-item-title">"Prom 2.0" Raises Funds for Local Youth</div>
+          <div class="archive-item-meta">USA · Community Fundraising</div>
+          <div class="archive-item-desc">The Olympic Peninsula YMCA made the news this week for launching a brilliant and heartwarming community fundraiser called "Prom 2.0." The event invited adults to step back in time to recreate their high school prom, with every single pound raised going directly to support programmes that make a lasting, positive impact on local youth.</div>
+          <div class="archive-item-link"><a href="https://www.ymca.org" target="_blank" rel="noopener">Read &rarr;</a></div>
+        </div>
+        <div class="archive-item">
+          <div class="archive-item-date">May 14 2026</div>
+          <div class="archive-item-title">Myanmar Student Union Leads Massive Disaster Relief</div>
+          <div class="archive-item-meta">Global · Youth Leadership</div>
+          <div class="archive-item-desc">A feature published today highlighted the incredible work of the Myanmar Student Union (MSU) at Tufts University. Led by student Thang Dopmul, the entirely youth-run organisation was praised for spending the last year coordinating large-scale relief efforts, hosting events, and advocating for resources to support communities devastated by the recent earthquake in Myanmar.</div>
+          <div class="archive-item-link"><a href="https://tuftsdaily.com" target="_blank" rel="noopener">Read &rarr;</a></div>
+        </div>
+        <div class="archive-item">
+          <div class="archive-item-date">May 14 2026</div>
+          <div class="archive-item-title">Children and Youth in Care Day Celebrates Resilience</div>
+          <div class="archive-item-meta">Canada · Youth Resilience</div>
+          <div class="archive-item-desc">Communities across Ontario, Canada, officially marked "Children and Youth in Care Day" today. Rather than focusing on systemic hardships, the day was entirely dedicated to recognising the incredible strength, resilience, and valuable contributions of young people currently or formerly navigating the child welfare system, encouraging communities to celebrate these young heroes.</div>
+          <div class="archive-item-link"><a href="https://www.ontario.ca" target="_blank" rel="noopener">Read &rarr;</a></div>
+        </div>
+        <div class="archive-item">
+          <div class="archive-item-date">May 14 2026</div>
+          <div class="archive-item-title">Youth Lemonade Stand Earns a 'Cincy Serves' Honour</div>
+          <div class="archive-item-meta">USA · Community Impact</div>
+          <div class="archive-item-desc">The Cincinnati Open announced its 2026 "Cincy Serves" honourees today, a programme dedicated to celebrating local heroes. Among those honoured with VIP stadium recognition was a young person who set up a neighbourhood lemonade stand, proving that you are never too young to start fundraising and making a tangible difference in your community.</div>
+          <div class="archive-item-link"><a href="https://www.cincinnatiopentennis.com" target="_blank" rel="noopener">Read &rarr;</a></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="archive-section">
+      <h2 class="archive-month">May 2026 (May 14-10)</h2>
+      <div class="archive-list">
+        <div class="archive-item">
+          <div class="archive-item-date">May 08 2026</div>
+          <div class="archive-item-title">18-Year-Old Invents Microplastic-Eating Material</div>
+          <div class="archive-item-meta">Europe · Environmental Innovation</div>
+          <div class="archive-item-desc">18-year-old Ayra Satheesh was named the European winner of the Earth Prize 2026 this weekend for her incredible project, "Eco Purge." She developed a new type of biodegradable plastic that not only decomposes safely but actively releases enzymes into the environment that help break down existing microplastics.</div>
+          <div class="archive-item-link"><a href="https://www.theirishtimes.com" target="_blank" rel="noopener">Read &rarr;</a></div>
+        </div>
+        <div class="archive-item">
+          <div class="archive-item-date">May 09 2026</div>
+          <div class="archive-item-title">France Introduces €1 Meals for All University Students</div>
+          <div class="archive-item-meta">Europe · Student Welfare</div>
+          <div class="archive-item-desc">In a massive win for student welfare, France announced the expansion of its €1 meal programme in university cafeterias. Previously restricted by financial status, these heavily discounted, nutritious menus will now be available nationwide to all university students, vocational learners, and civil service volunteers to help combat the rising cost of living.</div>
+          <div class="archive-item-link"><a href="https://www.connexionfrance.com" target="_blank" rel="noopener">Read &rarr;</a></div>
+        </div>
+        <div class="archive-item">
+          <div class="archive-item-date">May 10 2026</div>
+          <div class="archive-item-title">Alysa Liu's Comeback Story Inspires Millions</div>
+          <div class="archive-item-meta">Global · Youth Inspiration</div>
+          <div class="archive-item-desc">The inspiring journey of 20-year-old American figure skater Alysa Liu went viral this weekend. After retiring from the sport at age 16 due to extreme burnout and pressure, she took time to experience a normal teenage life. Rediscovering her passion on her own terms, she returned to the ice to win gold at the Milano Cortina 2026 Olympics, proving that taking a step back for mental health can lead to your greatest triumphs.</div>
+          <div class="archive-item-link"><a href="https://www.timesofindia.com/sports" target="_blank" rel="noopener">Read &rarr;</a></div>
+        </div>
+        <div class="archive-item">
+          <div class="archive-item-date">May 10 2026</div>
+          <div class="archive-item-title">UNESCO Launches 'Capture the Future' Campaign</div>
+          <div class="archive-item-meta">Global · Youth Storytelling</div>
+          <div class="archive-item-desc">UNESCO officially rolled out its "Capture the Future" global storytelling initiative this weekend. The programme empowers young people (aged 18–35) to use accessible mobile technology to document how their local communities are successfully coexisting with nature inside biosphere reserves, amplifying youth-led sustainability solutions on a global stage.</div>
+          <div class="archive-item-link"><a href="https://www.unesco.org" target="_blank" rel="noopener">Read &rarr;</a></div>
+        </div>
+        <div class="archive-item">
+          <div class="archive-item-date">May 07 2026</div>
+          <div class="archive-item-title">UK Charities Rescue Old Instruments for Young Musicians</div>
+          <div class="archive-item-meta">UK · Music Education</div>
+          <div class="archive-item-desc">A growing network of UK-based charity schemes made the news for their brilliant work giving unwanted, dusty musical instruments a second life. Volunteers are actively restoring violins, trumpets, and guitars and distributing them to children in low-income areas, ensuring that the joy of music education is accessible to everyone.</div>
+          <div class="archive-item-link"><a href="https://www.positivenews.org.uk" target="_blank" rel="noopener">Read &rarr;</a></div>
+        </div>
+        <div class="archive-item">
+          <div class="archive-item-date">May 08 2026</div>
+          <div class="archive-item-title">London Youth Achievement Awards Highlight Grassroots Heroes</div>
+          <div class="archive-item-meta">UK · Youth Achievement</div>
+          <div class="archive-item-desc">The Greater London Authority officially highlighted the incredible community impact of young Londoners this week. From the "Best Environmental Project" (recognising youth who have actively reduced local waste) to the "Young Carer Award," the 2026 awards are actively shifting the narrative to celebrate the resilience and leadership of the city's youth.</div>
+          <div class="archive-item-link"><a href="https://www.london.gov.uk" target="_blank" rel="noopener">Read &rarr;</a></div>
+        </div>
+        <div class="archive-item">
+          <div class="archive-item-date">May 08 2026</div>
+          <div class="archive-item-title">A Positive Shift: Rethinking ADHD as 'Hypercuriosity'</div>
+          <div class="archive-item-meta">Global · Educational Psychology</div>
+          <div class="archive-item-desc">A fascinating new wave of educational psychology was heavily discussed in the news this weekend. Researchers are advocating for a total reframe of ADHD in children and teens—suggesting that impulsivity and distraction are often signs of intense "hypercuriosity" rather than a disorder. This positive framing is encouraging schools to adapt classrooms to feed this drive to learn, rather than suppress it.</div>
+          <div class="archive-item-link"><a href="https://www.positivenewssociety.org" target="_blank" rel="noopener">Read &rarr;</a></div>
+        </div>
+        <div class="archive-item">
+          <div class="archive-item-date">May 07 2026</div>
+          <div class="archive-item-title">Denmark Campaigns for a Return to 'Analogue Play'</div>
+          <div class="archive-item-meta">Europe · Youth Wellbeing</div>
+          <div class="archive-item-desc">To combat digital overload and screen addiction amongst teens and children, Denmark has launched a cultural campaign inviting youth to rediscover "analogue play." Backed by mental health professionals, the initiative promotes screen-free, physical, and imaginative play as a vital antidote to the pressures of social media.</div>
+          <div class="archive-item-link"><a href="https://www.positivenewswellbeing.org" target="_blank" rel="noopener">Read &rarr;</a></div>
+        </div>
+        <div class="archive-item">
+          <div class="archive-item-date">May 09 2026</div>
+          <div class="archive-item-title">Syrian Youth Volunteers Rebuild Community Schools</div>
+          <div class="archive-item-meta">Global · Community Building</div>
+          <div class="archive-item-desc">In an incredible display of resilience and community spirit, youth and parent volunteers in Syria have taken matters into their own hands. Facing limited state funding, young people have organised grassroots construction teams to physically rebuild their shattered local classrooms, ensuring their younger peers have a safe, dedicated space to learn and grow.</div>
+          <div class="archive-item-link"><a href="https://www.positivenewsworld.org" target="_blank" rel="noopener">Read &rarr;</a></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="archive-section">
+      <h2 class="archive-month">May 2026 (May 20-15)</h2>
+      <div class="archive-list">
+        <div class="archive-item">
+          <div class="archive-item-date">May 12 2026</div>
+          <div class="archive-item-title">Bermuda Launches Groundbreaking Youth Mental Health Week</div>
+          <div class="archive-item-meta">Bermuda · Mental Health</div>
+          <div class="archive-item-desc">Bermuda officially kicked off its Youth Mental Health Week this Tuesday. What makes this initiative so special is that it is entirely youth-led. Rather than adults lecturing teens, the week created a space for young people to guide town halls on digital wellness. The highlight? A midday "Puppy Therapy" session in Victoria Park designed to promote connection and reduce student stress.</div>
+          <div class="archive-item-link"><a href="https://www.bermuda.bm" target="_blank" rel="noopener">Read &rarr;</a></div>
+        </div>
+        <div class="archive-item">
+          <div class="archive-item-date">May 12 2026</div>
+          <div class="archive-item-title">Decades of Compassion for Homeless Youth Honoured</div>
+          <div class="archive-item-meta">USA · Volunteering</div>
+          <div class="archive-item-desc">Alaska's First Lady announced the 2026 Volunteer Award recipients this week, and the stories were incredibly moving. Among the winners was Theresa Rodgers, who was honoured for her three decades of volunteer work at Covenant House, where she has been a steady, compassionate, and life-saving presence for vulnerable youth experiencing homelessness.</div>
+          <div class="archive-item-link"><a href="https://www.covenantthouse.org" target="_blank" rel="noopener">Read &rarr;</a></div>
+        </div>
+        <div class="archive-item">
+          <div class="archive-item-date">May 13 2026</div>
+          <div class="archive-item-title">Young Innovators Win the 'Generation Regen Challenge'</div>
+          <div class="archive-item-meta">Global · Youth Innovation</div>
+          <div class="archive-item-desc">BMO and One Young World officially announced the winners of their inaugural Generation Regen Challenge this week. Four brilliant young innovators—Diana Virgovicova, Ranah Chavoshi, Marika Dewar-Norosky, and Emma Ekua-Bedua Hudson—were selected to receive full project funding and scholarships. Their youth-led projects are specifically focused on rebuilding and securing sustainable food systems across North America.</div>
+          <div class="archive-item-link"><a href="https://www.oneyoungworld.com" target="_blank" rel="noopener">Read &rarr;</a></div>
+        </div>
+        <div class="archive-item">
+          <div class="archive-item-date">May 13 2026</div>
+          <div class="archive-item-title">EU Proposes Radical Shift to Make Youth Train Travel Easier</div>
+          <div class="archive-item-meta">Europe · Youth Travel</div>
+          <div class="archive-item-desc">In a huge win for students and young backpackers, the EU officially proposed new rules this week to end the "excessively complex" nightmare of booking cross-border trains. The new laws will force major train operators to share their data, allowing young travellers to easily plan, book, and protect their multimodal European journeys all in one place, encouraging greener travel.</div>
+          <div class="archive-item-link"><a href="https://ec.europa.eu" target="_blank" rel="noopener">Read &rarr;</a></div>
+        </div>
+        <div class="archive-item">
+          <div class="archive-item-date">May 13 2026</div>
+          <div class="archive-item-title">Powys Youth Service Celebrates Major Quality Award</div>
+          <div class="archive-item-meta">UK · Youth Services</div>
+          <div class="archive-item-desc">A massive win for youth support in Wales: The Powys County Council's Youth Service successfully renewed its Bronze Youth Work Quality Mark. Assessors heavily praised the staff for delivering incredibly safe, inclusive, and impactful support for local young people aged 11 to 25. The best part? Young people were placed firmly at the heart of the assessment, using their voices to directly shape the service's future.</div>
+          <div class="archive-item-link"><a href="https://www.powys.gov.uk" target="_blank" rel="noopener">Read &rarr;</a></div>
+        </div>
+        <div class="archive-item">
+          <div class="archive-item-date">May 13 2026</div>
+          <div class="archive-item-title">"Prom 2.0" Raises Funds for Local Youth</div>
+          <div class="archive-item-meta">USA · Community Fundraising</div>
+          <div class="archive-item-desc">The Olympic Peninsula YMCA made the news this week for launching a brilliant and heartwarming community fundraiser called "Prom 2.0." The event invited adults to step back in time to recreate their high school prom, with every single pound raised going directly to support programmes that make a lasting, positive impact on local youth.</div>
+          <div class="archive-item-link"><a href="https://www.ymca.org" target="_blank" rel="noopener">Read &rarr;</a></div>
+        </div>
+        <div class="archive-item">
+          <div class="archive-item-date">May 14 2026</div>
+          <div class="archive-item-title">Myanmar Student Union Leads Massive Disaster Relief</div>
+          <div class="archive-item-meta">Global · Youth Leadership</div>
+          <div class="archive-item-desc">A feature published today highlighted the incredible work of the Myanmar Student Union (MSU) at Tufts University. Led by student Thang Dopmul, the entirely youth-run organisation was praised for spending the last year coordinating large-scale relief efforts, hosting events, and advocating for resources to support communities devastated by the recent earthquake in Myanmar.</div>
+          <div class="archive-item-link"><a href="https://tuftsdaily.com" target="_blank" rel="noopener">Read &rarr;</a></div>
+        </div>
+        <div class="archive-item">
+          <div class="archive-item-date">May 14 2026</div>
+          <div class="archive-item-title">Children and Youth in Care Day Celebrates Resilience</div>
+          <div class="archive-item-meta">Canada · Youth Resilience</div>
+          <div class="archive-item-desc">Communities across Ontario, Canada, officially marked "Children and Youth in Care Day" today. Rather than focusing on systemic hardships, the day was entirely dedicated to recognising the incredible strength, resilience, and valuable contributions of young people currently or formerly navigating the child welfare system, encouraging communities to celebrate these young heroes.</div>
+          <div class="archive-item-link"><a href="https://www.ontario.ca" target="_blank" rel="noopener">Read &rarr;</a></div>
+        </div>
+        <div class="archive-item">
+          <div class="archive-item-date">May 14 2026</div>
+          <div class="archive-item-title">Youth Lemonade Stand Earns a 'Cincy Serves' Honour</div>
+          <div class="archive-item-meta">USA · Community Impact</div>
+          <div class="archive-item-desc">The Cincinnati Open announced its 2026 "Cincy Serves" honourees today, a programme dedicated to celebrating local heroes. Among those honoured with VIP stadium recognition was a young person who set up a neighbourhood lemonade stand, proving that you are never too young to start fundraising and making a tangible difference in your community.</div>
+          <div class="archive-item-link"><a href="https://www.cincinnatiopentennis.com" target="_blank" rel="noopener">Read &rarr;</a></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="archive-section">
+      <h2 class="archive-month">May 2026 (May 14-10)</h2>
+      <div class="archive-list">
+        <div class="archive-item">
+          <div class="archive-item-date">May 07 2026</div>
+          <div class="archive-item-title">UK Charities Rescue Old Instruments for Young Musicians</div>
+          <div class="archive-item-meta">UK · Music Education</div>
+          <div class="archive-item-desc">A growing network of UK-based charity schemes made the news for their brilliant work giving unwanted, dusty musical instruments a second life. Volunteers are actively restoring violins, trumpets, and guitars and distributing them to children in low-income areas, ensuring that the joy of music education is accessible to everyone.</div>
+          <div class="archive-item-link"><a href="https://www.positivenews.org.uk" target="_blank" rel="noopener">Read &rarr;</a></div>
+        </div>
+        <div class="archive-item">
+          <div class="archive-item-date">May 07 2026</div>
+          <div class="archive-item-title">Denmark Campaigns for a Return to 'Analogue Play'</div>
+          <div class="archive-item-meta">Europe · Youth Wellbeing</div>
+          <div class="archive-item-desc">To combat digital overload and screen addiction amongst teens and children, Denmark has launched a cultural campaign inviting youth to rediscover "analogue play." Backed by mental health professionals, the initiative promotes screen-free, physical, and imaginative play as a vital antidote to the pressures of social media.</div>
+          <div class="archive-item-link"><a href="https://www.positivenewswellbeing.org" target="_blank" rel="noopener">Read &rarr;</a></div>
+        </div>
+        <div class="archive-item">
+          <div class="archive-item-date">May 08 2026</div>
+          <div class="archive-item-title">18-Year-Old Invents Microplastic-Eating Material</div>
+          <div class="archive-item-meta">Europe · Environmental Innovation</div>
+          <div class="archive-item-desc">18-year-old Ayra Satheesh was named the European winner of the Earth Prize 2026 this weekend for her incredible project, "Eco Purge." She developed a new type of biodegradable plastic that not only decomposes safely but actively releases enzymes into the environment that help break down existing microplastics.</div>
+          <div class="archive-item-link"><a href="https://www.theirishtimes.com" target="_blank" rel="noopener">Read &rarr;</a></div>
+        </div>
+        <div class="archive-item">
+          <div class="archive-item-date">May 08 2026</div>
+          <div class="archive-item-title">London Youth Achievement Awards Highlight Grassroots Heroes</div>
+          <div class="archive-item-meta">UK · Youth Achievement</div>
+          <div class="archive-item-desc">The Greater London Authority officially highlighted the incredible community impact of young Londoners this week. From the "Best Environmental Project" (recognising youth who have actively reduced local waste) to the "Young Carer Award," the 2026 awards are actively shifting the narrative to celebrate the resilience and leadership of the city's youth.</div>
+          <div class="archive-item-link"><a href="https://www.london.gov.uk" target="_blank" rel="noopener">Read &rarr;</a></div>
+        </div>
+        <div class="archive-item">
+          <div class="archive-item-date">May 08 2026</div>
+          <div class="archive-item-title">A Positive Shift: Rethinking ADHD as 'Hypercuriosity'</div>
+          <div class="archive-item-meta">Global · Educational Psychology</div>
+          <div class="archive-item-desc">A fascinating new wave of educational psychology was heavily discussed in the news this weekend. Researchers are advocating for a total reframe of ADHD in children and teens—suggesting that impulsivity and distraction are often signs of intense "hypercuriosity" rather than a disorder. This positive framing is encouraging schools to adapt classrooms to feed this drive to learn, rather than suppress it.</div>
+          <div class="archive-item-link"><a href="https://www.positivenewssociety.org" target="_blank" rel="noopener">Read &rarr;</a></div>
+        </div>
+        <div class="archive-item">
+          <div class="archive-item-date">May 09 2026</div>
+          <div class="archive-item-title">France Introduces €1 Meals for All University Students</div>
+          <div class="archive-item-meta">Europe · Student Welfare</div>
+          <div class="archive-item-desc">In a massive win for student welfare, France announced the expansion of its €1 meal programme in university cafeterias. Previously restricted by financial status, these heavily discounted, nutritious menus will now be available nationwide to all university students, vocational learners, and civil service volunteers to help combat the rising cost of living.</div>
+          <div class="archive-item-link"><a href="https://www.connexionfrance.com" target="_blank" rel="noopener">Read &rarr;</a></div>
+        </div>
+        <div class="archive-item">
+          <div class="archive-item-date">May 09 2026</div>
+          <div class="archive-item-title">Syrian Youth Volunteers Rebuild Community Schools</div>
+          <div class="archive-item-meta">Global · Community Building</div>
+          <div class="archive-item-desc">In an incredible display of resilience and community spirit, youth and parent volunteers in Syria have taken matters into their own hands. Facing limited state funding, young people have organised grassroots construction teams to physically rebuild their shattered local classrooms, ensuring their younger peers have a safe, dedicated space to learn and grow.</div>
+          <div class="archive-item-link"><a href="https://www.positivenewsworld.org" target="_blank" rel="noopener">Read &rarr;</a></div>
+        </div>
+        <div class="archive-item">
+          <div class="archive-item-date">May 10 2026</div>
+          <div class="archive-item-title">Alysa Liu's Comeback Story Inspires Millions</div>
+          <div class="archive-item-meta">Global · Youth Inspiration</div>
+          <div class="archive-item-desc">The inspiring journey of 20-year-old American figure skater Alysa Liu went viral this weekend. After retiring from the sport at age 16 due to extreme burnout and pressure, she took time to experience a normal teenage life. Rediscovering her passion on her own terms, she returned to the ice to win gold at the Milano Cortina 2026 Olympics, proving that taking a step back for mental health can lead to your greatest triumphs.</div>
+          <div class="archive-item-link"><a href="https://www.timesofindia.com/sports" target="_blank" rel="noopener">Read &rarr;</a></div>
+        </div>
+        <div class="archive-item">
+          <div class="archive-item-date">May 10 2026</div>
+          <div class="archive-item-title">UNESCO Launches 'Capture the Future' Campaign</div>
+          <div class="archive-item-meta">Global · Youth Storytelling</div>
+          <div class="archive-item-desc">UNESCO officially rolled out its "Capture the Future" global storytelling initiative this weekend. The programme empowers young people (aged 18–35) to use accessible mobile technology to document how their local communities are successfully coexisting with nature inside biosphere reserves, amplifying youth-led sustainability solutions on a global stage.</div>
+          <div class="archive-item-link"><a href="https://www.unesco.org" target="_blank" rel="noopener">Read &rarr;</a></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="archive-section">
+      <h2 class="archive-month">May 2026 (May 9-5)</h2>
+      <div class="archive-list">
+        <div class="archive-item">
+          <div class="archive-item-date">May 02 2026</div>
+          <div class="archive-item-title">"Miracle Tree" Seeds Outperform Chemicals</div>
+          <div class="archive-item-meta">Global · Environmental Breakthrough</div>
+          <div class="archive-item-desc">In a massive win for clean water, researchers announced that seeds from the drought-resistant moringa tree (often called the "miracle tree") can reliably remove over 98% of microplastics from drinking water. This plant-based alternative is cheaper, supports biodiversity, and outperforms many chemical filtration methods.</div>
+          <div class="archive-item-link"><a href="https://www.moringa.org" target="_blank" rel="noopener">Read &rarr;</a></div>
+        </div>
+        <div class="archive-item">
+          <div class="archive-item-date">May 02 2026</div>
+          <div class="archive-item-title">Clean Energy Surpasses Global Demand</div>
+          <div class="archive-item-meta">Global · Energy Transition</div>
+          <div class="archive-item-desc">Reports released this week confirmed a monumental turning point in the energy transition: clean energy sources like solar and wind generated enough power last year to meet all the growth in global electricity demand, proving that renewable energy is scaling fast enough to fuel the future.</div>
+          <div class="archive-item-link"><a href="https://www.iea.org/energy-transition" target="_blank" rel="noopener">Read &rarr;</a></div>
+        </div>
+        <div class="archive-item">
+          <div class="archive-item-date">May 04 2026</div>
+          <div class="archive-item-title">Tow Truck Driver Prioritizes a Moose in Need</div>
+          <div class="archive-item-meta">Global · Community Care</div>
+          <div class="archive-item-desc">A tow truck driver went viral for his priorities this week. When called for a tow, the driver politely told his customers they would have to wait because he was currently in the middle of rescuing a trapped moose. Happily, the customers completely understood!</div>
+          <div class="archive-item-link"><a href="https://www.wildlife.org" target="_blank" rel="noopener">Read &rarr;</a></div>
+        </div>
+        <div class="archive-item">
+          <div class="archive-item-date">May 04 2026</div>
+          <div class="archive-item-title">14 Toucans Safely Rescued</div>
+          <div class="archive-item-meta">Global · Wildlife Protection</div>
+          <div class="archive-item-desc">Wildlife officials intercepted a vehicle at the US-Mexico border and successfully rescued 14 live toucans that had been illegally hidden inside a dashboard. The exotic birds are now receiving proper veterinary care and rehabilitation.</div>
+          <div class="archive-item-link"><a href="https://www.usda.gov/wildlife-services" target="_blank" rel="noopener">Read &rarr;</a></div>
+        </div>
+        <div class="archive-item">
+          <div class="archive-item-date">May 05 2026</div>
+          <div class="archive-item-title">AI Makes a Massive Leap in Cancer Detection</div>
+          <div class="archive-item-meta">Global · Healthcare Breakthrough</div>
+          <div class="archive-item-desc">In an incredible healthcare breakthrough, researchers at the Mayo Clinic successfully utilised Artificial Intelligence to detect signs of pancreatic cancer up to three years before a standard diagnosis. This gives patients a vital head start when treatment is still highly possible.</div>
+          <div class="archive-item-link"><a href="https://www.mayoclinic.org/research" target="_blank" rel="noopener">Read &rarr;</a></div>
+        </div>
+        <div class="archive-item">
+          <div class="archive-item-date">May 05 2026</div>
+          <div class="archive-item-title">"Dobby" the Puppy Gets a Second Chance</div>
+          <div class="archive-item-meta">Global · Animal Rescue</div>
+          <div class="archive-item-desc">A hairless puppy affectionately nicknamed 'Dobby' (after the beloved Harry Potter character) was rescued from being locked in a kitchen cabinet. This week, animal rescues happily reported that Dobby has made a full recovery and is now living a healthy, happy, and entirely free life with a loving family.</div>
+          <div class="archive-item-link"><a href="https://www.animalwelfare.org" target="_blank" rel="noopener">Read &rarr;</a></div>
+        </div>
+        <div class="archive-item">
+          <div class="archive-item-date">May 06 2026</div>
+          <div class="archive-item-title">Breakdancing Brings Catharsis to Gaza Youth</div>
+          <div class="archive-item-meta">Global · Community Building</div>
+          <div class="archive-item-desc">In Gaza, some Palestinian children find respite and catharsis in breakdancing. As the music comes on in a Gaza refugee camp, a group of boys and girls start showing off their breakdancing moves, kicking and spinning with intense focus on their fast footwork. Two young girls grin at each other as they nailed a tricky part of the routine.</div>
+          <div class="archive-item-link"><a href="https://apnews.com/article/gaza-palestinians-refugees-youth-breakdancing-gymnastics-b866a634ac5c137a20b8a54726364ddd" target="_blank" rel="noopener">Read &rarr;</a></div>
+        </div>
+        <div class="archive-item">
+          <div class="archive-item-date">May 06 2026</div>
+          <div class="archive-item-title">Soccer Skills Meet Mental Health</div>
+          <div class="archive-item-meta">Global · Youth & Mental Health</div>
+          <div class="archive-item-desc">The global nonprofit Grassroot Soccer officially launched its evidence-based youth mental health programming in the US this week. Timed ahead of the 2026 World Cup, the initiative uses soccer metaphors and on-field activities to teach young people critical life skills like stress management and resilience.</div>
+          <div class="archive-item-link"><a href="https://www.grassrootsoccer.org" target="_blank" rel="noopener">Read &rarr;</a></div>
+        </div>
+        <div class="archive-item">
+          <div class="archive-item-date">May 06 2026</div>
+          <div class="archive-item-title">Students Put Practice into Action to Save a Hiker</div>
+          <div class="archive-item-meta">Global · Youth Action</div>
+          <div class="archive-item-desc">In a fantastic display of youth preparedness, a group of students successfully rescued an injured hiker this week. Relying on wilderness first-aid skills they had been actively practising, the teens quickly built a makeshift stretcher and safely transported the injured person to get medical help.</div>
+          <div class="archive-item-link"><a href="https://www.firstaidtraining.org" target="_blank" rel="noopener">Read &rarr;</a></div>
+        </div>
+        <div class="archive-item">
+          <div class="archive-item-date">May 06 2026</div>
+          <div class="archive-item-title">An Orphaned Otter Becomes a Surrogate Mom</div>
+          <div class="archive-item-meta">Global · Conservation & Healing</div>
+          <div class="archive-item-desc">Nature is incredibly healing! An orphaned sea otter who was previously rescued on a beach has now taken on a beautiful new role: she is acting as a devoted surrogate mother to a newly rescued, orphaned otter pup found in similar circumstances.</div>
+          <div class="archive-item-link"><a href="https://www.audubon.org/news/sea-otter-rescue" target="_blank" rel="noopener">Read &rarr;</a></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="archive-section">
+      <h2 class="archive-month">April 2026 (April 30-22)</h2>
+      <div class="archive-list">
+        <div class="archive-item">
+          <div class="archive-item-date">Apr 28 2026</div>
+          <div class="archive-item-title">Bingley Firefighters announce "72 for the 72" community challenge</div>
+          <div class="archive-item-meta">UK · Community</div>
+          <div class="archive-item-desc">Firefighters from Bingley Fire Station are preparing a special "72 for the 72" charity challenge on May 3rd, covering 72 miles in memory of those lost at Grenfell. Opening station doors to the public, focusing on community solidarity and giving youth a chance to meet the crew.</div>
+          <div class="archive-item-link"><a href="https://www.westyorksfire.gov.uk/news/bingley-firefighters-take-72-mile-challenge-ahead-grenfell-tower-anniversary" target="_blank" rel="noopener">Read &rarr;</a></div>
+        </div>
+        <div class="archive-item">
+          <div class="archive-item-date">Apr 27 2026</div>
+          <div class="archive-item-title">"One Heart, One Community" Festival — youth-led resilience project</div>
+          <div class="archive-item-meta">UK · Community</div>
+          <div class="archive-item-desc">The Youth Action Alliance in London is running a beautiful, community-driven campaign funding a free festival in June 2026 for over 2,500 residents. While honouring remembrance, the festival supports local young people, creates space for joy, and reminds residents they are valued.</div>
+          <div class="archive-item-link"><a href="https://www.crowdfunder.co.uk/p/one-heart-1" target="_blank" rel="noopener">Read &rarr;</a></div>
+        </div>
+        <div class="archive-item">
+          <div class="archive-item-date">Apr 26 2026</div>
+          <div class="archive-item-title">Great Ormond Street Hospital breakthrough in treating childhood blindness</div>
+          <div class="archive-item-meta">UK · Health</div>
+          <div class="archive-item-desc">Groundbreaking work treating Leber's congenital amaurosis (LCA), a genetic mutation causing infant blindness, is giving young people like Saffie Sandford from Hertfordshire profound improvements in their ability to see the world around them. A massive leap forward in youth healthcare.</div>
+          <div class="archive-item-link"><a href="https://www.positive.news/society/good-news-stories-from-week-17-of-2026/" target="_blank" rel="noopener">Read &rarr;</a></div>
+        </div>
+        <div class="archive-item">
+          <div class="archive-item-date">Apr 25 2026</div>
+          <div class="archive-item-title">Youth volleyball team turns tornado evacuation into joy and community</div>
+          <div class="archive-item-meta">Global · Youth</div>
+          <div class="archive-item-desc">A couple's wedding was interrupted by tornado alarms, forcing evacuation. A youth volleyball group taking shelter in the same basement joined them, turning a scary situation into an impromptu dance party and photo session — proving young people bring joy in crisis.</div>
+          <div class="archive-item-link"><a href="https://podcasts.apple.com/us/podcast/the-positive-truth-uplifting-news-positive-news/id1169234042" target="_blank" rel="noopener">Listen &rarr;</a></div>
+        </div>
+        <div class="archive-item">
+          <div class="archive-item-date">Apr 24 2026</div>
+          <div class="archive-item-title">Goldman Environmental Prize recognises youth-led climate victories worldwide</div>
+          <div class="archive-item-meta">Global · Climate</div>
+          <div class="archive-item-desc">South Korea's Borim Kim wins prestigious award for the first youth-led climate litigation case in Asia, proving young voices have the power to enact monumental, structural change. UK's Sarah Finch also honoured for her landmark legal win against big oil.</div>
+          <div class="archive-item-link"><a href="https://www.positive.news/society/good-news-stories-from-week-17-of-2026/" target="_blank" rel="noopener">Read &rarr;</a></div>
+        </div>
+        <div class="archive-item">
+          <div class="archive-item-date">Apr 21 2026</div>
+          <div class="archive-item-title">Global Youth Service Day — thousands mobilise this weekend</div>
+          <div class="archive-item-meta">Global · Youth Service</div>
+          <div class="archive-item-desc">This coming weekend marks the peak of Global Youth Service Month. Thousands of young people across the UK and worldwide are registered for community service — from cleanup events to intergenerational tech cafés.</div>
+          <div class="archive-item-link"><a href="https://www.ysa.org/38th-annual-global-youth-service-day-april-24-26-2026-youth-service-month" target="_blank" rel="noopener">Read &rarr;</a></div>
+        </div>
+        <div class="archive-item">
+          <div class="archive-item-date">Apr 20 2026</div>
+          <div class="archive-item-title">"Green Nobel" winners announced — youth leading the charge</div>
+          <div class="archive-item-meta">Global · Climate</div>
+          <div class="archive-item-desc">Goldman Environmental Prize 2026 highlights Borim Kim from South Korea, whose youth-led climate lawsuit forced ambitious emissions targets and inspired similar movements across Asia. Proof that young people are reshaping climate policy.</div>
+          <div class="archive-item-link"><a href="https://news.mongabay.com/2026/04/meet-the-2026-goldman-environmental-prize-winners/" target="_blank" rel="noopener">Read &rarr;</a></div>
+        </div>
+        <div class="archive-item">
+          <div class="archive-item-date">Apr 18 2026</div>
+          <div class="archive-item-title">UN ECOSOC Youth Forum: Gen Z redesigns solutions for 2030</div>
+          <div class="archive-item-meta">Global · Youth</div>
+          <div class="archive-item-desc">Young leaders gathered at UN HQ for "Innovate, Unite and Transform" to showcase how Gen Z is actively building solutions for clean water, sustainable cities, and climate action.</div>
+          <div class="archive-item-link"><a href="https://news.un.org/en/story/2026/04/1067972" target="_blank" rel="noopener">Read &rarr;</a></div>
+        </div>
+        <div class="archive-item">
+          <div class="archive-item-date">Apr 18 2026</div>
+          <div class="archive-item-title">Direct funding now reaches young climate leaders under 30</div>
+          <div class="archive-item-meta">Global · Climate</div>
+          <div class="archive-item-desc">UNDP and Italy launch Youth4Climate funding that bypasses bureaucracy, putting resources directly into the hands of young innovators leading local environmental projects.</div>
+          <div class="archive-item-link"><a href="https://climatepromise.undp.org" target="_blank" rel="noopener">Read &rarr;</a></div>
+        </div>
+        <div class="archive-item">
+          <div class="archive-item-date">Apr 17 2026</div>
+          <div class="archive-item-title">Sarah Finch wins landmark climate case — game-changer for youth campaigners</div>
+          <div class="archive-item-meta">UK · Environment</div>
+          <div class="archive-item-desc">A UK legal precedent that has become transformative for young environmental advocates. Her victory has already been used to block new oil and coal projects, securing a cleaner future for the next generation.</div>
+          <div class="archive-item-link"><a href="https://www.theguardian.com/environment/2026/apr/woman-environmental-case-goldmanprize" target="_blank" rel="noopener">Read &rarr;</a></div>
+        </div>
+        <div class="archive-item">
+          <div class="archive-item-date">Apr 16 2026</div>
+          <div class="archive-item-title">National Youth Orchestra "Collide" series receives rave reviews</div>
+          <div class="archive-item-meta">UK · Arts</div>
+          <div class="archive-item-desc">Hundreds of young musicians under conductor Alpesh Chauhan demonstrated "remarkable intensity" — proving the arts are thriving among UK youth despite economic pressures on school music programmes.</div>
+          <div class="archive-item-link"><a href="https://www.theguardian.com/music/2026/apr/national-youth-orchestra-collide-review" target="_blank" rel="noopener">Read &rarr;</a></div>
+        </div>
+        <div class="archive-item">
+          <div class="archive-item-date">Apr 15 2026</div>
+          <div class="archive-item-title">Grenfell Foundation youth programmes empower next generation</div>
+          <div class="archive-item-meta">UK · Community</div>
+          <div class="archive-item-desc">The Grenfell Children and Young People's Fund continues multi-year support: youth workers, community projects, boxing training through Fight 4 Grenfell, and artist collaborations with survivors — rebuilding with healing and agency at the centre.</div>
+          <div class="archive-item-link"><a href="https://www.grenfellfoundation.org.uk/community-projects" target="_blank" rel="noopener">Read &rarr;</a></div>
+        </div>
+        <div class="archive-item">
+          <div class="archive-item-date">Apr 15 2026</div>
+          <div class="archive-item-title">SAFE petition crosses its first milestone</div>
+          <div class="archive-item-meta">UK · SAFE</div>
+          <div class="archive-item-desc">The public mandate for the UK's first holistic youth development hub is building. Every signature becomes evidence of demand — data that funders, councils and partners cannot ignore.</div>
+          <div class="archive-item-link"><a href="https://www.change.org/p/build-the-uk-s-first-holistic-youth-development-hub-to-transform-at-risk-lives" target="_blank" rel="noopener">Sign &rarr;</a></div>
+        </div>
+        <div class="archive-item">
+          <div class="archive-item-date">Apr 08 2026</div>
+          <div class="archive-item-title">Great Green Wall crosses 30% of Sahel target</div>
+          <div class="archive-item-meta">Africa · Reforestation</div>
+          <div class="archive-item-desc">A continent-wide effort to restore 100 million hectares of degraded land across the Sahel is now past 30% complete in participating nations, according to UNCCD updates. Jobs, food security and biodiversity moving in the right direction.</div>
+          <div class="archive-item-link"><a href="https://www.unccd.int/our-work/ggwi" target="_blank" rel="noopener">Read &rarr;</a></div>
+        </div>
+        <div class="archive-item">
+          <div class="archive-item-date">Apr 01 2026</div>
+          <div class="archive-item-title">Global child mortality at record lows</div>
+          <div class="archive-item-meta">Global · Health</div>
+          <div class="archive-item-desc">UN figures show under-five child mortality has more than halved since 2000. Still too high — but the trend is unambiguous. Vaccines, clean water, maternal care and education working together.</div>
+          <div class="archive-item-link"><a href="https://data.unicef.org/topic/child-survival/under-five-mortality/" target="_blank" rel="noopener">Read &rarr;</a></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="archive-section">
+      <h2 class="archive-month">March 2026</h2>
+      <div class="archive-list">
+        <div class="archive-item">
+          <div class="archive-item-date">Mar 25 2026</div>
+          <div class="archive-item-title">Record low youth reoffending in boroughs with open community hubs</div>
+          <div class="archive-item-meta">UK · Youth</div>
+          <div class="archive-item-desc">Boroughs that kept youth centres open through the 2010s continue to show measurably lower reoffending rates than comparable boroughs that closed theirs. Corroborates the SAFE thesis: place matters.</div>
+          <div class="archive-item-link"><a href="https://www.gov.uk/government/collections/youth-justice-statistics" target="_blank" rel="noopener">Read &rarr;</a></div>
+        </div>
+        <div class="archive-item">
+          <div class="archive-item-date">Mar 18 2026</div>
+          <div class="archive-item-title">Renewables now account for the majority of new power capacity</div>
+          <div class="archive-item-meta">Global · Energy</div>
+          <div class="archive-item-desc">The IEA reports that for the third year running, more than 80% of all new electricity capacity added globally came from renewables. Cost, not politics, is doing the work.</div>
+          <div class="archive-item-link"><a href="https://www.iea.org/reports/renewables-2024" target="_blank" rel="noopener">Read &rarr;</a></div>
+        </div>
+        <div class="archive-item">
+          <div class="archive-item-date">Mar 11 2026</div>
+          <div class="archive-item-title">Adult literacy programmes double enrolment in rural Brazil</div>
+          <div class="archive-item-meta">South America · Literacy</div>
+          <div class="archive-item-desc">State-run literacy and numeracy evening schools in rural Brazilian municipalities report record enrolment, particularly from women over 40 returning to formal education for the first time.</div>
+          <div class="archive-item-link"><a href="https://en.unesco.org/themes/literacy" target="_blank" rel="noopener">Read &rarr;</a></div>
+        </div>
+        <div class="archive-item">
+          <div class="archive-item-date">Mar 04 2026</div>
+          <div class="archive-item-title">Coral restoration at scale off the Philippines</div>
+          <div class="archive-item-meta">Asia · Ocean</div>
+          <div class="archive-item-desc">Community-led reef restoration is producing visible regrowth on previously bleached sites. Simple design. Local labour. Patience. Works where top-down policy has not.</div>
+          <div class="archive-item-link"><a href="https://www.iucn.org/our-work/topic/coral-reefs" target="_blank" rel="noopener">Read &rarr;</a></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="archive-section">
+      <h2 class="archive-month">February 2026</h2>
+      <div class="archive-list">
+        <div class="archive-item">
+          <div class="archive-item-date">Feb 25 2026</div>
+          <div class="archive-item-title">Peer-led youth mental health pilots outperform traditional triage</div>
+          <div class="archive-item-meta">Europe · Mental Health</div>
+          <div class="archive-item-desc">Several European pilots show that youth-peer-led early intervention produces better engagement and outcomes than adult clinician-only pathways. Young people listen to young people first.</div>
+          <div class="archive-item-link"><a href="https://www.who.int/news-room/fact-sheets/detail/adolescent-mental-health" target="_blank" rel="noopener">Read &rarr;</a></div>
+        </div>
+        <div class="archive-item">
+          <div class="archive-item-date">Feb 18 2026</div>
+          <div class="archive-item-title">Global polio cases at an all-time low</div>
+          <div class="archive-item-meta">Global · Science</div>
+          <div class="archive-item-desc">Wild polio remains endemic in only two countries. A disease that paralysed hundreds of thousands per year is now measured in single and double digits. Proof that coordinated, sustained effort works.</div>
+          <div class="archive-item-link"><a href="https://polioeradication.org/" target="_blank" rel="noopener">Read &rarr;</a></div>
+        </div>
+        <div class="archive-item">
+          <div class="archive-item-date">Feb 11 2026</div>
+          <div class="archive-item-title">Humpback whale population rebounds 90% from near-extinction</div>
+          <div class="archive-item-meta">Global · Conservation</div>
+          <div class="archive-item-desc">From roughly 450 in the 1950s to more than 25,000 today in the Southern Hemisphere. Moratoriums work. The recovery is slow, unglamorous, and absolute.</div>
+          <div class="archive-item-link"><a href="https://iwc.int/" target="_blank" rel="noopener">Read &rarr;</a></div>
+        </div>
+        <div class="archive-item">
+          <div class="archive-item-date">Feb 04 2026</div>
+          <div class="archive-item-title">Kenyan free digital libraries reach 1 million rural learners</div>
+          <div class="archive-item-meta">Kenya · Education</div>
+          <div class="archive-item-desc">Solar-powered, offline-first tablet libraries now serve over a million rural students. Books in local languages, science in Swahili, no electricity required.</div>
+          <div class="archive-item-link"><a href="https://www.unicef.org/education" target="_blank" rel="noopener">Read &rarr;</a></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="archive-section">
+      <h2 class="archive-month">January 2026</h2>
+      <div class="archive-list">
+        <div class="archive-item">
+          <div class="archive-item-date">Jan 28 2026</div>
+          <div class="archive-item-title">Extreme poverty rate at lowest level on record</div>
+          <div class="archive-item-meta">Global · Poverty</div>
+          <div class="archive-item-desc">The share of humanity living under $2.15/day continues a four-decade decline. The last mile is the hardest — concentrated in fragile states — but the direction is unambiguous.</div>
+          <div class="archive-item-link"><a href="https://www.worldbank.org/en/topic/poverty" target="_blank" rel="noopener">Read &rarr;</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <h2 class="cta-title">Good<br><em>is still</em><br>the norm.</h2>
+  <p class="cta-sub">Just under-reported. Help us report it.</p>
+  <a class="cta-btn" href="youth-stories.html">Submit a story</a>
+</section>
+
+<footer>
+  <span class="footer-left">S·A·F·E — Steps Approaching Future Earth</span>
+  <span class="footer-right" style="display: flex; gap: 24px; font-size: 11px;">
+    <a href="help.html" style="color: inherit; text-decoration: none;">Help</a>
+    <a href="careers.html" style="color: inherit; text-decoration: none;">Careers</a>
+    <a href="privacy.html" style="color: inherit; text-decoration: none;">Privacy</a>
+    <a href="terms.html" style="color: inherit; text-decoration: none;">Terms</a>
+    <a href="privacy-choices.html" style="color: inherit; text-decoration: none;">Choices</a>
+    <a href="accessibility.html" style="color: inherit; text-decoration: none;">Access</a>
+    <a href="https://hughcorduroy.bandcamp.com/" target="_blank" rel="noopener" style="color: inherit; text-decoration: none;">Music</a>
+  </span>
+</footer>
+
+<script>
+function toggleArchive() {
+  var section = document.getElementById('archive-section');
+  var btn = document.querySelector('.load-more-btn');
+  if (section.classList.contains('active')) {
+    section.classList.remove('active');
+    btn.textContent = 'Load More Stories';
+  } else {
+    section.classList.add('active');
+    btn.textContent = 'Hide Older Stories';
+  }
+}
+</script>
+
+<!-- Cart Count Badge -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const cartToggle = document.getElementById('cartToggle');
+  const cartCount = document.getElementById('cartCount');
+
+  if(!cartToggle || !cartCount) return;
+
+  function updateCartCount() {
+    const cart = JSON.parse(localStorage.getItem('safeCart')) || [];
+    cartCount.textContent = cart.length;
+  }
+
+  cartToggle.addEventListener('click', function() {
+    window.location.href = 'shop.html';
+  });
+
+  updateCartCount();
+  setInterval(updateCartCount, 1000);
+});
+</script>
+
+<script src="theme.js"></script>
+<script src="bento.js" defer></script>
+<script src="news.js" defer></script>
+</body>
+</html>

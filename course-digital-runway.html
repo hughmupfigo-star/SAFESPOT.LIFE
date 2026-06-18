@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Digital Runway — SAFE</title>
+<meta name="description" content="For teens 13&ndash;15 (and the adults around them) &mdash; the digital-literacy 'missing manual' for the under-16 social media ban. A free 6-module course. Use the wait as a runway.">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+.course-container { max-width: 800px; margin: 0 auto; padding: 60px 20px; }
+.course-intro { margin-bottom: 48px; padding: 32px; border-left: 4px solid var(--black); background: var(--bg); }
+.course-intro h2 { font-size: 28px; font-weight: 400; margin: 0 0 16px 0; color: var(--black); }
+.course-intro p { font-size: 14px; line-height: 1.8; color: var(--black); margin: 0 0 12px 0; }
+.course-intro p:last-child { margin: 0; }
+.course-tagline { font-size: 13px; color: var(--mid); text-transform: uppercase; letter-spacing: 0.5px; font-weight: 400; margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--light); }
+.modules-section { margin-bottom: 48px; }
+.modules-section h3 { font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: var(--black); margin: 0 0 24px 0; }
+.module-item { padding: 24px; margin-bottom: 16px; border: 1px solid var(--light); border-radius: 4px; background: var(--white); }
+.module-number { font-family: var(--mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--mid); margin-bottom: 8px; display: block; }
+.module-title { font-size: 16px; font-weight: 500; color: var(--black); margin: 0 0 8px 0; }
+.module-description { font-size: 13px; line-height: 1.6; color: var(--mid); margin: 0; }
+.course-meta { display: flex; gap: 24px; margin-top: 24px; padding-top: 24px; border-top: 1px solid var(--light); font-size: 13px; color: var(--mid); }
+.course-meta-item { display: flex; flex-direction: column; }
+.course-meta-label { font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 4px; }
+.course-meta-value { font-size: 14px; color: var(--black); }
+.start-btn { display: inline-block; padding: 16px 40px; background: var(--black); color: var(--white); border: none; border-radius: 2px; font-family: var(--mono); font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; cursor: pointer; font-weight: 500; transition: background 0.15s; text-decoration: none; margin-top: 32px; }
+.start-btn:hover { background: var(--mid); }
+@media (prefers-color-scheme: dark) {
+  .course-intro { background: #1a1a1a; border-left-color: var(--white); }
+  .module-item { background: #1a1a1a; border-color: #333; }
+}
+@media (max-width: 768px) { .course-intro { padding: 24px; } .module-item { padding: 18px; } }
+</style>
+</head>
+<body>
+
+<nav>
+  <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode">
+    <svg class="theme-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="18" height="18">
+      <circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+    </svg>
+  </button>
+  <button class="nav-toggle" aria-label="Open menu" aria-haspopup="dialog" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" width="20" height="20"><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2.5"/><path d="M 18 8 L 20 6 L 22 8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+  <a class="nav-logo" href="index.html">S&middot;A&middot;F&middot;E</a>
+</nav>
+
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <p class="page-hero-eyebrow">Free Course &mdash; The Digital Runway</p>
+    <h1 class="page-hero-title">
+      Use the wait<br>
+      as a<br>
+      <em>runway.</em>
+    </h1>
+    <p class="page-hero-desc">For teens 13&ndash;15 and the adults around them &mdash; the digital-literacy missing manual for the under-16 social media ban. Six short modules. Free. No logins, no streaks, no tracking. Arrive at sixteen ready instead of flattened.</p>
+  </div>
+</section>
+
+<section style="padding: 60px 0;">
+  <div class="course-container">
+    <div class="course-intro">
+      <h2>The Digital Runway</h2>
+      <p>A 6-module course. Self-paced. Free.</p>
+      <p class="course-tagline">The digital-literacy &lsquo;missing manual&rsquo; for the under-16 social media ban.</p>
+    </div>
+
+    <div class="modules-section">
+      <h3>Course Modules</h3>
+      <div class="module-item">
+        <span class="module-number">(01)</span>
+        <h4 class="module-title">The Cliff Edge</h4>
+        <p class="module-description">Why this course exists right now. The under-16 ban means at sixteen you will be dropped, in a single day, into the most sophisticated attention systems ever built — with no preparation. This module reframes the next two-to-three years as a runway, not a wait. What 'arriving ready' actually looks like. Why the kids who arrive ready are about to have an enormous advantage over the ones who arrived hungry.</p>
+      </div>
+      <div class="module-item">
+        <span class="module-number">(02)</span>
+        <h4 class="module-title">How the Feed Really Works</h4>
+        <p class="module-description">Algorithmic recommendation in plain English. What the engineers are actually optimising for (watch time, ad revenue, engagement). Why content that makes you feel something — anger, envy, fear, longing — wins over content that informs. The difference between a chronological feed and a ranked feed. Why 'the algorithm' isn't watching you personally — it's a statistical pattern-matcher that has noticed millions of people like you stop scrolling at certain things. Once you see it, you cannot unsee it.</p>
+      </div>
+      <div class="module-item">
+        <span class="module-number">(03)</span>
+        <h4 class="module-title">The Hooks: Persuasive Design</h4>
+        <p class="module-description">Streaks. Pull-to-refresh. Infinite scroll. Variable reward schedules (the slot-machine effect). Notification timing. Read receipts as social pressure. The 'someone is typing…' bubble. None of these are accidents — they are engineered. This module names every hook in the toolkit, shows you the research it came from (often gambling studies), and gives you a 30-second mental script for catching a hook the moment you feel one tighten.</p>
+      </div>
+      <div class="module-item">
+        <span class="module-number">(04)</span>
+        <h4 class="module-title">Spotting Fakes</h4>
+        <p class="module-description">Deepfakes, AI-generated images, misinformation, doctored video, fake screenshots, manufactured controversy. The four questions to ask before you believe anything: who made this, why, what's missing, what does a quick search show? Reverse image search in 20 seconds. Lateral reading. The difference between 'I saw it on TikTok' and 'I verified it from two independent sources.' By the end of this module you will be able to debunk most viral content faster than the people sharing it can repost it.</p>
+      </div>
+      <div class="module-item">
+        <span class="module-number">(05)</span>
+        <h4 class="module-title">Identity Beyond the Like</h4>
+        <p class="module-description">Who are you when no one is watching? This module is the inside-out half of the course. The architecture of social validation as identity. The quiet lie that engagement equals worth. Building a sense of self that survives a quiet week. How to enjoy something without posting it. How to develop skills, taste and character without an audience. Why the kids who don't post often are usually the ones with the most actually going on. The version of you the algorithm cannot see is the most valuable one.</p>
+      </div>
+      <div class="module-item">
+        <span class="module-number">(06)</span>
+        <h4 class="module-title">Your Runway Plan</h4>
+        <p class="module-description">What you actually do between now and sixteen. One skill mastered without a tutorial app. Three offline communities you turn up to. A reading habit that isn't doomscrolling. A clear boundary plan for the day the ban lifts on you personally — what you let in, what you don't, what apps you choose, what notifications you keep off. How to arrive at sixteen with your inner architecture intact instead of being flattened in the first week. Your runway. Your plan. Your terms.</p>
+      </div>
+
+      <div class="course-meta">
+        <div class="course-meta-item">
+          <span class="course-meta-label">Modules</span>
+          <span class="course-meta-value">6</span>
+        </div>
+        <div class="course-meta-item">
+          <span class="course-meta-label">Audience</span>
+          <span class="course-meta-value">13&ndash;15</span>
+        </div>
+        <div class="course-meta-item">
+          <span class="course-meta-label">Duration</span>
+          <span class="course-meta-value">Self-paced</span>
+        </div>
+        <div class="course-meta-item">
+          <span class="course-meta-label">Cost</span>
+          <span class="course-meta-value">Free</span>
+        </div>
+      </div>
+
+      <a href="https://safelearningspot.com/digital-runway" target="_blank" rel="noopener" class="start-btn">
+        Begin Course &rarr;
+      </a>
+    </div>
+  </div>
+</section>
+
+<section style="padding: 60px 0; background: var(--bg-alt); border-top: 1px solid var(--border, #e0e0e0);">
+  <div class="course-container" style="max-width: 640px;">
+    <p style="font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--mid); margin: 0 0 24px 0;">About this course</p>
+<p style="font-size: 14px; line-height: 1.8; color: var(--black); margin: 0 0 16px 0;">This course exists because of the under-16 social media ban — but it is not a course about being banned. It is a course about what to do with the runway the ban hands you. Two or three years is a long time to learn how the machines actually work before you have to live inside them.</p>
+<p style="font-size: 14px; line-height: 1.8; color: var(--black); margin: 0 0 16px 0;">Most people arrive at sixteen never having been taught any of this. They get the keys, they get the algorithm, they get the persuasive design, they get the deepfakes, and they get it all in the same week. The kids who have already spent two years quietly understanding the architecture do not get flattened. They arrive ready.</p>
+<p style="font-size: 14px; line-height: 1.8; color: var(--black); margin: 0 0 16px 0;">Sessions are short. The course is free. There are no logins, no streaks, no notifications, no tracking. Six modules. Take them in order. Take them with a trusted adult if you want. Or alone. Either works.</p>
+  </div>
+</section>
+
+<footer>
+  <span class="footer-left">S&middot;A&middot;F&middot;E &mdash; Steps Approaching Future Earth</span>
+  <span class="footer-right" style="display: flex; gap: 24px; font-size: 11px;">
+    <a href="help.html" style="color: inherit; text-decoration: none;">Help</a>
+    <a href="careers.html" style="color: inherit; text-decoration: none;">Careers</a>
+    <a href="privacy.html" style="color: inherit; text-decoration: none;">Privacy</a>
+    <a href="terms.html" style="color: inherit; text-decoration: none;">Terms</a>
+    <a href="privacy-choices.html" style="color: inherit; text-decoration: none;">Choices</a>
+    <a href="accessibility.html" style="color: inherit; text-decoration: none;">Access</a>
+    <a href="https://instagram.com/safespot.life" target="_blank" rel="noopener" style="color: inherit; text-decoration: none;">Instagram</a>
+  </span>
+</footer>
+
+<script src="theme.js"></script>
+<script src="bento.js" defer></script>
+</body>
+</html>

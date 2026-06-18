@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Book Store — SAFE</title>
+<meta name="description" content="SAFE Book Store. The Apex Protocol, 48 Laws of Sovereignty, Domain Expansion, and forthcoming titles.">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<nav>
+  <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode">
+    <svg class="theme-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="18" height="18">
+      <circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+    </svg>
+  </button>
+
+  <button class="nav-toggle" aria-label="Open menu" aria-haspopup="dialog" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" width="20" height="20"><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2.5"/><path d="M 18 8 L 20 6 L 22 8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+
+  <button class="cart-toggle" id="cartToggle" aria-label="Shopping cart">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="18" height="18">
+      <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M 1 1 h 4 l 2.68 13.39a2 2 0 0 0 2 1.61h 9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+    </svg>
+    <span class="cart-count" id="cartCount">0</span>
+  </button>
+</nav>
+
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <p class="page-hero-eyebrow">Publishing — 006 · Book Store</p>
+    <h1 class="page-hero-title">
+      Books are<br>
+      <em>proof</em><br>
+      of thinking.
+    </h1>
+    <p class="page-hero-desc">
+      SAFE Publishing prints the manuals we wish we had. The first four are out. Three are forthcoming. Every copy is a small act of refusal against a culture that would rather we stayed distracted.
+    </p>
+  </div>
+</section>
+
+<!-- AVAILABLE -->
+<section>
+  <div class="s-inner">
+    <div class="rooms-header">
+      <p class="s-label">Available now</p>
+      <p class="s-num">A</p>
+    </div>
+
+    <div class="product-grid-v2">
+
+      <!-- BOOK 01 — APEX PROTOCOL -->
+      <article class="product-v2">
+        <div class="product-img">
+          <img src="books/apex-protocol-front.png" alt="The Apex Protocol — cover">
+          <div class="slide-nav">
+            <button class="prev" type="button" aria-label="Previous view" onclick="bookSlide(this,-1)">&larr;</button>
+            <button class="next" type="button" aria-label="Next view" onclick="bookSlide(this, 1)">&rarr;</button>
+          </div>
+          <div class="slide-dots">
+            <button type="button" class="active" onclick="bookGo(this,0)"></button>
+            <button type="button" onclick="bookGo(this,1)"></button>
+          </div>
+          <script type="application/json" class="book-views">[
+            {"src":"books/apex-protocol-front.png","label":"Front cover"},
+            {"src":"books/apex-protocol-back.png","label":"Back cover"}
+          ]</script>
+        </div>
+        <div class="product-meta">
+          <h3 class="product-name">The Apex Protocol</h3>
+          <div style="font-size:12px; color:#999; margin-bottom:8px;">
+            By Hugh Fungisai Mupfigo<br>
+            <span style="font-size:11px;">Civil engineer. Founder of SAFE. Survivor.</span>
+          </div>
+          <div style="margin: 8px 0; font-size:11px; color:#999; text-transform:uppercase; letter-spacing:0.5px;">
+            Book 01 of 3 — Start here
+          </div>
+          <span class="product-price">£22</span>
+        </div>
+        <p class="product-desc">
+          A civil engineer survived homelessness. He turned that research into a blueprint for building unshakeable empires. This is that manual.
+          <button class="desc-toggle" onclick="toggleDesc(this)" style="background:none; border:none; color:#666; cursor:pointer; font-size:12px; margin-top:8px; display:block; padding:0; text-align:left;">
+            + Read full description
+          </button>
+        </p>
+        <div class="product-desc-extended" style="display:none; margin-top:12px; font-size:13px; line-height:1.7; color:#666;">
+          <p>This is not a book about positive thinking, morning routines, or manifesting a Range Rover.</p>
+          <p>This is a blueprint for the person sitting in the dark, on solid ground that's quietly failing underneath. The one who keeps collapsing not because they're broken, but because nobody ever taught them to survey the foundation before building.</p>
+          <p>Written by a civil engineer who survived eviction, displacement, and the kitchens that tried to reduce him—The Apex Protocol maps the 7-Root Foundation of your existence. It shows you which roots are load-bearing and which ones need to be released entirely.</p>
+          <p>Then it teaches you to build something that outlasts you.</p>
+        </div>
+        <div class="size-select">
+          <span class="lbl">Format</span>
+          <button class="size-btn-v2 active" type="button">Paperback</button>
+        </div>
+        <button class="add-to-cart-btn" type="button" onclick="addBookToCart(this, 'The Apex Protocol', '22', 'https://buy.stripe.com/14AbIUbX77nU7F58h6e3e07')">
+          Add to Cart
+        </button>
+      </article>
+
+      <!-- BOOK 02 — 48 LAWS OF SOVEREIGNTY -->
+      <article class="product-v2">
+        <div class="product-img">
+          <img src="books/48-laws-sovereignty.png" alt="48 Laws of Sovereignty — front cover">
+          <div class="slide-nav">
+            <button class="prev" type="button" aria-label="Previous view" onclick="bookSlide(this,-1)">&larr;</button>
+            <button class="next" type="button" aria-label="Next view" onclick="bookSlide(this, 1)">&rarr;</button>
+          </div>
+          <div class="slide-dots">
+            <button type="button" class="active" onclick="bookGo(this,0)"></button>
+            <button type="button" onclick="bookGo(this,1)"></button>
+          </div>
+          <script type="application/json" class="book-views">[
+            {"src":"books/48-laws-sovereignty.png","label":"Front cover"},
+            {"src":"books/48-laws-sovereignty-back.png","label":"Back cover"}
+          ]</script>
+        </div>
+        <div class="product-meta">
+          <h3 class="product-name">48 Laws of Sovereignty</h3>
+          <div style="font-size:12px; color:#999; margin-bottom:8px;">
+            By Hugh Fungisai Mupfigo
+          </div>
+          <div style="margin: 8px 0; font-size:11px; color:#999; text-transform:uppercase; letter-spacing:0.5px;">
+            Book 02 of 3 — After Apex
+          </div>
+          <span class="product-price">£22</span>
+        </div>
+        <p class="product-desc">
+          48 principles for building a mind that cannot be bought, bent, or broken by the systems designed to control it.
+          <button class="desc-toggle" onclick="toggleDesc(this)" style="background:none; border:none; color:#666; cursor:pointer; font-size:12px; margin-top:8px; display:block; padding:0; text-align:left;">
+            + Read full description
+          </button>
+        </p>
+        <div class="product-desc-extended" style="display:none; margin-top:12px; font-size:13px; line-height:1.7; color:#666;">
+          <p>In a world built to keep you distracted, afraid, and consuming—sovereignty is resistance.</p>
+          <p>These 48 laws aren't rules imposed from outside. They're principles you construct inside yourself. Laws that make you:</p>
+          <ul style="margin:8px 0 8px 20px;">
+            <li>Ungovernable by distraction and digital chains</li>
+            <li>Immune to fear weaponised by those in power</li>
+            <li>Invisible to consumer conditioning designed to hollow you out</li>
+            <li>Present to the life actually happening in front of you</li>
+          </ul>
+          <p>This is the operational manual for freedom. Not the theoretical kind. The actual kind.</p>
+        </div>
+        <div class="size-select">
+          <span class="lbl">Format</span>
+          <button class="size-btn-v2 active" type="button">Paperback</button>
+        </div>
+        <button class="add-to-cart-btn" type="button" onclick="addBookToCart(this, '48 Laws of Sovereignty', '22', 'https://buy.stripe.com/fZudR2d1b23A4sTapee3e08')">
+          Add to Cart
+        </button>
+      </article>
+
+      <!-- BOOK 03 — DOMAIN EXPANSION -->
+      <article class="product-v2">
+        <div class="product-img">
+          <img src="books/domain-expansion.png" alt="Domain Expansion: Advanced Transmutation — cover">
+        </div>
+        <div class="product-meta">
+          <h3 class="product-name">Domain Expansion</h3>
+          <div style="font-size:12px; color:#999; margin-bottom:8px;">
+            By Hugh Fungisai Mupfigo
+          </div>
+          <div style="margin: 8px 0; font-size:11px; color:#999; text-transform:uppercase; letter-spacing:0.5px;">
+            Book 03 of 3 — Advanced
+          </div>
+          <span class="product-price">£22</span>
+        </div>
+        <p class="product-desc">
+          How to transform who you are inside and watch the world outside change to match.
+          <button class="desc-toggle" onclick="toggleDesc(this)" style="background:none; border:none; color:#666; cursor:pointer; font-size:12px; margin-top:8px; display:block; padding:0; text-align:left;">
+            + Read full description
+          </button>
+        </p>
+        <div class="product-desc-extended" style="display:none; margin-top:12px; font-size:13px; line-height:1.7; color:#666;">
+          <p>Most people wait for external circumstances to change before they change internally. This book inverts that.</p>
+          <p>Domain Expansion is the practical tactical manual for turning internal transformation into external reality. It shows you:</p>
+          <ul style="margin:8px 0 8px 20px;">
+            <li>How your internal architecture determines what you can build</li>
+            <li>Why changing your frequency changes who shows up</li>
+            <li>The mechanics of transmutation (turning chaos into power)</li>
+            <li>How to expand your capacity to hold what you're becoming</li>
+          </ul>
+          <p><em>Recommended after The Apex Protocol. This is the advanced work.</em></p>
+        </div>
+        <div class="size-select">
+          <span class="lbl">Format</span>
+          <button class="size-btn-v2 active" type="button">Paperback</button>
+        </div>
+        <button class="add-to-cart-btn" type="button" onclick="addBookToCart(this, 'Domain Expansion', '22', 'https://buy.stripe.com/5kQ14g2mxfUqe3t68Ye3e09')">
+          Add to Cart
+        </button>
+      </article>
+
+      <!-- BOOK 03B — DOMAIN EXPANSION 5D -->
+      <article class="product-v2">
+        <div class="product-img">
+          <img src="books/domain-expansion-5d.png" alt="Domain Expansion: Advanced Transmutation — 5D Version — cover">
+        </div>
+        <div class="product-meta">
+          <h3 class="product-name">Domain Expansion — 5D Version</h3>
+          <div style="margin: 8px 0; font-size:11px; color:#999; text-transform:uppercase; letter-spacing:0.5px;">
+            Extended Edition
+          </div>
+          <span class="product-price">£28</span>
+        </div>
+        <p class="product-desc">
+          Three layers deeper into the code that made you vulnerable. Same voice, expanded frameworks—it builds the person inside the walls.
+          <button class="desc-toggle" onclick="toggleDesc(this)" style="background:none; border:none; color:#666; cursor:pointer; font-size:12px; margin-top:8px; display:block; padding:0; text-align:left;">
+            + Read full description
+          </button>
+        </p>
+        <div class="product-desc-extended" style="display:none; margin-top:12px; font-size:13px; line-height:1.7; color:#666;">
+          <p>The original is your entry point. It gives you the tools — the Void, the Grey Rock, the Mirror Shield, the Exit. It teaches you to identify what's attacking you, secure your space, and stop bleeding energy to people who were never worth it. You finish it sharper, cleaner, harder to reach.</p>
+          <p>The 5D version is what comes after. Same chapters. Same voice. Three layers deeper. It doesn't just teach you to defend the Domain — it takes you inside the code that made you vulnerable in the first place. The corrupted files. The suppressed frequencies. The space between who you were and who you're becoming.</p>
+          <p>The original builds the walls.<br>The 5D version builds the person inside them.</p>
+        </div>
+        <div class="size-select">
+          <span class="lbl">Format</span>
+          <button class="size-btn-v2 active" type="button">Paperback</button>
+        </div>
+        <button class="add-to-cart-btn" type="button" onclick="addBookToCart(this, 'Domain Expansion — 5D Version', '28', 'https://buy.stripe.com/3cI3co3qB4bI7F5btie3e06')">
+          Add to Cart
+        </button>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- FORTHCOMING -->
+<section class="book-section">
+  <div class="s-inner">
+    <div class="rooms-header">
+      <p class="s-label">Forthcoming titles</p>
+      <p class="s-num">B</p>
+    </div>
+
+    <ul class="forthcoming-list">
+      <li class="forthcoming-item">
+        <span class="fi-num">Book 04</span>
+        <div class="fi-body">
+          <h3 class="fi-title">The 7-Room Reader</h3>
+          <p class="fi-author">SAFE Publishing</p>
+          <p class="fi-desc">A companion field guide. One chapter per room. Essays, exercises, and interviews with practitioners.</p>
+        </div>
+        <span class="fi-status">Coming soon</span>
+      </li>
+      <li class="forthcoming-item">
+        <span class="fi-num">Book 05</span>
+        <div class="fi-body">
+          <h3 class="fi-title">Built From The Inside Out</h3>
+          <p class="fi-author">Hugh Mupfigo</p>
+          <p class="fi-desc">Memoir. The founding of SAFE. 2014 to the first hub. The logo, the eviction, the sketch, the engineering, the kitchen, the petition.</p>
+        </div>
+        <span class="fi-status">Coming soon</span>
+      </li>
+      <li class="forthcoming-item">
+        <span class="fi-num">Book 06</span>
+        <div class="fi-body">
+          <h3 class="fi-title">The Earth, One</h3>
+          <p class="fi-author">SAFE Publishing</p>
+          <p class="fi-desc">A short book on why nationalism is a rounding error at the species level — and what young people can do with that fact.</p>
+        </div>
+        <span class="fi-status">Coming soon</span>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <h2 class="cta-title">Read.<br><em>Underline.</em><br>Pass it on.</h2>
+  <p class="cta-sub">Every book sold funds a copy going into a SAFE library.</p>
+  <a class="cta-btn" href="mailto:enquiries@safespot.life">Publishing enquiries</a>
+</section>
+
+<footer>
+  <span class="footer-left">S·A·F·E — Steps Approaching Future Earth</span>
+  <span class="footer-right" style="display: flex; gap: 24px; font-size: 11px;">
+    <a href="help.html" style="color: inherit; text-decoration: none;">Help</a>
+    <a href="careers.html" style="color: inherit; text-decoration: none;">Careers</a>
+    <a href="privacy.html" style="color: inherit; text-decoration: none;">Privacy</a>
+    <a href="terms.html" style="color: inherit; text-decoration: none;">Terms</a>
+    <a href="privacy-choices.html" style="color: inherit; text-decoration: none;">Choices</a>
+    <a href="accessibility.html" style="color: inherit; text-decoration: none;">Access</a>
+    <a href="https://hughcorduroy.bandcamp.com/" target="_blank" rel="noopener" style="color: inherit; text-decoration: none;">Music</a>
+  </span>
+</footer>
+
+<script>
+// Toggle expandable book descriptions
+function toggleDesc(btn) {
+  var parent = btn.closest('.product-v2');
+  var extDiv = parent.querySelector('.product-desc-extended');
+  var isOpen = extDiv.style.display !== 'none';
+  
+  extDiv.style.display = isOpen ? 'none' : 'block';
+  btn.textContent = isOpen ? '+ Read full description' : '− Hide description';
+}
+
+// Lightweight inline slideshow for book covers (only Apex uses multi-view)
+function bookSlide(btn, dir){
+  var card = btn.closest('.product-v2');
+  var dots = card.querySelectorAll('.slide-dots button');
+  var cur = 0;
+  dots.forEach(function(d,i){ if(d.classList.contains('active')) cur = i; });
+  var next = (cur + dir + dots.length) % dots.length;
+  bookGo(dots[next], next);
+}
+function bookGo(btn, idx){
+  var card = btn.closest('.product-v2');
+  var data = card.querySelector('.book-views');
+  if(!data) return;
+  var views = JSON.parse(data.textContent);
+  var img = card.querySelector('.product-img img');
+  img.src = views[idx].src;
+  img.alt = views[idx].label;
+  card.querySelectorAll('.slide-dots button').forEach(function(d,i){
+    d.classList.toggle('active', i === idx);
+  });
+}
+
+// Add Book to Cart
+function addBookToCart(btn, productName, price, stripeUrl) {
+  // Get or create cart from localStorage
+  const cart = JSON.parse(localStorage.getItem('safeCart')) || [];
+
+  // Create cart item object
+  const cartItem = {
+    id: 'book_' + Date.now(),
+    name: productName,
+    price: parseFloat(price),
+    type: 'book',
+    stripeUrl: stripeUrl,
+    quantity: 1
+  };
+
+  // Add to cart
+  cart.push(cartItem);
+  localStorage.setItem('safeCart', JSON.stringify(cart));
+
+  // Update button appearance
+  const originalText = btn.textContent.trim();
+  btn.textContent = 'Added! ✓';
+  btn.classList.add('success');
+  btn.disabled = true;
+
+  // Update cart count across all tabs (by dispatching custom event)
+  window.dispatchEvent(new Event('cartUpdated'));
+
+  // Reset button after 1.5 seconds
+  setTimeout(function() {
+    btn.textContent = originalText;
+    btn.classList.remove('success');
+    btn.disabled = false;
+  }, 1500);
+}
+
+// Cart Count Badge and Cart Toggle for Publishing Page
+document.addEventListener('DOMContentLoaded', function() {
+  const cartToggle = document.getElementById('cartToggle');
+  const cartCount = document.getElementById('cartCount');
+
+  // Update cart count badge
+  function updateCartCount() {
+    const cart = JSON.parse(localStorage.getItem('safeCart')) || [];
+    cartCount.textContent = cart.length;
+  }
+
+  // Cart toggle click handler
+  if(cartToggle) {
+    cartToggle.addEventListener('click', function() {
+      // Navigate to shop page where cart popup will open
+      window.location.href = 'shop.html?openCart=true';
+    });
+  }
+
+  // Initial count
+  updateCartCount();
+
+  // Listen for cart updates
+  window.addEventListener('cartUpdated', updateCartCount);
+
+  // Update count every second to reflect changes from other tabs/windows
+  setInterval(updateCartCount, 1000);
+});
+</script>
+<script src="theme.js"></script>
+<script src="bento.js" defer></script>
+</body>
+</html>

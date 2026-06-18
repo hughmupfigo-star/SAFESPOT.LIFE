@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Events — SAFE</title>
+<meta name="description" content="SAFE Events — Community building, skill development, and movement. Park cleanups, sports events, skill shares, and more.">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+.events-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 32px;
+  margin-top: 48px;
+}
+
+.event-card {
+  padding: 32px;
+  background: var(--bg-alt);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  transition: all 0.3s ease;
+}
+
+.event-card:hover {
+  border-color: var(--black);
+  transform: translateY(-2px);
+}
+
+.event-date {
+  font-family: var(--mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--mid);
+  margin-bottom: 8px;
+}
+
+.event-title {
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1.3;
+  margin-bottom: 8px;
+}
+
+.event-type {
+  font-size: 12px;
+  color: var(--mid);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 400;
+  margin-bottom: 12px;
+}
+
+.event-desc {
+  flex: 1;
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--mid);
+}
+
+.event-details {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--mid);
+  padding-top: 12px;
+  border-top: 1px solid var(--light);
+}
+
+.event-detail-item {
+  display: flex;
+  gap: 8px;
+}
+
+.event-detail-label {
+  font-weight: 500;
+  color: var(--black);
+  min-width: 60px;
+}
+
+.event-btn {
+  align-self: flex-start;
+  padding: 12px 20px;
+  background: var(--black);
+  color: white;
+  border: none;
+  border-radius: 2px;
+  font-size: 13px;
+  font-family: var(--mono);
+  cursor: pointer;
+  transition: all 0.2s;
+  text-decoration: none;
+  display: inline-block;
+  margin-top: 12px;
+}
+
+.event-btn:hover {
+  background: var(--mid);
+  transform: translateX(2px);
+}
+
+html[data-theme="dark"] .event-btn {
+  background: #0a0a0a;
+  color: #ffffff;
+}
+
+html[data-theme="dark"] .event-btn:hover {
+  background: #333333;
+}
+
+.event-hero {
+  padding: 60px 40px;
+  background: var(--off);
+  border-bottom: 1px solid var(--border);
+}
+
+.event-hero-content {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.event-hero h2 {
+  font-size: 32px;
+  font-weight: 300;
+  margin-bottom: 16px;
+}
+
+.event-hero p {
+  font-size: 14px;
+  line-height: 1.8;
+  color: var(--mid);
+  max-width: 640px;
+}
+
+@media (max-width: 768px) {
+  .events-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .event-title {
+    font-size: 18px;
+  }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode">
+    <svg class="theme-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="18" height="18">
+      <circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+    </svg>
+  </button>
+
+  <button class="nav-toggle" aria-label="Open menu" aria-haspopup="dialog" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" width="20" height="20"><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2.5"/><path d="M 18 8 L 20 6 L 22 8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+
+  <button class="cart-toggle" id="cartToggle" aria-label="Shopping cart">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="18" height="18">
+      <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M 1 1 h 4 l 2.68 13.39a2 2 0 0 0 2 1.61h 9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+    </svg>
+    <span class="cart-count" id="cartCount">0</span>
+  </button>
+</nav>
+
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <p class="page-hero-eyebrow">Events — Community</p>
+    <h1 class="page-hero-title">
+      Show up.<br>
+      Build<br>
+      <em>together.</em>
+    </h1>
+    <p class="page-hero-desc">
+      SAFE hosts and supports community events. Cleanups. Sports. Skill shares. Chess tournaments. Skate sessions. Basketball tournaments. Everything built around real community connection, not spectacle.
+    </p>
+  </div>
+</section>
+
+<!-- UPCOMING EVENTS -->
+<section>
+  <div class="s-inner">
+    <div class="rooms-header">
+      <p class="s-label">Upcoming Events</p>
+      <p class="s-num">2026</p>
+    </div>
+
+    <div style="text-align: center; padding: 80px 40px;">
+      <h2 style="font-size: 28px; margin-bottom: 16px;">Events Coming Soon</h2>
+      <p style="font-size: 16px; color: var(--mid); max-width: 500px; margin: 0 auto;">We're planning community events for 2026. Join our movement and stay connected for announcements.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT EVENTS -->
+<section style="background: var(--bg-alt); padding: 80px 0;">
+  <div class="s-inner">
+    <div class="about-framework">
+      <div>
+        <p class="s-label">Why we host events</p>
+        <h2 style="font-size: 32px; font-weight: 300; line-height: 1.3; margin: 24px 0;">Community only happens when people show up.</h2>
+      </div>
+      <div style="max-width: 500px;">
+        <p style="line-height: 1.8; color: var(--mid); font-size: 15px; margin-bottom: 16px;">
+          Events are where SAFE becomes real. Not online. Not theoretical. Real people in real space, building real connection. Whether it's cleaning a park, playing chess, or eating dinner—every event is built on the same principle: showing up matters.
+        </p>
+        <p style="line-height: 1.8; color: var(--mid); font-size: 15px;">
+          Our events are free or low-cost. They're inclusive. They're designed so that anybody, at any skill level, with any background, can show up and belong. Because that's what community actually looks like.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span class="footer-left">S·A·F·E — Steps Approaching Future Earth</span>
+  <span class="footer-right" style="display: flex; gap: 24px; font-size: 11px;">
+    <a href="help.html" style="color: inherit; text-decoration: none;">Help</a>
+    <a href="careers.html" style="color: inherit; text-decoration: none;">Careers</a>
+    <a href="privacy.html" style="color: inherit; text-decoration: none;">Privacy</a>
+    <a href="terms.html" style="color: inherit; text-decoration: none;">Terms</a>
+    <a href="privacy-choices.html" style="color: inherit; text-decoration: none;">Choices</a>
+    <a href="accessibility.html" style="color: inherit; text-decoration: none;">Access</a>
+    <a href="https://hughcorduroy.bandcamp.com/" target="_blank" rel="noopener" style="color: inherit; text-decoration: none;">Music</a>
+  </span>
+</footer>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const cartToggle = document.getElementById('cartToggle');
+  const cartCount = document.getElementById('cartCount');
+
+  if(!cartToggle || !cartCount) return;
+
+  function updateCartCount() {
+    const cart = JSON.parse(localStorage.getItem('safeCart')) || [];
+    cartCount.textContent = cart.length;
+  }
+
+  cartToggle.addEventListener('click', function() {
+    window.location.href = 'shop.html?openCart=true';
+  });
+
+  window.addEventListener('cartUpdated', updateCartCount);
+
+  updateCartCount();
+  setInterval(updateCartCount, 1000);
+});
+</script>
+
+<script src="theme.js"></script>
+<script src="bento.js" defer></script>
+</body>
+</html>

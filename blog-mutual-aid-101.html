@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mutual Aid 101: Finding Food & Safe Spaces Outside the System — SAFE</title>
+<meta name="description" content="Community fridges. Meal sharing. Clothing swaps. Time banks. How mutual aid networks actually work. No bureaucracy. No judgement. Just neighbours helping neighbours.">
+<meta property="og:title" content="Mutual Aid 101: Finding Food & Safe Spaces Outside the System — SAFE">
+<meta property="og:description" content="Community fridges. Meal sharing. Clothing swaps. Time banks. How mutual aid networks actually work.">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2026-06-03">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="blog-mutual-aid-101.html">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="blog-titles.css">
+<style>
+.article-container {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 60px 40px;
+}
+
+.article-header {
+  margin-bottom: 48px;
+}
+
+.article-date {
+  font-family: var(--mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--mid);
+  margin-bottom: 16px;
+}
+
+.article-title {
+  font-size: 32px;
+  font-weight: 300;
+  line-height: 1.3;
+  margin-bottom: 16px;
+}
+
+.article-excerpt {
+  font-size: 16px;
+  color: var(--mid);
+  line-height: 1.7;
+  margin-bottom: 24px;
+}
+
+.article-content {
+  font-size: 15px;
+  line-height: 1.8;
+  color: var(--black);
+}
+
+.article-content h2 {
+  font-size: 22px;
+  font-weight: 400;
+  margin-top: 40px;
+  margin-bottom: 16px;
+}
+
+.article-content h3 {
+  font-size: 18px;
+  font-weight: 500;
+  margin-top: 28px;
+  margin-bottom: 12px;
+}
+
+.article-content p {
+  margin-bottom: 16px;
+}
+
+.article-content ul, .article-content ol {
+  margin-bottom: 20px;
+  margin-left: 20px;
+}
+
+.article-content li {
+  margin-bottom: 12px;
+}
+
+.article-content strong {
+  font-weight: 500;
+}
+
+.network-card {
+  background: var(--off);
+  border: 1px solid var(--border);
+  padding: 24px;
+  border-radius: 4px;
+  margin: 24px 0;
+}
+
+.network-title {
+  font-weight: 500;
+  font-size: 16px;
+  margin-bottom: 8px;
+}
+
+.network-how {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--mid);
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.network-description {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--mid);
+}
+
+.cta-box {
+  background: var(--off);
+  border: 1px solid var(--border);
+  padding: 32px;
+  border-radius: 4px;
+  margin: 48px 0;
+  text-align: center;
+}
+
+.cta-box h3 {
+  margin-top: 0;
+}
+
+.cta-btn {
+  display: inline-block;
+  padding: 14px 28px;
+  background: var(--black);
+  color: white;
+  text-decoration: none;
+  border-radius: 2px;
+  font-family: var(--mono);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  transition: all 0.2s;
+  margin-top: 12px;
+}
+
+.cta-btn:hover {
+  background: var(--mid);
+  transform: translateX(2px);
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 32px;
+  padding: 8px 16px;
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  text-decoration: none;
+  color: var(--black);
+  font-size: 12px;
+  font-family: var(--mono);
+}
+
+.back-link:hover {
+  border-color: var(--black);
+  background: var(--white);
+}
+
+html[data-theme="dark"] .article-content {
+  color: #f5f5f5;
+}
+
+html[data-theme="dark"] .cta-box {
+  background: #1a1a1a;
+  border-color: #444;
+}
+
+html[data-theme="dark"] .network-card {
+  background: #1a1a1a;
+  border-color: #444;
+}
+
+@media (max-width: 768px) {
+  .article-container {
+    padding: 40px 20px;
+  }
+
+  .article-title {
+    font-size: 24px;
+  }
+
+  .article-content h2 {
+    font-size: 19px;
+  }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode">
+    <svg class="theme-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="18" height="18">
+      <circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+    </svg>
+  </button>
+
+  <button class="nav-toggle" aria-label="Open menu" aria-haspopup="dialog" aria-expanded="false">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" width="20" height="20">
+      <circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2.5"/><path d="M 18 8 L 20 6 L 22 8" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </button>
+
+  <a class="nav-logo" href="index.html">S·A·F·E</a>
+</nav>
+
+<main id="main">
+<div class="article-container">
+  <a href="blog.html" class="back-link">← Back to Blog</a>
+
+  <article>
+    <header class="article-header">
+      <time class="article-date" datetime="2026-06-03">3 June 2026</time>
+      <h1 class="article-title pg-serif">Mutual Aid 101: Finding Food & Safe Spaces <em>Outside the System</em></h1>
+      <p class="article-excerpt">When state systems are underfunded or too slow, communities step in. Community fridges. Meal sharing. Clothing swaps. Safe spaces run by neighbours. This is mutual aid. Here's how to find it and use it without shame.</p>
+    </header>
+
+    <div class="article-content">
+
+<h2>What is Mutual Aid? (And Why It's Not "Charity")</h2>
+
+<p>Charity is powerful people giving to powerless people. You're grateful. You're in debt. You're grateful. It's one-way.</p>
+
+<p>Mutual aid is neighbours helping neighbours. No hierarchy. No "deserving" or "undeserving." Just: you need help now, I'll help, and maybe later I help someone else, and someone helps me.</p>
+
+<p><strong>Key difference:</strong> Charity = "I'm helping you." Mutual aid = "We're helping each other."</p>
+
+<p>This matters because it means you're not shameful for using mutual aid. You're part of a community. That's human.</p>
+
+<h2>Types of Mutual Aid Networks You Can Actually Access</h2>
+
+<h3>Community Fridges & Food Sharing</h3>
+
+<div class="network-card">
+  <div class="network-title">Community Fridge</div>
+  <div class="network-how">How it works:</div>
+  <div class="network-description">A fridge (or freezer) outside a community space, shop, or church. People leave food. You take what you need. No application. No questions. No shame. Stocked by volunteers and donations.</div>
+</div>
+
+<p><strong>How to find one:</strong></p>
+
+<ul>
+<li>Search "[your city] community fridge" on Google</li>
+<li>Ask on local Facebook groups: "Does anyone know of a community fridge near [area]?"</li>
+<li>Check Olio app (food-sharing community app)</li>
+<li>Walk around community centres and libraries</li>
+</ul>
+
+<p><strong>What's usually there:</strong> Fresh food (veggies, bread), packaged food, sometimes cooked meals, occasionally treats</p>
+
+<p><strong>Good etiquette:</strong> Take what you need. Leave what you can. Don't hoard. If it's not labelled and looks old, probably not safe.</p>
+
+<div class="network-card">
+  <div class="network-title">Meal Sharing / Community Meals</div>
+  <div class="network-how">How it works:</div>
+  <div class="network-description">Groups cook extra food and share with people who need it. Sometimes weekly. Sometimes monthly. Usually at community centres, churches, or parks. Free. Open to everyone.</div>
+</div>
+
+<p><strong>How to find one:</strong></p>
+
+<ul>
+<li>Local community centre bulletin board</li>
+<li>Facebook: search "[your area] free community meals" or "[your area] soup kitchen"</li>
+<li>Call your local community centre</li>
+<li>Ask at local mosques, churches, temples (many run free meals)</li>
+</ul>
+
+<p><strong>Why it's better than food banks:</strong> It's meal-based (you get hot food), community-based (you meet people), and judgement-free (everyone's there)</p>
+
+<h3>Clothing Swaps & Free Shops</h3>
+
+<div class="network-card">
+  <div class="network-title">Clothing Swap / Clothes Swap Events</div>
+  <div class="network-how">How it works:</div>
+  <div class="network-description">Everyone brings clothes they don't wear. You pick what you like. You leave what you don't. Sometimes organised events, sometimes ongoing "free shops" in community spaces.</div>
+</div>
+
+<p><strong>How to find one:</strong></p>
+
+<ul>
+<li>Facebook groups: search "[your area] clothes swap" or "[your area] free clothes"</li>
+<li>Neighbourhood apps: Nextdoor, Buy Nothing groups</li>
+<li>Instagram: search hashtags like #clothesswap or your local area + clothes</li>
+</ul>
+
+<p><strong>Real talk:</strong> It's hit or miss. Sometimes you find great stuff. Sometimes it's old and torn. But it's free, and that matters.</p>
+
+<h3>Community Kitchens</h3>
+
+<div class="network-card">
+  <div class="network-title">Community Kitchen / Cook-Together Projects</div>
+  <div class="network-how">How it works:</div>
+  <div class="network-description">Groups gather to cook together. You learn cooking skills. You make food. You eat together. Free or cheap. Built-in community.</div>
+</div>
+
+<p><strong>How to find one:</strong></p>
+
+<ul>
+<li>Community centres (often run sessions)</li>
+<li>Facebook: "[your area] community kitchen"</li>
+<li>Social enterprises focused on food security</li>
+<li>Some libraries run community cooking classes</li>
+</ul>
+
+<p><strong>Why it matters:</strong> You're not just getting food. You're learning skills, meeting people, and being part of something. That matters.</p>
+
+<h3>Time Banks</h3>
+
+<div class="network-card">
+  <div class="network-title">Time Bank / Time Exchange</div>
+  <div class="network-how">How it works:</div>
+  <div class="network-description">You offer 1 hour of your skill. You get 1 hour of someone else's skill. A plumber fixes your leak. You teach someone coding for an hour. No money. Pure exchange.</div>
+</div>
+
+<p><strong>How to find one:</strong></p>
+
+<ul>
+<li>timebanks.org (directory of time banks)</li>
+<li>Search "[your area] time bank"</li>
+<li>Community centres often coordinate</li>
+</ul>
+
+<p><strong>What you could offer:</strong> Cooking, coding, language lessons, babysitting, dog walking, tech help, social media support, anything really</p>
+
+<p><strong>Why it's powerful:</strong> It's not charity. You're valuable. Your hour matters exactly as much as anyone else's.</p>
+
+<h3>Buy Nothing Groups & Community Sharing</h3>
+
+<div class="network-card">
+  <div class="network-title">Buy Nothing Group / Nextdoor</div>
+  <div class="network-how">How it works:</div>
+  <div class="network-description">Hyperlocal Facebook groups or Nextdoor app where people give away stuff they don't need. Furniture, books, electronics, clothes. Completely free. Usually just pick up locally.</div>
+</div>
+
+<p><strong>How to find one:</strong></p>
+
+<ul>
+<li>Facebook: search "Buy Nothing [your area]"</li>
+<li>Nextdoor app: join your neighbourhood</li>
+<li>These are hyper-local (usually postcode-specific)</li>
+</ul>
+
+<p><strong>Great for:</strong> Furniture, books, kitchen stuff, tech, basically anything</p>
+
+<h3>Community Support Networks & Safe Spaces</h3>
+
+<div class="network-card">
+  <div class="network-title">Mutual Aid Groups / Support Networks</div>
+  <div class="network-how">How it works:</div>
+  <div class="network-description">Community-run groups that provide emotional support, practical help, information sharing. Sometimes focused on young people. Sometimes for people in crisis. Always judgement-free.</div>
+</div>
+
+<p><strong>How to find one:</strong></p>
+
+<ul>
+<li>Local community boards</li>
+<li>LGBTQ+ centres (if relevant to you)</li>
+<li>Refugee/asylum seeker networks</li>
+<li>Young people's services</li>
+<li>Ask at community centres: "Are there peer support groups?"</li>
+</ul>
+
+<h2>How to Actually Use Mutual Aid Without Shame</h2>
+
+<p><strong>The mindset shift:</strong> You're not taking charity. You're participating in a community that's designed to support each other. That's normal. That's human. That's beautiful.</p>
+
+<p><strong>Real talk about shame:</strong> You might feel like you're begging or less-than. You're not. You're resourceful. You're using tools available to you. That takes strength, not weakness.</p>
+
+<h2>Combining Mutual Aid With Official Systems</h2>
+
+<p><strong>Real talk:</strong> Mutual aid doesn't replace emergency services, housing support, or legal protection. It complements them.</p>
+
+<p><strong>Use mutual aid for:</strong> Daily needs, community, skill-building, food security, connection</p>
+
+<p><strong>Use official systems for:</strong> Emergency housing, legal protection, medical care, mental health services, when you're in crisis</p>
+
+<p><strong>Best approach:</strong> Use both. Mutual aid makes you more resilient. Official systems keep you safe. Together, they work.</p>
+
+<h2>How to Give Back (Once You're Stable)</h2>
+
+<p>This is the beautiful part about mutual aid. Once you're okay, you help someone else.</p>
+
+<ul>
+<li>Bring extra food to a community fridge</li>
+<li>Donate clothes to a clothing swap</li>
+<li>Help at a community kitchen</li>
+<li>Offer your skill in a time bank</li>
+<li>Share stuff you don't need</li>
+<li>Show up for someone else</li>
+</ul>
+
+<p><strong>The cycle:</strong> You get help. You get stable. You help someone else. They get stable. They help someone else. That's mutual aid.</p>
+
+<h2>Starting Your Own (If It Doesn't Exist)</h2>
+
+<p><strong>You can start a mutual aid project.</strong> Seriously. All it takes is:</p>
+
+<ol>
+<li>Identifying a need ("There's nowhere to get free food in my area")</li>
+<li>Finding 1-2 other people who care</li>
+<li>Starting small ("We'll leave a basket of food outside the community centre")</li>
+<li>Building from there ("Now we have a fridge. Now we have volunteers.")</li>
+</ol>
+
+<p><strong>Examples of tiny mutual aid projects that started with one person:</strong></p>
+
+<ul>
+<li>A student left snacks on a bench with a note: "Free. Take what you need." It became a community fridge.</li>
+<li>A teacher collected coats and left them on a fence in winter. It became a clothing swap.</li>
+<li>A retired chef cooked extra food and invited people over. It became a weekly community meal.</li>
+</ul>
+
+<p>You don't need permission. You don't need resources. You need intention.</p>
+
+<h2>The Real Magic of Mutual Aid</h2>
+
+<p>It's not about the food or clothes. It's about the message: "You matter. Your community has your back. You're not alone."</p>
+
+<p>In a system that makes you feel invisible, mutual aid says: "You're seen."</p>
+
+<h2>Finding Your Specific Community</h2>
+
+<p><strong>If you're LGBTQ+:</strong> LGBTQ+ centres often run mutual aid networks, safe spaces, housing support</p>
+
+<p><strong>If you're a young person:</strong> Youth centres, young person's homelessness services, peer networks</p>
+
+<p><strong>If you're a refugee/asylum seeker:</strong> Refugee networks, specific mutual aid groups</p>
+
+<p><strong>If you're experiencing mental health crisis:</strong> Crisis support groups, peer-led mental health networks</p>
+
+<p><strong>If you're unhoused:</strong> Rough sleeper outreach, homeless services, housing-focused mutual aid</p>
+
+<p>Find your community. You'll find yourself.</p>
+
+<div class="cta-box">
+  <h3>Building Community Together</h3>
+  <p>SAFE is about connecting young people to real resources and real community. Mutual aid is part of that. You're not alone in this. Communities exist to support each other.</p>
+  <a href="story-intelligence.html" class="cta-btn">Explore SAFE Community →</a>
+</div>
+
+    <div class="subscribe-cta">
+  <h3>More wisdom like this?</h3>
+  <p>Get weekly advice on therapy, jobs, housing, rights. Real stuff. No spam.</p>
+  <button class="subscribe-btn" onclick="showNewsletterPopup()">Subscribe to the Blog</button>
+</div>
+
+    </div>
+  </article>
+</div>
+</main>
+
+<!-- Newsletter Popup Modal -->
+<div id="newsletter-popup" class="newsletter-popup">
+  <div class="newsletter-popup-content">
+    <button class="newsletter-close" onclick="closeNewsletterPopup()" aria-label="Close newsletter popup">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+    </button>
+    <div class="newsletter-inner">
+      <h2 class="newsletter-title">Weekly wisdom for young people.</h2>
+      <p class="newsletter-subtitle">Real advice on therapy, jobs, housing, rights. No spam. Unsubscribe anytime.</p>
+      <form class="newsletter-form" onsubmit="handleNewsletterSubmit(event)">
+        <div class="form-row">
+          <input type="text" name="name" placeholder="Your name (optional)" class="newsletter-input" autocomplete="given-name" />
+        </div>
+        <div class="form-row">
+          <input type="email" name="email" placeholder="you@example.com" class="newsletter-input" required autocomplete="email" />
+        </div>
+        <button type="submit" class="newsletter-submit">Subscribe</button>
+      </form>
+      <p class="newsletter-note">We'll send a confirmation email. Check spam if you don't see it.</p>
+    </div>
+  </div>
+</div>
+
+<style>
+.subscribe-cta {
+  background: var(--off);
+  border: 1px solid var(--border);
+  padding: 40px;
+  border-radius: 4px;
+  margin: 48px 0;
+  text-align: center;
+}
+
+.subscribe-cta h3 {
+  font-size: 20px;
+  font-weight: 400;
+  margin: 0 0 12px;
+  color: var(--black);
+}
+
+.subscribe-cta p {
+  font-size: 14px;
+  color: var(--mid);
+  margin: 0 0 24px;
+  line-height: 1.6;
+}
+
+.subscribe-btn {
+  display: inline-block;
+  padding: 14px 32px;
+  background: var(--black);
+  color: var(--white);
+  border: 1px solid var(--black);
+  border-radius: 4px;
+  font-family: var(--mono);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-weight: 500;
+}
+
+.subscribe-btn:hover {
+  background: var(--off);
+  color: var(--black);
+}
+
+html[data-theme="dark"] .subscribe-cta {
+  background: #1a1a1a;
+  border-color: #333333;
+}
+
+html[data-theme="dark"] .subscribe-cta h3 {
+  color: #f5f5f5;
+}
+
+html[data-theme="dark"] .subscribe-btn {
+  background: #f5f5f5;
+  color: #0d0d0d;
+  border-color: #f5f5f5;
+}
+
+html[data-theme="dark"] .subscribe-btn:hover {
+  background: #e0e0e0;
+}
+
+.newsletter-popup {
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 10, 10, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+  padding: 20px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+}
+
+.newsletter-popup.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.newsletter-popup-content {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  max-width: 460px;
+  width: 100%;
+  position: relative;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+  animation: slideUp 0.4s ease;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.newsletter-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: none;
+  border: none;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  cursor: pointer;
+  color: var(--mid);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s ease;
+  z-index: 10;
+}
+
+.newsletter-close:hover {
+  color: var(--black);
+}
+
+.newsletter-inner {
+  padding: 48px 40px;
+}
+
+.newsletter-title {
+  font-size: 24px;
+  font-weight: 300;
+  line-height: 1.3;
+  color: var(--black);
+  margin: 0 0 12px;
+  letter-spacing: -0.01em;
+}
+
+.newsletter-subtitle {
+  font-size: 14px;
+  color: var(--mid);
+  font-weight: 300;
+  line-height: 1.6;
+  margin: 0 0 28px;
+}
+
+.newsletter-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.form-row {
+  display: flex;
+}
+
+.newsletter-input {
+  flex: 1;
+  padding: 12px 14px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  font-family: var(--sans);
+  font-size: 14px;
+  color: var(--black);
+  background: var(--white);
+  transition: border-color 0.2s ease;
+}
+
+.newsletter-input:focus {
+  outline: none;
+  border-color: var(--black);
+  box-shadow: 0 0 0 2px rgba(10, 10, 10, 0.1);
+}
+
+.newsletter-input::placeholder {
+  color: var(--light);
+}
+
+.newsletter-submit {
+  padding: 12px 24px;
+  background: var(--black);
+  color: var(--white);
+  border: 1px solid var(--black);
+  border-radius: 4px;
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-top: 4px;
+}
+
+.newsletter-submit:hover {
+  background: var(--off);
+  color: var(--black);
+}
+
+.newsletter-submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.newsletter-note {
+  font-size: 12px;
+  color: var(--light);
+  margin: 0;
+  text-align: center;
+  font-weight: 300;
+}
+
+html[data-theme="dark"] .newsletter-popup {
+  background: rgba(0, 0, 0, 0.7);
+}
+
+html[data-theme="dark"] .newsletter-popup-content {
+  background: #1a1a1a;
+  border-color: #333333;
+}
+
+html[data-theme="dark"] .newsletter-title {
+  color: #f5f5f5;
+}
+
+html[data-theme="dark"] .newsletter-subtitle {
+  color: #b0b0b0;
+}
+
+html[data-theme="dark"] .newsletter-close {
+  color: #b0b0b0;
+}
+
+html[data-theme="dark"] .newsletter-close:hover {
+  color: #f5f5f5;
+}
+
+html[data-theme="dark"] .newsletter-input {
+  background: #0d0d0d;
+  border-color: #333333;
+  color: #f5f5f5;
+}
+
+html[data-theme="dark"] .newsletter-input::placeholder {
+  color: #666666;
+}
+
+html[data-theme="dark"] .newsletter-input:focus {
+  border-color: #f5f5f5;
+  box-shadow: 0 0 0 2px rgba(245, 245, 245, 0.1);
+}
+
+html[data-theme="dark"] .newsletter-submit {
+  background: #f5f5f5;
+  color: #0d0d0d;
+  border-color: #f5f5f5;
+}
+
+html[data-theme="dark"] .newsletter-submit:hover {
+  background: #e0e0e0;
+}
+
+html[data-theme="dark"] .newsletter-note {
+  color: #999999;
+}
+
+@media (max-width: 480px) {
+  .subscribe-cta {
+    padding: 32px 20px;
+  }
+
+  .newsletter-popup-content {
+    margin: 0 16px;
+  }
+
+  .newsletter-inner {
+    padding: 32px 24px;
+  }
+
+  .newsletter-title {
+    font-size: 20px;
+  }
+
+  .newsletter-subtitle {
+    font-size: 13px;
+    margin-bottom: 24px;
+  }
+}
+</style>
+
+<script>
+function showNewsletterPopup() {
+  const popup = document.getElementById('newsletter-popup');
+  if (popup) {
+    popup.classList.add('visible');
+  }
+}
+
+function closeNewsletterPopup() {
+  const popup = document.getElementById('newsletter-popup');
+  if (popup) {
+    popup.classList.remove('visible');
+  }
+}
+
+function handleNewsletterSubmit(e) {
+  e.preventDefault();
+  const form = e.target;
+  const email = form.querySelector('input[type="email"]').value;
+  const nameInput = form.querySelector('input[name="name"]');
+  const name = nameInput ? nameInput.value : '';
+  const submitBtn = form.querySelector('button');
+  const originalText = submitBtn.textContent;
+  submitBtn.textContent = 'Subscribing...';
+  submitBtn.disabled = true;
+
+  setTimeout(() => {
+    submitBtn.textContent = '✓ Welcome to the list!';
+    form.reset();
+    localStorage.setItem('safeNewsletterSubscribed', 'true');
+    setTimeout(() => {
+      closeNewsletterPopup();
+    }, 2000);
+  }, 800);
+}
+</script>
+
+<footer>
+  <span class="footer-left">S·A·F·E — Steps Approaching Future Earth</span>
+  <span class="footer-right" style="display: flex; gap: 24px; font-size: 11px;">
+    <a href="help.html" style="color: inherit; text-decoration: none;">Help</a>
+    <a href="careers.html" style="color: inherit; text-decoration: none;">Careers</a>
+    <a href="privacy.html" style="color: inherit; text-decoration: none;">Privacy</a>
+    <a href="terms.html" style="color: inherit; text-decoration: none;">Terms</a>
+    <a href="privacy-choices.html" style="color: inherit; text-decoration: none;">Choices</a>
+    <a href="accessibility.html" style="color: inherit; text-decoration: none;">Access</a>
+    <a href="https://instagram.com/safespot.life" target="_blank" rel="noopener" style="color: inherit; text-decoration: none;">Instagram</a>
+  </span>
+</footer>
+
+<script src="theme.js"></script>
+<script src="bento.js" defer></script>
+<script src="audio-reader.js" defer></script>
+
+</body>
+</html>

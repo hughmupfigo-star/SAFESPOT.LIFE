@@ -1,0 +1,11 @@
+<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <!-- Upward steps representing "Steps Approaching Future Earth" -->
+  <path d="M 20 70 L 35 55 L 35 70 Z" fill="currentColor"/>
+  <path d="M 40 55 L 55 40 L 55 55 Z" fill="currentColor"/>
+  <path d="M 60 40 L 75 25 L 75 40 Z" fill="currentColor"/>
+
+  <!-- Earth/circle representing future -->
+  <circle cx="65" cy="20" r="8" stroke="currentColor" fill="none"/>
+  <line x1="65" y1="12" x2="65" y2="28"/>
+  <line x1="57" y1="20" x2="73" y2="20"/>
+</svg>

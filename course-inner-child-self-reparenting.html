@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Inner Child & Self-Reparenting — SAFE</title>
+<meta name="description" content="Why you do what you do — and the first practical steps toward changing it. A free 4-module course on understanding and reparenting your inner child.">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+.course-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 60px 20px;
+}
+
+.course-intro {
+  margin-bottom: 48px;
+  padding: 32px;
+  border-left: 4px solid var(--black);
+  background: var(--bg);
+}
+
+.course-intro h2 {
+  font-size: 28px;
+  font-weight: 400;
+  margin: 0 0 16px 0;
+  color: var(--black);
+}
+
+.course-intro p {
+  font-size: 14px;
+  line-height: 1.8;
+  color: var(--black);
+  margin: 0 0 12px 0;
+}
+
+.course-intro p:last-child {
+  margin: 0;
+}
+
+.course-tagline {
+  font-size: 13px;
+  color: var(--mid);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 400;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--light);
+}
+
+.modules-section {
+  margin-bottom: 48px;
+}
+
+.modules-section h3 {
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--black);
+  margin: 0 0 24px 0;
+}
+
+.module-item {
+  padding: 24px;
+  margin-bottom: 16px;
+  border: 1px solid var(--light);
+  border-radius: 4px;
+  background: var(--white);
+}
+
+.module-number {
+  font-family: var(--mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--mid);
+  margin-bottom: 8px;
+  display: block;
+}
+
+.module-title {
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--black);
+  margin: 0 0 8px 0;
+}
+
+.module-description {
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--mid);
+  margin: 0;
+}
+
+.course-meta {
+  display: flex;
+  gap: 24px;
+  margin-top: 24px;
+  padding-top: 24px;
+  border-top: 1px solid var(--light);
+  font-size: 13px;
+  color: var(--mid);
+}
+
+.course-meta-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.course-meta-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 4px;
+}
+
+.course-meta-value {
+  font-size: 14px;
+  color: var(--black);
+}
+
+.start-btn {
+  display: inline-block;
+  padding: 16px 40px;
+  background: var(--black);
+  color: var(--white);
+  border: none;
+  border-radius: 2px;
+  font-family: var(--mono);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background 0.15s;
+  text-decoration: none;
+  margin-top: 32px;
+}
+
+.start-btn:hover {
+  background: var(--mid);
+}
+
+@media (prefers-color-scheme: dark) {
+  .course-intro {
+    background: #1a1a1a;
+    border-left-color: var(--white);
+  }
+
+  .module-item {
+    background: #1a1a1a;
+    border-color: #333;
+  }
+}
+
+@media (max-width: 768px) {
+  .course-intro {
+    padding: 24px;
+  }
+
+  .module-item {
+    padding: 18px;
+  }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode">
+    <svg class="theme-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="18" height="18">
+      <circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+    </svg>
+  </button>
+
+  <button class="nav-toggle" aria-label="Open menu" aria-haspopup="dialog" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" width="20" height="20"><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2.5"/><path d="M 18 8 L 20 6 L 22 8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+
+  <button class="cart-toggle" id="cartToggle" aria-label="Shopping cart">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="18" height="18">
+      <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M 1 1 h 4 l 2.68 13.39a2 2 0 0 0 2 1.61h 9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+    </svg>
+    <span class="cart-count" id="cartCount">0</span>
+  </button>
+</nav>
+
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <p class="page-hero-eyebrow">Free Course — The Inner Child & Self-Reparenting</p>
+    <h1 class="page-hero-title">
+      Why you do<br>
+      what you do<br>
+      <em>— and how to change it.</em>
+    </h1>
+    <p class="page-hero-desc">
+      Your inner child carries everything from before you knew how to protect yourself. This course teaches you what it is, how wounds operate in adults, what self-reparenting actually means, and how to begin the practice of genuinely caring for the part of you that's still learning to trust.
+    </p>
+  </div>
+</section>
+
+<section style="padding: 60px 0;">
+  <div class="course-container">
+
+    <div class="course-intro">
+      <h2>The Inner Child & Self-Reparenting</h2>
+      <p>A 4-module course on understanding the wounded part of you and learning how to care for it.</p>
+      <p class="course-tagline">Why you do what you do — and the first practical steps toward changing it.</p>
+    </div>
+
+    <div class="modules-section">
+      <h3>Course Modules</h3>
+
+      <div class="module-item">
+        <span class="module-number">(01)</span>
+        <h4 class="module-title">What Is the Inner Child</h4>
+        <p class="module-description">
+          Understanding the part of you that formed before you could think your way around hurt. What the inner child carries. Why it still matters. How it shows up in every relationship, every decision, every moment you feel something you can't explain.
+        </p>
+      </div>
+
+      <div class="module-item">
+        <span class="module-number">(02)</span>
+        <h4 class="module-title">Developmental Windows & Strategies</h4>
+        <p class="module-description">
+          How different stages of childhood development create different needs. What happens when those windows close without those needs being met. The strategies your inner child learned to survive. How those survival mechanisms now limit you.
+        </p>
+      </div>
+
+      <div class="module-item">
+        <span class="module-number">(03)</span>
+        <h4 class="module-title">Adaptations & Unmet Needs</h4>
+        <p class="module-description">
+          The ways you adapted to environments that weren't safe. The fundamental needs that went unmet: safety, belonging, validation, seen-ness. How those unmet needs drive your adult choices. Why you keep recreating the same dynamic.
+        </p>
+      </div>
+
+      <div class="module-item">
+        <span class="module-number">(04)</span>
+        <h4 class="module-title">The Wound in the Body</h4>
+        <p class="module-description">
+          Where trauma lives. Why talk therapy alone isn't enough. How your nervous system holds patterns. The somatic symptoms of an unhealed inner child. How to access what words can't reach.
+        </p>
+      </div>
+
+      <div class="module-item">
+        <span class="module-number">(05)</span>
+        <h4 class="module-title">Wounding & Identity</h4>
+        <p class="module-description">
+          How childhood wounds become core beliefs about who you are. The identity you built to protect yourself. Why you keep proving these false beliefs are true. How to separate what happened to you from who you are.
+        </p>
+      </div>
+
+      <div class="module-item">
+        <span class="module-number">(06)</span>
+        <h4 class="module-title">The Reparenting Framework</h4>
+        <p class="module-description">
+          What self-reparenting actually is. It's becoming the adult your inner child needed. The specific skills: protection, validation, permission, reassurance. How to give yourself what your caregivers couldn't. How to become your own secure base.
+        </p>
+      </div>
+
+      <div class="module-item">
+        <span class="module-number">(07)</span>
+        <h4 class="module-title">Reparenting in Practice</h4>
+        <p class="module-description">
+          How to actually do this work. Exercises for talking to your inner child. Journal prompts that dig deep. How to notice when your inner child is activated. How to resource yourself in moments of dysregulation. Building rituals of care.
+        </p>
+      </div>
+
+      <div class="module-item">
+        <span class="module-number">(08)</span>
+        <h4 class="module-title">Building & Sustaining the Work</h4>
+        <p class="module-description">
+          Making reparenting a practice, not a project. How to keep showing up for yourself. What happens when old patterns try to reassert. Building community with others doing this work. The long-term transformation that becomes possible.
+        </p>
+      </div>
+
+      <div class="course-meta">
+        <div class="course-meta-item">
+          <span class="course-meta-label">Modules</span>
+          <span class="course-meta-value">8</span>
+        </div>
+        <div class="course-meta-item">
+          <span class="course-meta-label">Duration</span>
+          <span class="course-meta-value">Self-paced</span>
+        </div>
+        <div class="course-meta-item">
+          <span class="course-meta-label">Cost</span>
+          <span class="course-meta-value">Free</span>
+        </div>
+      </div>
+
+      <a href="https://safelearningspot.com/inner-child-self-reparenting" target="_blank" rel="noopener" class="start-btn">
+        Begin Course →
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<!-- INFO SECTION -->
+<section style="padding: 60px 0; background: var(--bg-alt); border-top: 1px solid var(--border, #e0e0e0);">
+  <div class="course-container" style="max-width: 640px;">
+    <p style="font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--mid); margin: 0 0 24px 0;">About this course</p>
+    <p style="font-size: 14px; line-height: 1.8; color: var(--black); margin: 0 0 16px 0;">
+      This course is designed for anyone who recognises patterns in their life that don't make sense. For people who've felt abandoned. For those who've learned to make themselves smaller to be loved. For anyone who realises their adult decisions are being run by the part of them that's still eight years old.
+    </p>
+    <p style="font-size: 14px; line-height: 1.8; color: var(--black); margin: 0;">
+      You'll need nothing but an open mind. A journal helps. Time to reflect helps more.
+    </p>
+  </div>
+</section>
+
+<footer>
+  <span class="footer-left">S·A·F·E — Steps Approaching Future Earth</span>
+  <span class="footer-right" style="display: flex; gap: 24px; font-size: 11px;">
+    <a href="help.html" style="color: inherit; text-decoration: none;">Help</a>
+    <a href="careers.html" style="color: inherit; text-decoration: none;">Careers</a>
+    <a href="privacy.html" style="color: inherit; text-decoration: none;">Privacy</a>
+    <a href="terms.html" style="color: inherit; text-decoration: none;">Terms</a>
+    <a href="privacy-choices.html" style="color: inherit; text-decoration: none;">Choices</a>
+    <a href="accessibility.html" style="color: inherit; text-decoration: none;">Access</a>
+    <a href="https://hughcorduroy.bandcamp.com/" target="_blank" rel="noopener" style="color: inherit; text-decoration: none;">Music</a>
+  </span>
+</footer>
+
+<script src="theme.js"></script>
+<script src="bento.js" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const cartToggle = document.getElementById('cartToggle');
+  const cartCount = document.getElementById('cartCount');
+
+  if(!cartToggle || !cartCount) return;
+
+  function updateCartCount() {
+    const cart = JSON.parse(localStorage.getItem('safeCart')) || [];
+    cartCount.textContent = cart.length;
+  }
+
+  cartToggle.addEventListener('click', function() {
+    window.location.href = 'shop.html?openCart=true';
+  });
+
+  window.addEventListener('cartUpdated', updateCartCount);
+
+  updateCartCount();
+  setInterval(updateCartCount, 1000);
+});
+</script>
+</body>
+</html>

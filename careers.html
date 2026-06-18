@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Careers — SAFE</title>
+<meta name="description" content="Join us. We're building a team to change how young people access support, community, and tools for healing.">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+.job-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px;
+  margin-top: 48px;
+}
+
+.job-card {
+  padding: 32px;
+  border: 1px solid var(--border, #e0e0e0);
+  border-radius: 2px;
+  transition: all 0.2s;
+}
+
+.job-card:hover {
+  border-color: var(--black);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.job-title {
+  font-family: var(--mono);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--black);
+  font-weight: 500;
+  margin: 0 0 8px 0;
+}
+
+.job-heading {
+  font-size: 20px;
+  font-weight: 400;
+  margin: 0 0 16px 0;
+  color: var(--black);
+}
+
+.job-desc {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--black);
+  margin: 0 0 20px 0;
+}
+
+.job-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  font-size: 13px;
+  color: var(--mid);
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border, #e0e0e0);
+}
+
+.job-meta-item {
+  display: flex;
+  justify-content: space-between;
+}
+
+.job-meta-label {
+  font-family: var(--mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--mid);
+}
+
+.job-meta-value {
+  font-weight: 500;
+  color: var(--black);
+}
+
+.job-type {
+  display: inline-block;
+  font-family: var(--mono);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 4px 8px;
+  background: var(--bg);
+  border: 1px solid var(--mid);
+  border-radius: 2px;
+  color: var(--mid);
+  margin-top: 16px;
+}
+
+.apply-btn {
+  display: inline-block;
+  margin-top: 24px;
+  padding: 12px 24px;
+  background: var(--black);
+  color: var(--white);
+  border: none;
+  border-radius: 2px;
+  font-family: var(--mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.15s;
+}
+
+.apply-btn:hover {
+  background: var(--mid);
+}
+
+.about-roles {
+  max-width: 640px;
+  margin: 48px 0;
+  padding: 32px;
+  background: var(--bg);
+  border-left: 4px solid var(--black);
+}
+
+.about-roles p {
+  font-size: 14px;
+  line-height: 1.8;
+  color: var(--black);
+  margin: 0 0 16px 0;
+}
+
+.about-roles p:last-child {
+  margin-bottom: 0;
+}
+
+@media (prefers-color-scheme: dark) {
+  .job-card {
+    border-color: var(--mid);
+    background: #0a0a0a;
+  }
+
+  .job-card:hover {
+    border-color: var(--white);
+  }
+
+  .about-roles {
+    background: #1a1a1a;
+    border-left-color: var(--white);
+  }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode">
+    <svg class="theme-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="18" height="18">
+      <circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+    </svg>
+  </button>
+
+  <button class="nav-toggle" aria-label="Open menu" aria-haspopup="dialog" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" width="20" height="20"><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2.5"/><path d="M 18 8 L 20 6 L 22 8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+
+  <button class="cart-toggle" id="cartToggle" aria-label="Shopping cart">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="18" height="18">
+      <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M 1 1 h 4 l 2.68 13.39a2 2 0 0 0 2 1.61h 9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+    </svg>
+    <span class="cart-count" id="cartCount">0</span>
+  </button>
+</nav>
+
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <p class="page-hero-eyebrow">Careers — Building the team</p>
+    <h1 class="page-hero-title">We're<br>hiring<br><em>because</em><br><em>we can't</em><br><em>do this</em><br><em>alone.</em></h1>
+    <p class="page-hero-desc">
+      Right now, it's one person. In twelve months, we need ten. We're building a team to create infrastructure that young people actually want to use—from the shelter to the studio, from the crisis to recovery. If you believe prevention is cheaper than aftermath, let's build it together.
+    </p>
+  </div>
+</section>
+
+<section style="padding: 60px 0;">
+  <div class="s-inner">
+    <div style="max-width: 640px; margin-bottom: 60px;">
+      <p style="font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--mid); margin: 0 0 24px 0;">Who we are</p>
+      <h2 style="font-size: 28px; font-weight: 400; margin: 0 0 24px 0; color: var(--black);">We believe prevention is cheaper than aftermath.</h2>
+
+      <p style="font-size: 14px; line-height: 1.8; color: var(--black); margin: 0 0 16px 0;">
+        SAFE is building infrastructure for young people. Not for the ones who fit into existing systems. For the ones sleeping rough. For the ones in crisis. For the ones everyone else has given up on.
+      </p>
+
+      <p style="font-size: 14px; line-height: 1.8; color: var(--black); margin: 0 0 16px 0;">
+        We do this three ways: a platform where young people can access resources and community. A portable studio that brings music production, meditation, and art to shelters and community centres. And partnerships with the people already doing this work—shelter staff, community leaders, people with lived experience.
+      </p>
+
+      <p style="font-size: 14px; line-height: 1.8; color: var(--black); margin: 0;">
+        Every sale in our store funds the build. Every person who joins us is choosing to work on something that stops people from falling through the cracks. That's the team we're building.
+      </p>
+    </div>
+
+    <div class="about-roles">
+      <p><strong>About these roles:</strong> We're UK-based but open to remote globally. We move fast, we're mission-driven, and we don't waste time on performative stuff. You'll own what you build. You'll talk to young people, understand what they need, and iterate. Full-time positions with competitive pay, flexible hours, and the kind of equity that means something when we scale.</p>
+    </div>
+
+    <div class="job-grid">
+
+      <!-- FRONTEND DEVELOPER -->
+      <div class="job-card">
+        <p class="job-title">Engineering</p>
+        <h3 class="job-heading">Frontend Developer</h3>
+        <p class="job-desc">Build the interfaces young people interact with. You'll own the shop, the hub, the learning platform—the places where people actually connect with SAFE. You'll work directly with users, iterate fast, and make sure every pixel serves the mission.</p>
+        <div class="job-meta">
+          <div class="job-meta-item">
+            <span class="job-meta-label">Location</span>
+            <span class="job-meta-value">Remote</span>
+          </div>
+          <div class="job-meta-item">
+            <span class="job-meta-label">Type</span>
+            <span class="job-meta-value">Full-time</span>
+          </div>
+        </div>
+        <div class="job-type">HTML · CSS · JavaScript · React</div>
+        <a href="apply-frontend-developer.html" class="apply-btn">Apply Now</a>
+      </div>
+
+      <!-- BACKEND DEVELOPER -->
+      <div class="job-card">
+        <p class="job-title">Engineering</p>
+        <h3 class="job-heading">Backend Developer</h3>
+        <p class="job-desc">Build the systems that don't fail when young people need them most. You'll design infrastructure for payment processing, user data, content management—the invisible backbone that keeps everything running. Reliability isn't optional.</p>
+        <div class="job-meta">
+          <div class="job-meta-item">
+            <span class="job-meta-label">Location</span>
+            <span class="job-meta-value">Remote</span>
+          </div>
+          <div class="job-meta-item">
+            <span class="job-meta-label">Type</span>
+            <span class="job-meta-value">Full-time</span>
+          </div>
+        </div>
+        <div class="job-type">Node.js · Python · PostgreSQL · APIs</div>
+        <a href="apply-backend-developer.html" class="apply-btn">Apply Now</a>
+      </div>
+
+      <!-- PRODUCT & DESIGN LEAD -->
+      <div class="job-card">
+        <p class="job-title">Design & Product</p>
+        <h3 class="job-heading">Product & Design Lead</h3>
+        <p class="job-desc">You'll own how SAFE looks and feels across every touchpoint. But it's not just aesthetics—it's about removing friction so young people actually use these tools. You'll talk to users, sketch ideas, hand off to engineers, and iterate. You'll shape the future of the platform.</p>
+        <div class="job-meta">
+          <div class="job-meta-item">
+            <span class="job-meta-label">Location</span>
+            <span class="job-meta-value">UK (hybrid)</span>
+          </div>
+          <div class="job-meta-item">
+            <span class="job-meta-label">Type</span>
+            <span class="job-meta-value">Full-time</span>
+          </div>
+        </div>
+        <div class="job-type">UI/UX · Figma · User Research · Product Strategy</div>
+        <a href="apply-product-design-lead.html" class="apply-btn">Apply Now</a>
+      </div>
+
+      <!-- PRODUCT MANAGER -->
+      <div class="job-card">
+        <p class="job-title">Product & Strategy</p>
+        <h3 class="job-heading">Product Manager</h3>
+        <p class="job-desc">You'll define what gets built and why. You'll listen to young people in shelters, community partners, and our team. You'll set the roadmap, prioritise ruthlessly, and make sure every feature serves prevention instead of crisis. You'll work hand-in-hand with engineering and design.</p>
+        <div class="job-meta">
+          <div class="job-meta-item">
+            <span class="job-meta-label">Location</span>
+            <span class="job-meta-value">UK (hybrid)</span>
+          </div>
+          <div class="job-meta-item">
+            <span class="job-meta-label">Type</span>
+            <span class="job-meta-value">Full-time</span>
+          </div>
+        </div>
+        <div class="job-type">Strategy · User Research · Roadmap Planning · Analytics</div>
+        <a href="apply-product-manager.html" class="apply-btn">Apply Now</a>
+      </div>
+
+      <!-- CONTENT MANAGER -->
+      <div class="job-card">
+        <p class="job-title">Content & Communications</p>
+        <h3 class="job-heading">Content Manager</h3>
+        <p class="job-desc">You'll own the stories we tell and how we tell them. News articles, resource guides, newsletters, social media—everything that keeps our community informed and connected. You'll work with our outreach team to understand what matters to young people and turn that into content that changes minds.</p>
+        <div class="job-meta">
+          <div class="job-meta-item">
+            <span class="job-meta-label">Location</span>
+            <span class="job-meta-value">UK (hybrid)</span>
+          </div>
+          <div class="job-meta-item">
+            <span class="job-meta-label">Type</span>
+            <span class="job-meta-value">Full-time</span>
+          </div>
+        </div>
+        <div class="job-type">Writing · Editing · Content Strategy · Social Media</div>
+        <a href="apply-content-manager.html" class="apply-btn">Apply Now</a>
+      </div>
+
+      <!-- COMMUNITY MANAGER -->
+      <div class="job-card">
+        <p class="job-title">Community & Engagement</p>
+        <h3 class="job-heading">Community Manager</h3>
+        <p class="job-desc">You'll be the connective tissue. You'll engage with people on our platform, moderate forums or chat channels, respond to enquiries, and build relationships. You'll understand what young people need to feel safe and supported online. You'll escalate issues to the right team. You'll make community feel like home.</p>
+        <div class="job-meta">
+          <div class="job-meta-item">
+            <span class="job-meta-label">Location</span>
+            <span class="job-meta-value">Remote</span>
+          </div>
+          <div class="job-meta-item">
+            <span class="job-meta-label">Type</span>
+            <span class="job-meta-value">Full-time</span>
+          </div>
+        </div>
+        <div class="job-type">Community Moderation · User Support · Engagement · Tone of Voice</div>
+        <a href="apply-community-manager.html" class="apply-btn">Apply Now</a>
+      </div>
+
+      <!-- COMMUNITY PARTNERSHIPS LEAD -->
+      <div class="job-card">
+        <p class="job-title">Outreach & Partnerships</p>
+        <h3 class="job-heading">Community Partnerships Lead</h3>
+        <p class="job-desc">You'll go into shelters, community centres, youth organisations. You'll build relationships with people doing this work. You'll understand what they need, pitch SAFE's portable studio, meditation sessions, and art programmes. You'll turn partnerships into real change on the ground. You'll be the bridge between online and IRL.</p>
+        <div class="job-meta">
+          <div class="job-meta-item">
+            <span class="job-meta-label">Location</span>
+            <span class="job-meta-value">UK (field-based)</span>
+          </div>
+          <div class="job-meta-item">
+            <span class="job-meta-label">Type</span>
+            <span class="job-meta-value">Full-time</span>
+          </div>
+        </div>
+        <div class="job-type">Partnership Development · Stakeholder Management · Community Work · Fundraising</div>
+        <a href="apply-partnerships-lead.html" class="apply-btn">Apply Now</a>
+      </div>
+
+      <!-- EVENTS & PROGRAMMES COORDINATOR -->
+      <div class="job-card">
+        <p class="job-title">Programmes & Experiences</p>
+        <h3 class="job-heading">Events & Programmes Coordinator</h3>
+        <p class="job-desc">You'll run the portable studio. You'll coordinate meditation sessions, art workshops, music production sessions. You'll work with community partners to understand what young people want, then you'll deliver it. You'll manage logistics, build equipment lists, train facilitators. You'll create moments where healing happens.</p>
+        <div class="job-meta">
+          <div class="job-meta-item">
+            <span class="job-meta-label">Location</span>
+            <span class="job-meta-value">UK (field-based)</span>
+          </div>
+          <div class="job-meta-item">
+            <span class="job-meta-label">Type</span>
+            <span class="job-meta-value">Full-time</span>
+          </div>
+        </div>
+        <div class="job-type">Event Planning · Logistics · Facilitation · Project Management</div>
+        <a href="apply-events-programmes.html" class="apply-btn">Apply Now</a>
+      </div>
+
+      <!-- COMMUNICATIONS & GROWTH -->
+      <div class="job-card">
+        <p class="job-title">Growth & Strategy</p>
+        <h3 class="job-heading">Communications & Growth Lead</h3>
+        <p class="job-desc">You'll help more young people find SAFE. You'll develop our communications strategy, manage social channels, coordinate campaigns, and measure impact. You'll understand our audience deeply and figure out how to reach them where they are. You'll tell our story in ways that make people believe change is possible.</p>
+        <div class="job-meta">
+          <div class="job-meta-item">
+            <span class="job-meta-label">Location</span>
+            <span class="job-meta-value">UK (hybrid)</span>
+          </div>
+          <div class="job-meta-item">
+            <span class="job-meta-label">Type</span>
+            <span class="job-meta-value">Full-time</span>
+          </div>
+        </div>
+        <div class="job-type">Communications Strategy · Social Media · Campaigns · Analytics</div>
+        <a href="apply-communications-growth.html" class="apply-btn">Apply Now</a>
+      </div>
+
+      <!-- OPERATIONS MANAGER -->
+      <div class="job-card">
+        <p class="job-title">Operations</p>
+        <h3 class="job-heading">Operations Manager</h3>
+        <p class="job-desc">You'll be the person who keeps the trains running. Finance, admin, HR stuff, vendor management, logistics for the studio equipment. You'll build systems and processes that let the rest of the team focus on the mission. You'll anticipate problems before they happen. You'll make chaos into order.</p>
+        <div class="job-meta">
+          <div class="job-meta-item">
+            <span class="job-meta-label">Location</span>
+            <span class="job-meta-value">UK (hybrid)</span>
+          </div>
+          <div class="job-meta-item">
+            <span class="job-meta-label">Type</span>
+            <span class="job-meta-value">Full-time</span>
+          </div>
+        </div>
+        <div class="job-type">Finance · Admin · HR · Process Design · Project Management</div>
+        <a href="apply-operations-manager.html" class="apply-btn">Apply Now</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CREATE YOUR OWN JOB -->
+<section style="padding: 80px 0; background: var(--bg-alt); border-top: 1px solid var(--border, #e0e0e0); border-bottom: 1px solid var(--border, #e0e0e0);">
+  <div class="s-inner">
+    <div style="max-width: 640px; margin-bottom: 60px;">
+      <p style="font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--mid); margin: 0 0 24px 0;">Your role isn't listed?</p>
+      <h2 style="font-size: 28px; font-weight: 400; margin: 0 0 24px 0; color: var(--black);">Build it.</h2>
+
+      <p style="font-size: 14px; line-height: 1.8; color: var(--black); margin: 0;">
+        If what you want to bring to SAFE isn't captured in our 10 roles, tell us. We're not looking for perfect fits—we're looking for people who see something we don't. Show us your unique contribution. Show us how you'd approach prevention differently. Show us what you'd build.
+      </p>
+    </div>
+
+    <div style="max-width: 800px; margin: 0 auto; padding: 40px; background: var(--white); border: 1px solid var(--border, #e0e0e0); border-radius: 2px;">
+
+      <div class="success-message" id="customJobSuccess" style="display: none; padding: 24px; background: #e8f5e9; border: 1px solid #4caf50; border-radius: 2px; color: #2e7d32; margin-bottom: 24px; font-size: 14px; line-height: 1.6;">
+        <strong>Thank you for sharing your vision.</strong> We've received your submission. We'll review it and reach out if we see alignment. Even if a formal role doesn't emerge, we pay attention to people who think differently.
+      </div>
+
+      <div class="error-message" id="customJobError" style="display: none; padding: 24px; background: #ffebee; border: 1px solid #f44336; border-radius: 2px; color: #c62828; margin-bottom: 24px; font-size: 14px;">
+        <strong>Something went wrong.</strong> Please fill in all required fields and try again.
+      </div>
+
+      <form id="customJobForm" style="display: flex; flex-direction: column; gap: 32px;">
+
+        <!-- NAME & EMAIL ROW -->
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px;">
+          <div>
+            <label style="display: block; font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--mid); margin-bottom: 12px;">Your name <span style="color: #d32f2f;">*</span></label>
+            <input type="text" name="name" style="width: 100%; padding: 12px 16px; border: 1px solid var(--border, #e0e0e0); border-radius: 2px; font-family: var(--sans); font-size: 14px; color: var(--black); background: var(--white); box-sizing: border-box; transition: border 0.2s;" placeholder="First and last name" required>
+          </div>
+
+          <div>
+            <label style="display: block; font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--mid); margin-bottom: 12px;">Email address <span style="color: #d32f2f;">*</span></label>
+            <input type="email" name="email" style="width: 100%; padding: 12px 16px; border: 1px solid var(--border, #e0e0e0); border-radius: 2px; font-family: var(--sans); font-size: 14px; color: var(--black); background: var(--white); box-sizing: border-box; transition: border 0.2s;" placeholder="your@email.com" required>
+          </div>
+        </div>
+
+        <!-- UNIQUE TALENT -->
+        <div>
+          <label style="display: block; font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--mid); margin-bottom: 12px;">What's your unique talent or superpower? <span style="color: #d32f2f;">*</span></label>
+          <textarea name="talent" style="width: 100%; padding: 12px 16px; border: 1px solid var(--border, #e0e0e0); border-radius: 2px; font-family: var(--sans); font-size: 14px; color: var(--black); background: var(--white); box-sizing: border-box; resize: vertical; min-height: 120px;" placeholder="What do you do that nobody else does? What comes naturally to you that others struggle with?" required></textarea>
+          <p style="font-size: 13px; color: var(--mid); margin-top: 8px; line-height: 1.6;">Be specific. Don't say 'leadership'—say 'I build trust in chaotic environments' or 'I see patterns in systems nobody else notices.'</p>
+        </div>
+
+        <!-- ROLE VISION -->
+        <div>
+          <label style="display: block; font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--mid); margin-bottom: 12px;">What role or responsibility would you create for yourself? <span style="color: #d32f2f;">*</span></label>
+          <textarea name="role" style="width: 100%; padding: 12px 16px; border: 1px solid var(--border, #e0e0e0); border-radius: 2px; font-family: var(--sans); font-size: 14px; color: var(--black); background: var(--white); box-sizing: border-box; resize: vertical; min-height: 120px;" placeholder="What would you own? What would your day look like? What problem would you solve?" required></textarea>
+          <p style="font-size: 13px; color: var(--mid); margin-top: 8px; line-height: 1.6;">This isn't about fitting an existing box. What's the job that only you can see needs doing?</p>
+        </div>
+
+        <!-- CONNECTION TO PREVENTION -->
+        <div>
+          <label style="display: block; font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--mid); margin-bottom: 12px;">How does this connect to prevention? <span style="color: #d32f2f;">*</span></label>
+          <textarea name="prevention" style="width: 100%; padding: 12px 16px; border: 1px solid var(--border, #e0e0e0); border-radius: 2px; font-family: var(--sans); font-size: 14px; color: var(--black); background: var(--white); box-sizing: border-box; resize: vertical; min-height: 120px;" placeholder="Why does this matter to stopping people from falling through the cracks? How does your role prevent crisis instead of responding to it?" required></textarea>
+          <p style="font-size: 13px; color: var(--mid); margin-top: 8px; line-height: 1.6;">What's the philosophy behind what you want to build?</p>
+        </div>
+
+        <!-- RELATIONSHIP WITH COMMUNITIES -->
+        <div>
+          <label style="display: block; font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--mid); margin-bottom: 12px;">What's your relationship with the communities we serve? <span style="color: #d32f2f;">*</span></label>
+          <textarea name="community" style="width: 100%; padding: 12px 16px; border: 1px solid var(--border, #e0e0e0); border-radius: 2px; font-family: var(--sans); font-size: 14px; color: var(--black); background: var(--white); box-sizing: border-box; resize: vertical; min-height: 120px;" placeholder="Have you lived this? Worked with young people? Been part of communities in crisis? What's your connection?" required></textarea>
+          <p style="font-size: 13px; color: var(--mid); margin-top: 8px; line-height: 1.6;">This matters. We want people who've earned their perspective.</p>
+        </div>
+
+        <!-- WHAT WINNING LOOKS LIKE -->
+        <div>
+          <label style="display: block; font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--mid); margin-bottom: 12px;">What would winning look like? <span style="color: #d32f2f;">*</span></label>
+          <textarea name="winning" style="width: 100%; padding: 12px 16px; border: 1px solid var(--border, #e0e0e0); border-radius: 2px; font-family: var(--sans); font-size: 14px; color: var(--black); background: var(--white); box-sizing: border-box; resize: vertical; min-height: 120px;" placeholder="How would you measure success? What would change if you did your job well?" required></textarea>
+          <p style="font-size: 13px; color: var(--mid); margin-top: 8px; line-height: 1.6;">Be concrete. Not 'help young people'—'10 young people per month engage in healing work they wouldn't have access to otherwise.'</p>
+        </div>
+
+        <!-- DIFFERENT APPROACH -->
+        <div>
+          <label style="display: block; font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--mid); margin-bottom: 12px;">How would you approach this differently than traditional methods? <span style="color: #d32f2f;">*</span></label>
+          <textarea name="approach" style="width: 100%; padding: 12px 16px; border: 1px solid var(--border, #e0e0e0); border-radius: 2px; font-family: var(--sans); font-size: 14px; color: var(--black); background: var(--white); box-sizing: border-box; resize: vertical; min-height: 120px;" placeholder="What's experimental about your thinking? What would you do that the mainstream doesn't?" required></textarea>
+          <p style="font-size: 13px; color: var(--mid); margin-top: 8px; line-height: 1.6;">What's unconventional about your approach?</p>
+        </div>
+
+        <!-- WORK SAMPLES (OPTIONAL) -->
+        <div>
+          <label style="display: block; font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--mid); margin-bottom: 12px;">Show us your work (optional)</label>
+          <input type="url" name="portfolio" style="width: 100%; padding: 12px 16px; border: 1px solid var(--border, #e0e0e0); border-radius: 2px; font-family: var(--sans); font-size: 14px; color: var(--black); background: var(--white); box-sizing: border-box; transition: border 0.2s;" placeholder="https://portfolio.com or link to projects, writing, or past work">
+          <p style="font-size: 13px; color: var(--mid); margin-top: 8px; line-height: 1.6;">Portfolio, GitHub, writing samples, projects you're proud of. Anything that proves how you think.</p>
+        </div>
+
+        <!-- BELIEF STATEMENT (OPTIONAL) -->
+        <div>
+          <label style="display: block; font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--mid); margin-bottom: 12px;">What's one belief you hold that most people disagree with? (optional)</label>
+          <textarea name="belief" style="width: 100%; padding: 12px 16px; border: 1px solid var(--border, #e0e0e0); border-radius: 2px; font-family: var(--sans); font-size: 14px; color: var(--black); background: var(--white); box-sizing: border-box; resize: vertical; min-height: 100px;" placeholder="What's your unpopular opinion? What do you think the world gets wrong?"></textarea>
+        </div>
+
+        <!-- COLLABORATION STYLE (OPTIONAL) -->
+        <div>
+          <label style="display: block; font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--mid); margin-bottom: 12px;">Who would you want to work alongside at SAFE? (optional)</label>
+          <textarea name="collaboration" style="width: 100%; padding: 12px 16px; border: 1px solid var(--border, #e0e0e0); border-radius: 2px; font-family: var(--sans); font-size: 14px; color: var(--black); background: var(--white); box-sizing: border-box; resize: vertical; min-height: 100px;" placeholder="What's your collaboration style? Who brings out your best work? What team dynamics make you thrive?"></textarea>
+        </div>
+
+        <!-- RESOURCES NEEDED (OPTIONAL) -->
+        <div>
+          <label style="display: block; font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--mid); margin-bottom: 12px;">What resources or support would you need to thrive? (optional)</label>
+          <textarea name="resources" style="width: 100%; padding: 12px 16px; border: 1px solid var(--border, #e0e0e0); border-radius: 2px; font-family: var(--sans); font-size: 14px; color: var(--black); background: var(--white); box-sizing: border-box; resize: vertical; min-height: 100px;" placeholder="Budget? Team? Training? Tech? What would let you do your best work?"></textarea>
+        </div>
+
+        <!-- SUBMIT BUTTON -->
+        <button type="submit" style="padding: 16px 40px; background: var(--black); color: var(--white); border: none; border-radius: 2px; font-family: var(--mono); font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; cursor: pointer; font-weight: 500; transition: background 0.15s; align-self: flex-start;">
+          Send Your Vision
+        </button>
+
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- WHY SAFE -->
+<section style="padding: 60px 0; background: var(--bg);">
+  <div class="s-inner">
+    <div style="max-width: 640px;">
+      <p style="font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--mid); margin: 0 0 24px 0;">Why join us</p>
+      <h2 style="font-size: 28px; font-weight: 400; margin: 0 0 24px 0; color: var(--black);">You'll work on something that matters.</h2>
+
+      <p style="font-size: 14px; line-height: 1.8; color: var(--black); margin: 0 0 16px 0;">
+        Every role here exists to serve one thing: young people who've been told they don't matter. You'll build product for people experiencing homelessness. You'll partner with people who've survived crisis. You'll create content that shifts how systems work. You'll do work that prevents tragedy instead of responding to it.
+      </p>
+
+      <p style="font-size: 14px; line-height: 1.8; color: var(--black); margin: 0 0 16px 0;">
+        <strong>We move fast.</strong> We're not building bureaucracy. We iterate based on feedback from young people, not strategy documents. We ship, we measure, we change.
+      </p>
+
+      <p style="font-size: 14px; line-height: 1.8; color: var(--black); margin: 0;">
+        <strong>We're transparent about what we don't know.</strong> We're a new organisation. We'll figure things out together. We need people who are comfortable with ambiguity and excited by the possibility of shaping how this grows.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- APPLICATION INFO -->
+<section style="padding: 60px 0; border-top: 1px solid var(--border, #e0e0e0);">
+  <div class="s-inner">
+    <div style="max-width: 640px;">
+      <p style="font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--mid); margin: 0 0 24px 0;">How to apply</p>
+
+      <p style="font-size: 14px; line-height: 1.8; color: var(--black); margin: 0 0 16px 0;">
+        To apply, send the following to <strong>careers@safespot.life</strong>:
+      </p>
+
+      <ul style="font-size: 14px; line-height: 1.8; color: var(--black); margin: 0 0 16px 0; padding-left: 20px;">
+        <li style="margin-bottom: 12px;"><strong>Your CV or portfolio link</strong> – Show us your work. What have you built? What have you written? What have you designed or shipped?</li>
+        <li style="margin-bottom: 12px;"><strong>A cover letter explaining why you want to join SAFE</strong> – This is required. Tell us: What about SAFE's mission resonates with you? Why do you want to do this work? What would you bring to this team?</li>
+        <li>Anything else you think we should know – Previous projects, articles, design work, community involvement, whatever shows us who you are.</li>
+      </ul>
+
+      <p style="font-size: 14px; line-height: 1.8; color: var(--black); margin: 0 0 16px 0;">
+        We're not looking for perfect experience. We're looking for people who believe in this and know how to show their work. Your cover letter matters as much as your portfolio—we need to understand why you're here, not just what you've done.
+      </p>
+
+      <p style="font-size: 14px; line-height: 1.8; color: var(--black); margin: 0 0 16px 0;">
+        We'll review applications as they come in. If you're a fit, we'll talk. We'll ask about your experience, but we'll also ask about who you are and what you believe.
+      </p>
+
+      <p style="font-size: 14px; line-height: 1.8; color: var(--black); margin: 0;">
+        We're committed to building a team that reflects the diversity of young people we serve. We actively encourage applications from people of colour, disabled people, LGBTQ+ people, and people with lived experience of the systems we're trying to change.
+      </p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span class="footer-left">S·A·F·E — Steps Approaching Future Earth</span>
+  <span class="footer-right" style="display: flex; gap: 24px; font-size: 11px;">
+    <a href="help.html" style="color: inherit; text-decoration: none;">Help</a>
+    <a href="careers.html" style="color: inherit; text-decoration: none;">Careers</a>
+    <a href="privacy.html" style="color: inherit; text-decoration: none;">Privacy</a>
+    <a href="terms.html" style="color: inherit; text-decoration: none;">Terms</a>
+    <a href="privacy-choices.html" style="color: inherit; text-decoration: none;">Choices</a>
+    <a href="accessibility.html" style="color: inherit; text-decoration: none;">Access</a>
+    <a href="https://hughcorduroy.bandcamp.com/" target="_blank" rel="noopener" style="color: inherit; text-decoration: none;">Music</a>
+  </span>
+</footer>
+
+<script src="theme.js"></script>
+<script src="session.js"></script>
+<script src="language.js"></script>
+<script src="bento.js"></script>
+
+<script>
+document.getElementById('customJobForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+
+  const formData = new FormData(this);
+  const data = {
+    name: formData.get('name'),
+    email: formData.get('email'),
+    talent: formData.get('talent'),
+    role: formData.get('role'),
+    prevention: formData.get('prevention'),
+    community: formData.get('community'),
+    winning: formData.get('winning'),
+    approach: formData.get('approach'),
+    portfolio: formData.get('portfolio'),
+    belief: formData.get('belief'),
+    collaboration: formData.get('collaboration'),
+    resources: formData.get('resources'),
+    submittedAt: new Date().toISOString()
+  };
+
+  // Validate required fields
+  if (!data.name || !data.email || !data.talent || !data.role || !data.prevention || !data.community || !data.winning || !data.approach) {
+    document.getElementById('customJobError').style.display = 'block';
+    setTimeout(() => {
+      document.getElementById('customJobError').style.display = 'none';
+    }, 5000);
+    return;
+  }
+
+  // Validate email format
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRegex.test(data.email)) {
+    document.getElementById('customJobError').style.display = 'block';
+    setTimeout(() => {
+      document.getElementById('customJobError').style.display = 'none';
+    }, 5000);
+    return;
+  }
+
+  // Validate portfolio URL if provided
+  if (data.portfolio) {
+    try {
+      new URL(data.portfolio);
+    } catch {
+      document.getElementById('customJobError').style.display = 'block';
+      setTimeout(() => {
+        document.getElementById('customJobError').style.display = 'none';
+      }, 5000);
+      return;
+    }
+  }
+
+  // Log to console for testing (in production, this would POST to a backend)
+  console.log('Custom job submission:', data);
+
+  // Show success message
+  document.getElementById('customJobSuccess').style.display = 'block';
+
+  // Reset form
+  this.reset();
+
+  // Hide success message after 8 seconds
+  setTimeout(() => {
+    document.getElementById('customJobSuccess').style.display = 'none';
+  }, 8000);
+});
+</script>
+
+</body>
+</html>

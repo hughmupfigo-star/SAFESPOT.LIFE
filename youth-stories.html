@@ -1,0 +1,874 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Submit Your Story — SAFE</title>
+<meta name="description" content="Share your local story. What's happening in your community that mainstream media is missing? Heard directly from youth.">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+.form-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 60px 20px;
+}
+
+.form-section {
+  margin-bottom: 40px;
+}
+
+.form-label {
+  display: block;
+  font-family: var(--mono);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--mid);
+  margin-bottom: 12px;
+  font-weight: 500;
+}
+
+.form-input,
+.form-textarea,
+.form-select {
+  width: 100%;
+  padding: 14px 16px;
+  border: 2px solid var(--black);
+  border-radius: 4px;
+  font-family: var(--sans);
+  font-size: 14px;
+  color: var(--black);
+  background: var(--white);
+  box-sizing: border-box;
+  transition: all 0.2s;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.form-input:focus,
+.form-textarea:focus,
+.form-select:focus {
+  outline: none;
+  border-color: var(--black);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  transform: translateY(-1px);
+}
+
+/* Field-level error state */
+.form-input.field-error,
+.form-textarea.field-error,
+.form-select.field-error {
+  border-color: #d32f2f;
+  box-shadow: 0 0 0 3px rgba(211,47,47,0.12);
+}
+
+.form-textarea {
+  resize: vertical;
+  min-height: 180px;
+}
+
+.form-hint {
+  font-size: 13px;
+  color: var(--mid);
+  margin-top: 8px;
+  line-height: 1.6;
+}
+
+.form-required {
+  color: #d32f2f;
+  margin-left: 4px;
+}
+
+.word-counter {
+  font-size: 12px;
+  color: var(--mid);
+  text-align: right;
+  margin-top: 6px;
+  font-family: var(--mono);
+  transition: color 0.2s;
+}
+
+.word-counter.good { color: #2e7d32; }
+.word-counter.low  { color: #e65100; }
+
+.submit-btn {
+  padding: 16px 40px;
+  background: var(--black);
+  color: var(--white);
+  border: none;
+  border-radius: 2px;
+  font-family: var(--mono);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background 0.15s, opacity 0.15s;
+}
+
+.submit-btn:hover {
+  background: var(--mid);
+}
+
+.submit-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+html[data-theme="dark"] .submit-btn {
+  background: #0a0a0a;
+  color: #ffffff;
+}
+
+html[data-theme="dark"] .submit-btn:hover {
+  background: #333333;
+}
+
+.success-message {
+  display: none;
+  padding: 24px;
+  background: #e8f5e9;
+  border: 1px solid #4caf50;
+  border-radius: 2px;
+  color: #2e7d32;
+  margin-bottom: 24px;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.success-message.show {
+  display: block;
+}
+
+.error-message {
+  display: none;
+  padding: 16px 24px;
+  background: #ffebee;
+  border: 1px solid #f44336;
+  border-radius: 2px;
+  color: #c62828;
+  margin-bottom: 24px;
+  font-size: 14px;
+}
+
+.error-message.show {
+  display: block;
+}
+
+.why-section {
+  background: var(--off);
+  padding: 60px 40px;
+  margin: 60px 0;
+}
+
+.why-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.why-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 48px;
+  margin-top: 48px;
+}
+
+.why-item h3 {
+  font-size: 18px;
+  font-weight: 400;
+  margin-bottom: 12px;
+}
+
+.why-item p {
+  font-size: 14px;
+  line-height: 1.8;
+  color: var(--mid);
+}
+
+/* Teaser strip linking to story-intelligence */
+.intel-teaser {
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 24px 32px;
+  margin-bottom: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.intel-teaser-text {
+  font-size: 14px;
+  color: var(--mid);
+  line-height: 1.6;
+}
+
+.intel-teaser-text strong {
+  color: var(--black);
+  display: block;
+  font-size: 15px;
+  margin-bottom: 4px;
+}
+
+.intel-teaser-link {
+  font-family: var(--mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--black);
+  text-decoration: none;
+  border-bottom: 1px solid currentColor;
+  white-space: nowrap;
+  padding-bottom: 1px;
+}
+
+.intel-teaser-link:hover {
+  color: var(--mid);
+}
+
+/* File upload panel */
+.upload-panel {
+  border: 2px dashed var(--border);
+  border-radius: 4px;
+  padding: 24px 20px;
+  text-align: center;
+  transition: border-color 0.3s, background 0.3s;
+  cursor: pointer;
+  position: relative;
+}
+
+.upload-panel:hover,
+.upload-panel:focus-within {
+  border-color: var(--black);
+  background: var(--off);
+}
+
+.upload-panel.has-file {
+  border-style: solid;
+  border-color: #2e7d32;
+  background: #f1f8f1;
+}
+
+.upload-panel.prompted {
+  border-color: var(--black);
+  border-style: solid;
+  animation: pulse-border 1s ease-out;
+}
+
+@keyframes pulse-border {
+  0%   { box-shadow: 0 0 0 0 rgba(0,0,0,0.25); }
+  70%  { box-shadow: 0 0 0 8px rgba(0,0,0,0); }
+  100% { box-shadow: 0 0 0 0 rgba(0,0,0,0); }
+}
+
+.upload-icon {
+  font-size: 28px;
+  margin-bottom: 8px;
+  display: block;
+}
+
+.upload-label-main {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--black);
+  display: block;
+  margin-bottom: 4px;
+  cursor: pointer;
+}
+
+.upload-label-sub {
+  font-size: 12px;
+  color: var(--mid);
+}
+
+.upload-filename {
+  display: none;
+  font-size: 13px;
+  color: #2e7d32;
+  margin-top: 8px;
+  font-family: var(--mono);
+}
+
+.upload-filename.show {
+  display: block;
+}
+
+.upload-clear {
+  background: none;
+  border: none;
+  color: var(--mid);
+  font-size: 12px;
+  cursor: pointer;
+  margin-top: 4px;
+  font-family: var(--mono);
+  text-decoration: underline;
+}
+
+.upload-clear:hover {
+  color: #c62828;
+}
+
+/* Hidden actual file input */
+#inputFile {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+
+html[data-theme="dark"] .upload-panel.has-file {
+  border-color: #66bb6a;
+  background: #0d1f0e;
+}
+
+html[data-theme="dark"] .upload-filename {
+  color: #66bb6a;
+}
+
+@media (prefers-color-scheme: dark) {
+  .form-input,
+  .form-textarea,
+  .form-select {
+    background: #1a1a1a;
+    border-color: #555;
+    color: var(--white);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+  }
+
+  .form-input:focus,
+  .form-textarea:focus,
+  .form-select:focus {
+    border-color: #ffffff;
+    box-shadow: 0 4px 12px rgba(255,255,255,0.15);
+    transform: translateY(-1px);
+  }
+}
+
+@media (max-width: 768px) {
+  .form-container {
+    padding: 40px 20px;
+  }
+
+  .why-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .intel-teaser {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode">
+    <svg class="theme-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="18" height="18">
+      <circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+    </svg>
+  </button>
+
+  <button class="nav-toggle" aria-label="Open menu" aria-haspopup="dialog" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" width="20" height="20"><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2.5"/><path d="M 18 8 L 20 6 L 22 8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+
+  <a class="nav-logo" href="index.html">S·A·F·E</a>
+
+  <div class="nav-right">
+    <a class="nav-link" href="index.html">Home</a>
+    <a class="nav-link" href="mission.html">Mission</a>
+    <a class="nav-link" href="hub.html">The Hub</a>
+    <a class="nav-link" href="news.html">News</a>
+    <a class="nav-link" href="story-intelligence.html">Intelligence</a>
+    <a class="nav-link active" href="youth-stories.html">Youth Stories</a>
+    <a class="nav-link" href="shop.html">Shop</a>
+    <a class="nav-link" href="careers.html">Careers</a>
+    <a class="nav-link" href="library.html">Library</a>
+    <a class="nav-link" href="course.html">Courses</a>
+  </div>
+
+  <button class="cart-toggle" id="cartToggle" aria-label="Shopping cart">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="18" height="18">
+      <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M 1 1 h 4 l 2.68 13.39a2 2 0 0 0 2 1.61h 9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+    </svg>
+    <span class="cart-count" id="cartCount">0</span>
+  </button>
+</nav>
+
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <p class="page-hero-eyebrow">Youth Stories — What Matters</p>
+    <h1 class="page-hero-title">
+      What's happening<br>
+      in your world that<br>
+      <em>no one's talking about?</em>
+    </h1>
+    <p class="page-hero-desc">
+      Mainstream media misses the real stories. The ones happening on your streets. In your schools. In your communities. We want to hear directly from you about what's actually going on—the good, the bad, the complicated. Your story matters.
+    </p>
+  </div>
+</section>
+
+<!-- WHY WE'RE DOING THIS -->
+<section class="why-section">
+  <div class="why-inner">
+    <div>
+      <p class="s-label">Why we're listening</p>
+      <h2 style="font-size: 32px; font-weight: 300; line-height: 1.3; margin: 24px 0;">You know what's really happening. The press often doesn't.</h2>
+    </div>
+
+    <div class="why-grid">
+      <div class="why-item">
+        <h3>Your perspective matters</h3>
+        <p>You're living it. You see the patterns. You understand the stakes. Media outlets chase clicks—they miss the actual reality of what young people are dealing with every day.</p>
+      </div>
+      <div class="why-item">
+        <h3>It doesn't have to be positive</h3>
+        <p>We're not looking for feel-good stories. We want the truth. The struggles. The systemic failures. The gaps in what's being covered. The darkness alongside the light.</p>
+      </div>
+      <div class="why-item">
+        <h3>Connection is the antidote</h3>
+        <p>When you share your story, other young people feel less alone. They realize they're not crazy for seeing what's broken. Community gets built when we tell the truth about what we're facing.</p>
+      </div>
+      <div class="why-item">
+        <h3>This is a record</h3>
+        <p>Years from now, future generations need to know what it was actually like to be young right now. Not the sanitized version. The real one. That's what you're building here.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SUBMISSION FORM -->
+<section>
+  <div class="form-container">
+    <div style="margin-bottom: 48px;">
+      <p class="s-label">Share your story</p>
+      <h2 style="font-size: 28px; font-weight: 300; line-height: 1.3; margin: 16px 0;">What's your story?</h2>
+      <p style="font-size: 14px; color: var(--mid); line-height: 1.8;">
+        Tell us what's happening in your community. What are people dealing with? What's being missed? What's actually important to young people where you are? Be honest. Be specific. Be real.
+      </p>
+    </div>
+
+    <!-- Where stories go — cross-link to story-intelligence -->
+    <div class="intel-teaser">
+      <div class="intel-teaser-text">
+        <strong>See where stories like yours end up</strong>
+        Every month we analyse submitted stories to surface real patterns. Your submission shapes the data.
+      </div>
+      <a class="intel-teaser-link" href="story-intelligence.html">View Story Intelligence &rarr;</a>
+    </div>
+
+    <div class="success-message" id="successMessage" role="alert" aria-live="polite">
+      <strong>Story submitted!</strong> Thank you for sharing. We've received your story and we're reviewing it. If it's a fit for the archive, we'll reach out within a week.
+    </div>
+
+    <div class="error-message" id="errorMessage" role="alert" aria-live="polite">
+      <!-- Error text injected by JS -->
+    </div>
+
+    <!--
+      IMPORTANT: Replace YOUR_FORM_ID below with your actual Formspree form ID.
+      Get one at https://formspree.io — create a form and paste the ID here.
+    -->
+    <form id="storyForm" novalidate>
+
+      <!-- YOUR INFO -->
+      <div class="form-section">
+        <label class="form-label" for="inputName">Your name <span class="form-required" aria-hidden="true">*</span></label>
+        <input
+          type="text"
+          id="inputName"
+          name="name"
+          class="form-input"
+          placeholder="First name (or pseudonym if you prefer)"
+          autocomplete="given-name"
+          required
+          aria-required="true"
+        >
+        <p class="form-hint" id="hintName">We can use your real name, your first name only, or a pseudonym—your choice.</p>
+      </div>
+
+      <div class="form-section">
+        <label class="form-label" for="inputEmail">Your email <span class="form-required" aria-hidden="true">*</span></label>
+        <input
+          type="email"
+          id="inputEmail"
+          name="email"
+          class="form-input"
+          placeholder="your@email.com"
+          autocomplete="email"
+          required
+          aria-required="true"
+        >
+        <p class="form-hint" id="hintEmail">We'll only contact you about your story. We won't share this or use it for anything else.</p>
+      </div>
+
+      <div class="form-section">
+        <label class="form-label" for="inputLocation">Where are you from? <span class="form-required" aria-hidden="true">*</span></label>
+        <input
+          type="text"
+          id="inputLocation"
+          name="location"
+          class="form-input"
+          placeholder="Your city/town and country"
+          autocomplete="country-name"
+          required
+          aria-required="true"
+        >
+        <p class="form-hint">Where is your story taking place? Be specific if you can.</p>
+      </div>
+
+      <div class="form-section">
+        <label class="form-label" for="inputAge">Your age <span class="form-required" aria-hidden="true">*</span></label>
+        <input
+          type="number"
+          id="inputAge"
+          name="age"
+          class="form-input"
+          placeholder="e.g. 17"
+          min="10"
+          max="30"
+          required
+          aria-required="true"
+          style="max-width: 160px;"
+        >
+        <p class="form-hint">We focus on voices aged 10–30. This helps us understand who we're hearing from.</p>
+      </div>
+
+      <!-- STORY INFO -->
+      <div class="form-section">
+        <label class="form-label" for="inputTitle">Story title <span class="form-required" aria-hidden="true">*</span></label>
+        <input
+          type="text"
+          id="inputTitle"
+          name="storyTitle"
+          class="form-input"
+          placeholder="What's your story about?"
+          required
+          aria-required="true"
+        >
+      </div>
+
+      <div class="form-section">
+        <label class="form-label" for="inputCategory">What category does this fit? <span class="form-required" aria-hidden="true">*</span></label>
+        <select id="inputCategory" name="category" class="form-select" required aria-required="true">
+          <option value="">Select a category...</option>
+          <option value="education">Education &amp; Learning</option>
+          <option value="mental-health">Mental Health &amp; Wellbeing</option>
+          <option value="environment">Environment &amp; Nature</option>
+          <option value="poverty">Poverty &amp; Economics</option>
+          <option value="community">Community &amp; Belonging</option>
+          <option value="violence">Violence &amp; Safety</option>
+          <option value="inequality">Inequality &amp; Systems</option>
+          <option value="culture">Culture &amp; Identity</option>
+          <option value="drugs">Drugs &amp; Substance Use</option>
+          <option value="family">Family &amp; Relationships</option>
+          <option value="other">Something Else</option>
+        </select>
+      </div>
+
+      <div class="form-section">
+        <label class="form-label" for="inputStory">Your story <span class="form-required" aria-hidden="true">*</span></label>
+        <textarea
+          id="inputStory"
+          name="storyContent"
+          class="form-textarea"
+          placeholder="Tell us what's happening. What do people need to know? What's being missed? Be specific. Be honest. Be real."
+          required
+          aria-required="true"
+          aria-describedby="storyWordCount storyHint"
+        ></textarea>
+        <div class="word-counter" id="storyWordCount" aria-live="polite">0 words</div>
+        <p class="form-hint" id="storyHint">300–1500 words is ideal. Write it like you're telling a friend—not like you're writing for school.</p>
+      </div>
+
+      <div class="form-section">
+        <label class="form-label" for="inputAnonymity">Is it OK to publish your story anonymously? <span class="form-required" aria-hidden="true">*</span></label>
+        <select id="inputAnonymity" name="anonymity" class="form-select" required aria-required="true">
+          <option value="">Select...</option>
+          <option value="use-name">Use my name</option>
+          <option value="first-name-only">First name only</option>
+          <option value="pseudonym">Use a pseudonym</option>
+          <option value="completely-anonymous">Completely anonymous</option>
+        </select>
+      </div>
+
+      <!-- DOCUMENT UPLOAD (optional; surfaced when story > 1500 words) -->
+      <div class="form-section" id="uploadSection">
+        <label class="form-label" for="inputFile">Attach your story as a document <span style="color:var(--mid);font-weight:400;">(optional)</span></label>
+        <div class="upload-panel" id="uploadPanel" role="button" tabindex="0" aria-label="Click or drag to attach a document">
+          <input
+            type="file"
+            id="inputFile"
+            name="storyFile"
+            accept=".doc,.docx,.pdf,.txt"
+            aria-label="Upload story document"
+          >
+          <span class="upload-icon" aria-hidden="true">📄</span>
+          <span class="upload-label-main">Click to attach a document</span>
+          <span class="upload-label-sub">.doc, .docx, .pdf, or .txt — max 10 MB</span>
+          <p class="upload-filename" id="uploadFilename"></p>
+          <button type="button" class="upload-clear" id="uploadClear" style="display:none;">Remove file</button>
+        </div>
+        <p class="form-hint" id="uploadHint">If your story is longer than 1500 words, attaching a document is the easiest way to share it in full — no need to trim it.</p>
+      </div>
+
+      <!-- SUBMISSION -->
+      <button type="submit" class="submit-btn" id="submitBtn">Submit Your Story</button>
+
+    </form>
+
+  </div>
+</section>
+
+<footer>
+  <span class="footer-left">S·A·F·E — Steps Approaching Future Earth</span>
+  <span class="footer-right" style="display: flex; gap: 24px; font-size: 11px;">
+    <a href="help.html" style="color: inherit; text-decoration: none;">Help</a>
+    <a href="careers.html" style="color: inherit; text-decoration: none;">Careers</a>
+    <a href="privacy.html" style="color: inherit; text-decoration: none;">Privacy</a>
+    <a href="terms.html" style="color: inherit; text-decoration: none;">Terms</a>
+    <a href="privacy-choices.html" style="color: inherit; text-decoration: none;">Choices</a>
+    <a href="accessibility.html" style="color: inherit; text-decoration: none;">Access</a>
+    <a href="https://hughcorduroy.bandcamp.com/" target="_blank" rel="noopener" style="color: inherit; text-decoration: none;">Music</a>
+  </span>
+</footer>
+
+<script src="theme.js"></script>
+<script src="bento.js" defer></script>
+<script>
+// ── Cart count ──────────────────────────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', function() {
+  const cartToggle = document.getElementById('cartToggle');
+  const cartCount  = document.getElementById('cartCount');
+
+  if (!cartToggle || !cartCount) return;
+
+  function updateCartCount() {
+    const cart = JSON.parse(localStorage.getItem('safeCart')) || [];
+    cartCount.textContent = cart.length;
+  }
+
+  cartToggle.addEventListener('click', function() {
+    window.location.href = 'shop.html?openCart=true';
+  });
+
+  window.addEventListener('cartUpdated', updateCartCount);
+  updateCartCount();
+  setInterval(updateCartCount, 1000);
+});
+
+// ── Word counter + upload prompt ────────────────────────────────────────────
+const storyTextarea  = document.getElementById('inputStory');
+const wordCountEl    = document.getElementById('storyWordCount');
+const uploadSection  = document.getElementById('uploadSection');
+const uploadPanel    = document.getElementById('uploadPanel');
+const IDEAL_MIN = 300;
+const IDEAL_MAX = 1500;
+
+let uploadPrompted = false;
+
+function countWords(str) {
+  return str.trim() === '' ? 0 : str.trim().split(/\s+/).length;
+}
+
+storyTextarea.addEventListener('input', function() {
+  const count = countWords(this.value);
+  wordCountEl.textContent = count + ' word' + (count !== 1 ? 's' : '');
+
+  wordCountEl.classList.remove('good', 'low');
+  if (count >= IDEAL_MIN && count <= IDEAL_MAX) {
+    wordCountEl.classList.add('good');
+  } else if (count > 0 && count < IDEAL_MIN) {
+    wordCountEl.classList.add('low');
+  }
+
+  // Pulse the upload panel once when the story exceeds IDEAL_MAX
+  if (count > IDEAL_MAX && !uploadPrompted) {
+    uploadPrompted = true;
+    uploadPanel.classList.add('prompted');
+    uploadSection.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    setTimeout(() => uploadPanel.classList.remove('prompted'), 1200);
+  }
+});
+
+// ── File input UI ───────────────────────────────────────────────────────────
+const fileInput    = document.getElementById('inputFile');
+const fileNameEl   = document.getElementById('uploadFilename');
+const clearBtn     = document.getElementById('uploadClear');
+
+fileInput.addEventListener('change', function() {
+  if (this.files && this.files[0]) {
+    const file = this.files[0];
+    // 10 MB guard
+    if (file.size > 10 * 1024 * 1024) {
+      showError('The attached file is over 10 MB. Please compress or trim it before uploading.');
+      this.value = '';
+      return;
+    }
+    fileNameEl.textContent = '✓ ' + file.name;
+    fileNameEl.classList.add('show');
+    clearBtn.style.display = 'block';
+    uploadPanel.classList.add('has-file');
+  }
+});
+
+clearBtn.addEventListener('click', function() {
+  fileInput.value = '';
+  fileNameEl.textContent = '';
+  fileNameEl.classList.remove('show');
+  clearBtn.style.display = 'none';
+  uploadPanel.classList.remove('has-file');
+});
+
+// Keyboard accessibility for the panel div
+uploadPanel.addEventListener('keydown', function(e) {
+  if (e.key === 'Enter' || e.key === ' ') {
+    e.preventDefault();
+    fileInput.click();
+  }
+});
+
+// ── Form validation helpers ─────────────────────────────────────────────────
+function showError(msg) {
+  const el = document.getElementById('errorMessage');
+  el.textContent = msg;
+  el.classList.add('show');
+  el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  setTimeout(() => el.classList.remove('show'), 6000);
+}
+
+function setFieldError(field, hasError) {
+  if (hasError) {
+    field.classList.add('field-error');
+  } else {
+    field.classList.remove('field-error');
+  }
+}
+
+// ── Form submission ─────────────────────────────────────────────────────────
+const FORMSPREE_ID = 'YOUR_FORM_ID'; // <-- Replace with your Formspree form ID
+
+document.getElementById('storyForm').addEventListener('submit', async function(e) {
+  e.preventDefault();
+
+  // Gather values
+  const fields = {
+    name:         document.getElementById('inputName'),
+    email:        document.getElementById('inputEmail'),
+    location:     document.getElementById('inputLocation'),
+    age:          document.getElementById('inputAge'),
+    storyTitle:   document.getElementById('inputTitle'),
+    category:     document.getElementById('inputCategory'),
+    storyContent: document.getElementById('inputStory'),
+    anonymity:    document.getElementById('inputAnonymity'),
+  };
+
+  // Clear previous error states
+  Object.values(fields).forEach(f => setFieldError(f, false));
+
+  // Validate required fields
+  let firstError = null;
+  for (const [key, field] of Object.entries(fields)) {
+    if (!field.value.trim()) {
+      setFieldError(field, true);
+      firstError = firstError || field;
+    }
+  }
+  if (firstError) {
+    firstError.focus();
+    showError('Please fill in all required fields before submitting.');
+    return;
+  }
+
+  // Validate email format
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRegex.test(fields.email.value.trim())) {
+    setFieldError(fields.email, true);
+    fields.email.focus();
+    showError('Please enter a valid email address.');
+    return;
+  }
+
+  // Validate age range
+  const age = parseInt(fields.age.value, 10);
+  if (isNaN(age) || age < 10 || age > 30) {
+    setFieldError(fields.age, true);
+    fields.age.focus();
+    showError('Please enter an age between 10 and 30.');
+    return;
+  }
+
+  // Disable button to prevent double-submit
+  const btn = document.getElementById('submitBtn');
+  btn.disabled = true;
+  btn.textContent = 'Submitting…';
+
+  // Build FormData so attached file is included
+  const fd = new FormData();
+  fd.append('name',         fields.name.value.trim());
+  fd.append('email',        fields.email.value.trim());
+  fd.append('location',     fields.location.value.trim());
+  fd.append('age',          fields.age.value.trim());
+  fd.append('storyTitle',   fields.storyTitle.value.trim());
+  fd.append('category',     fields.category.value);
+  fd.append('storyContent', fields.storyContent.value.trim());
+  fd.append('anonymity',    fields.anonymity.value);
+  fd.append('submittedAt',  new Date().toISOString());
+
+  const attachedFile = document.getElementById('inputFile').files[0];
+  if (attachedFile) {
+    fd.append('storyFile', attachedFile, attachedFile.name);
+  }
+
+  try {
+    // If Formspree ID is set, post to it; otherwise just log (dev mode)
+    if (FORMSPREE_ID && FORMSPREE_ID !== 'YOUR_FORM_ID') {
+      // Note: do NOT set Content-Type header — browser sets it with boundary for multipart
+      const res = await fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
+        method: 'POST',
+        headers: { 'Accept': 'application/json' },
+        body: fd,
+      });
+      if (!res.ok) {
+        const err = await res.json().catch(() => ({}));
+        throw new Error(err.error || 'Submission failed. Please try again.');
+      }
+    } else {
+      // Dev fallback: log to console
+      console.log('[DEV] Story submission (Formspree ID not set). Fields:', {
+        name: fd.get('name'), email: fd.get('email'), storyTitle: fd.get('storyTitle'),
+        category: fd.get('category'), file: attachedFile ? attachedFile.name : 'none',
+      });
+    }
+
+    // Success
+    document.getElementById('successMessage').classList.add('show');
+    document.getElementById('successMessage').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    this.reset();
+    wordCountEl.textContent = '0 words';
+    wordCountEl.classList.remove('good', 'low');
+    // Reset file upload UI
+    fileNameEl.textContent = '';
+    fileNameEl.classList.remove('show');
+    clearBtn.style.display = 'none';
+    uploadPanel.classList.remove('has-file');
+    uploadPrompted = false;
+
+    setTimeout(() => {
+      document.getElementById('successMessage').classList.remove('show');
+    }, 10000);
+
+  } catch (err) {
+    showError(err.message || 'Something went wrong. Please try again.');
+  } finally {
+    btn.disabled = false;
+    btn.textContent = 'Submit Your Story';
+  }
+});
+</script>
+</body>
+</html>
