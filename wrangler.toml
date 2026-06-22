@@ -1,0 +1,29 @@
+name = "safespot-life"
+compatibility_date = "2026-06-01"
+compatibility_flags = ["nodejs_compat"]
+pages_build_output_dir = "."
+
+# Your own database for story submissions.
+# Create it with:  wrangler d1 create safe-stories
+# then paste the printed database_id below.
+[[d1_databases]]
+binding = "DB"
+database_name = "safe-stories"
+database_id = "PUT_D1_DATABASE_ID_HERE"
+
+[vars]
+# Where story notifications land. enquiries@ is your one real inbox.
+# Swap to a free alias (e.g. stories@safespot.life) any time — see DEPLOY-CLOUDFLARE.md.
+NOTIFY_EMAIL = "enquiries@safespot.life"
+# Resend sending identity. NOT a mailbox — only needs the domain verified in Resend. Free.
+FROM_EMAIL = "SAFE Stories <stories@safespot.life>"
+
+# Optional — enables the document upload. After `wrangler r2 bucket create safe-story-uploads`,
+# uncomment these three lines.
+# [[r2_buckets]]
+# binding = "STORY_UPLOADS"
+# bucket_name = "safe-story-uploads"
+
+# NOTE: secrets are NOT stored here. Set them with:
+#   wrangler pages secret put TURNSTILE_SECRET_KEY
+#   wrangler pages secret put RESEND_API_KEY

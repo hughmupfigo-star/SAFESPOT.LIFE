@@ -470,8 +470,8 @@ html[data-theme="dark"] .upload-filename {
     </div>
 
     <!--
-      IMPORTANT: Replace YOUR_FORM_ID below with your actual Formspree form ID.
-      Get one at https://formspree.io — create a form and paste the ID here.
+      Submissions post to /api/stories (Cloudflare Pages Function).
+      Set the Turnstile site key in the widget below before going live.
     -->
     <form id="storyForm" novalidate>
 
@@ -616,6 +616,12 @@ html[data-theme="dark"] .upload-filename {
         <p class="form-hint" id="uploadHint">If your story is longer than 1500 words, attaching a document is the easiest way to share it in full — no need to trim it.</p>
       </div>
 
+      <!-- SPAM CHECK (Cloudflare Turnstile) -->
+      <div class="form-section">
+        <div class="cf-turnstile" data-sitekey="YOUR_TURNSTILE_SITE_KEY" data-theme="auto"></div>
+        <p class="form-hint">A quick automated check that you're human. No puzzles.</p>
+      </div>
+
       <!-- SUBMISSION -->
       <button type="submit" class="submit-btn" id="submitBtn">Submit Your Story</button>
 
@@ -639,6 +645,7 @@ html[data-theme="dark"] .upload-filename {
 
 <script src="theme.js"></script>
 <script src="bento.js" defer></script>
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 <script>
 // ── Cart count ──────────────────────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', function() {
@@ -750,7 +757,7 @@ function setFieldError(field, hasError) {
 }
 
 // ── Form submission ─────────────────────────────────────────────────────────
-const FORMSPREE_ID = 'YOUR_FORM_ID'; // <-- Replace with your Formspree form ID
+const STORIES_ENDPOINT = '/api/stories'; // Cloudflare Pages Function (functions/api/stories.js)
 
 document.getElementById('storyForm').addEventListener('submit', async function(e) {
   e.preventDefault();
@@ -825,24 +832,18 @@ document.getElementById('storyForm').addEventListener('submit', async function(e
   }
 
   try {
-    // If Formspree ID is set, post to it; otherwise just log (dev mode)
-    if (FORMSPREE_ID && FORMSPREE_ID !== 'YOUR_FORM_ID') {
-      // Note: do NOT set Content-Type header — browser sets it with boundary for multipart
-      const res = await fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
-        method: 'POST',
-        headers: { 'Accept': 'application/json' },
-        body: fd,
-      });
-      if (!res.ok) {
-        const err = await res.json().catch(() => ({}));
-        throw new Error(err.error || 'Submission failed. Please try again.');
-      }
-    } else {
-      // Dev fallback: log to console
-      console.log('[DEV] Story submission (Formspree ID not set). Fields:', {
-        name: fd.get('name'), email: fd.get('email'), storyTitle: fd.get('storyTitle'),
-        category: fd.get('category'), file: attachedFile ? attachedFile.name : 'none',
-      });
+    // Include the Turnstile spam-check token, then post to our own endpoint
+    const tsField = document.querySelector('[name="cf-turnstile-response"]');
+    fd.append('cf-turnstile-response', tsField ? tsField.value : '');
+
+    const res = await fetch(STORIES_ENDPOINT, {
+      method: 'POST',
+      headers: { 'Accept': 'application/json' },
+      body: fd,
+    });
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({}));
+      throw new Error(err.error || 'Submission failed. Please try again.');
     }
 
     // Success
