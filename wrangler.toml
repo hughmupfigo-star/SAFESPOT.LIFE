@@ -9,7 +9,7 @@ pages_build_output_dir = "."
 [[d1_databases]]
 binding = "DB"
 database_name = "safe-stories"
-database_id = "PUT_D1_DATABASE_ID_HERE"
+database_id = "5dcba0fa-417a-4fc6-819b-0259a99d40e4"
 
 [vars]
 # Where story notifications land. enquiries@ is your one real inbox.
