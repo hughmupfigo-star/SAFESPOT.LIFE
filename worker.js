@@ -36,10 +36,15 @@ async function handleStories(request, env) {
     const form = await request.formData();
     const ip = request.headers.get('CF-Connecting-IP') || '';
 
-    // 1. Spam check (Turnstile)
+    // 1. Spam check (Turnstile)  [TEMP DEBUG: surfaces the real reason]
     if (env.TURNSTILE_SECRET_KEY) {
-      const ok = await verifyTurnstile(form.get('cf-turnstile-response'), env.TURNSTILE_SECRET_KEY, ip);
-      if (!ok) return json({ error: 'Spam check failed. Please refresh and try again.' }, 400);
+      const token = form.get('cf-turnstile-response');
+      const result = await verifyTurnstile(token, env.TURNSTILE_SECRET_KEY, ip);
+      if (!result.success) {
+        const codes = (result['error-codes'] || []).join(', ') || 'none';
+        const tok = token ? ('present(' + token.toString().length + ' chars)') : 'MISSING';
+        return json({ error: 'Spam check failed [debug: token=' + tok + '; codes=' + codes + ']' }, 400);
+      }
     }
 
     // 2. Fields + validation
@@ -89,14 +94,13 @@ async function handleStories(request, env) {
 }
 
 async function verifyTurnstile(token, secret, ip) {
-  if (!token) return false;
+  if (!token) return { success: false, 'error-codes': ['missing-input-response'] };
   const body = new FormData();
   body.append('secret', secret);
   body.append('response', token.toString());
   if (ip) body.append('remoteip', ip);
   const r = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', { method: 'POST', body });
-  const data = await r.json().catch(() => ({ success: false }));
-  return data.success === true;
+  return await r.json().catch(() => ({ success: false, 'error-codes': ['siteverify-parse-failed'] }));
 }
 
 async function notify(env, s) {
