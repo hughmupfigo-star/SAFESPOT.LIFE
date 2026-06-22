@@ -1,3 +1,23 @@
+# Files here are NOT served publicly as static assets.
 node_modules/
 .git/
 .wrangler/
+worker.js
+wrangler.toml
+wrangler.toml.bak-pages
+schema.sql
+.dev.vars
+.dev.vars.example
+.gitignore
+.assetsignore
+functions/
+index.js
+server.js
+webhook.js
+package.json
+package-lock.json
+vercel.json
+netlify.toml
+DEPLOY-CLOUDFLARE.md
+SAFE-build-spec.md
+backup/

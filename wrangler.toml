@@ -1,11 +1,14 @@
 name = "safespot-life"
+main = "worker.js"
 compatibility_date = "2026-06-01"
 compatibility_flags = ["nodejs_compat"]
-pages_build_output_dir = "."
+
+# Static site files are served through this binding by worker.js.
+[assets]
+directory = "."
+binding = "ASSETS"
 
 # Your own database for story submissions.
-# Create it with:  wrangler d1 create safe-stories
-# then paste the printed database_id below.
 [[d1_databases]]
 binding = "DB"
 database_name = "safe-stories"
@@ -13,17 +16,16 @@ database_id = "5dcba0fa-417a-4fc6-819b-0259a99d40e4"
 
 [vars]
 # Where story notifications land. enquiries@ is your one real inbox.
-# Swap to a free alias (e.g. stories@safespot.life) any time — see DEPLOY-CLOUDFLARE.md.
 NOTIFY_EMAIL = "enquiries@safespot.life"
 # Resend sending identity. NOT a mailbox — only needs the domain verified in Resend. Free.
 FROM_EMAIL = "SAFE Stories <stories@safespot.life>"
 
 # Optional — enables the document upload. After `wrangler r2 bucket create safe-story-uploads`,
-# uncomment these three lines.
+# uncomment these three lines and redeploy.
 # [[r2_buckets]]
 # binding = "STORY_UPLOADS"
 # bucket_name = "safe-story-uploads"
 
-# NOTE: secrets are NOT stored here. Set them with:
-#   wrangler pages secret put TURNSTILE_SECRET_KEY
-#   wrangler pages secret put RESEND_API_KEY
+# Secrets are NOT stored here. Add them in the dashboard:
+#   Project -> Settings -> Variables and secrets -> Add -> Secret
+#   TURNSTILE_SECRET_KEY  and  RESEND_API_KEY
