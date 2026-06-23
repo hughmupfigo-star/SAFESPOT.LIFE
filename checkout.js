@@ -112,13 +112,10 @@ async function proceedToPayment() {
   btn.classList.add('loading');
   btn.textContent = 'Loading secure checkout...';
 
-  const orderData = {
-    delivery: delivery,
-    items: cart
-  };
+  const orderData = { items: cart };
 
   try {
-    const response = await fetch('/api/create-checkout-session', {
+    const response = await fetch('/api/checkout', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(orderData)

@@ -4556,37 +4556,27 @@ function clearCart() {
   }
 }
 
-function cartDrawerCheckout() {
+async function cartDrawerCheckout() {
   const cart = JSON.parse(localStorage.getItem('safeCart')) || [];
   if (cart.length === 0) return;
 
-  // Collect unique Stripe payment links
-  const seen = new Set();
-  const links = [];
-  cart.forEach(item => {
-    if (item.stripe && !seen.has(item.stripe)) {
-      seen.add(item.stripe);
-      links.push(item.stripe);
-    }
-  });
+  const btn = document.getElementById('cartDrawerCta');
+  const original = btn ? btn.textContent : '';
+  if (btn) { btn.disabled = true; btn.textContent = 'Loading secure checkout\u2026'; }
 
-  if (links.length === 0) {
-    alert('No payment link found for these items. Please contact us.');
-    return;
-  }
-
-  localStorage.removeItem('safeCart');
-  updateCartCount();
-  closeCartPopup();
-
-  if (links.length === 1) {
-    // Single product — go straight to Stripe
-    window.location.href = links[0];
-  } else {
-    // Multiple products — open each Stripe checkout in its own tab
-    links.forEach((url, i) => {
-      setTimeout(() => window.open(url, '_blank'), i * 300);
+  try {
+    // Whole cart -> ONE Stripe Checkout Session (books + merch together).
+    const res = await fetch('/api/checkout', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ items: cart })
     });
+    const data = await res.json();
+    if (!res.ok || !data.url) throw new Error(data.error || 'Checkout failed. Please try again.');
+    window.location.href = data.url;   // cart is cleared on success.html
+  } catch (err) {
+    alert('Unable to start checkout: ' + err.message);
+    if (btn) { btn.disabled = false; btn.textContent = original; }
   }
 }
 

@@ -23,6 +23,12 @@ export default {
       return json({ error: 'Method not allowed' }, 405);
     }
 
+    if (url.pathname === '/api/checkout') {
+      if (request.method === 'OPTIONS') return new Response(null, { status: 204, headers: cors() });
+      if (request.method === 'POST') return handleCheckout(request, env);
+      return json({ error: 'Method not allowed' }, 405);
+    }
+
     if (url.pathname === '/api/translate-letter') {
       if (request.method === 'OPTIONS') return new Response(null, { status: 204, headers: cors() });
       if (request.method === 'POST') return handleTranslateLetter(request, env);
@@ -227,6 +233,78 @@ async function handleTTS(request, env, ctx) {
     return resp;
   } catch (err) {
     return json({ error: 'TTS error' }, 500);
+  }
+}
+
+// ---- Stripe Checkout: turn the whole cart into ONE Checkout Session ----------
+function stripeForm(obj) {
+  const params = new URLSearchParams();
+  const add = (key, val) => {
+    if (val === undefined || val === null) return;
+    if (Array.isArray(val)) val.forEach((v, i) => add(`${key}[${i}]`, v));
+    else if (typeof val === 'object') Object.keys(val).forEach((k) => add(`${key}[${k}]`, val[k]));
+    else params.append(key, String(val));
+  };
+  Object.keys(obj).forEach((k) => add(k, obj[k]));
+  return params.toString();
+}
+
+async function handleCheckout(request, env) {
+  try {
+    if (!env.STRIPE_SECRET_KEY) return json({ error: 'Checkout is not configured yet.' }, 503);
+
+    const body = await request.json().catch(() => ({}));
+    const items = Array.isArray(body.items) ? body.items : [];
+    if (!items.length) return json({ error: 'Your cart is empty.' }, 400);
+
+    const line_items = items.map((it) => {
+      const desc = [
+        it.size && it.size !== 'One Size' ? 'Size: ' + it.size : null,
+        it.color && it.color !== 'Default' ? 'Colour: ' + it.color : null,
+      ].filter(Boolean).join(' \u00b7 ');
+      const amount = Math.round(Number(it.price) * 100);
+      if (!it.name || !(amount > 0)) throw new Error('Invalid item in cart');
+      const product_data = { name: String(it.name).slice(0, 120) };
+      if (desc) product_data.description = desc;
+      return {
+        price_data: { currency: 'gbp', product_data, unit_amount: amount },
+        quantity: Math.max(1, Math.min(20, Number(it.quantity) || 1)),
+      };
+    });
+
+    let origin;
+    try { origin = new URL(request.headers.get('Origin') || request.url).origin; }
+    catch (e) { origin = 'https://safespot.life'; }
+
+    const params = {
+      mode: 'payment',
+      payment_method_types: ['card'],
+      line_items,
+      billing_address_collection: 'required',
+      shipping_address_collection: {
+        allowed_countries: ['GB','US','CA','AU','DE','FR','IT','ES','NL','BE','AT','CH','SE','NO','DK','IE','NZ','SG','JP'],
+      },
+      shipping_options: [
+        { shipping_rate_data: { type: 'fixed_amount', fixed_amount: { amount: 500, currency: 'gbp' }, display_name: 'Standard Shipping (3-5 business days)' } },
+        { shipping_rate_data: { type: 'fixed_amount', fixed_amount: { amount: 800, currency: 'gbp' }, display_name: 'Premium DPD + Tracking (1-2 business days)' } },
+        { shipping_rate_data: { type: 'fixed_amount', fixed_amount: { amount: 1600, currency: 'gbp' }, display_name: 'International - EU' } },
+        { shipping_rate_data: { type: 'fixed_amount', fixed_amount: { amount: 1800, currency: 'gbp' }, display_name: 'International - USA / Canada' } },
+        { shipping_rate_data: { type: 'fixed_amount', fixed_amount: { amount: 2200, currency: 'gbp' }, display_name: 'International - Rest of World' } },
+      ],
+      success_url: origin + '/success.html?session_id={CHECKOUT_SESSION_ID}',
+      cancel_url: origin + '/shop.html',
+    };
+
+    const r = await fetch('https://api.stripe.com/v1/checkout/sessions', {
+      method: 'POST',
+      headers: { Authorization: `Bearer ${env.STRIPE_SECRET_KEY}`, 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: stripeForm(params),
+    });
+    const data = await r.json().catch(() => ({}));
+    if (!r.ok) return json({ error: (data.error && data.error.message) || 'Stripe error' }, 502);
+    return json({ url: data.url });
+  } catch (err) {
+    return json({ error: err.message || 'Could not start checkout.' }, 500);
   }
 }
 
