@@ -18,6 +18,10 @@ package.json
 package-lock.json
 vercel.json
 netlify.toml
+# Old Vercel/Netlify-format serverless source — kept for reference, not served publicly.
+api/
 DEPLOY-CLOUDFLARE.md
 SAFE-build-spec.md
 backup/
+prices.js
+update-prices.mjs

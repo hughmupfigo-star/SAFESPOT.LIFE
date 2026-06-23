@@ -7,6 +7,8 @@
 // Secrets (dashboard -> Variables and secrets):  TURNSTILE_SECRET_KEY, RESEND_API_KEY
 // Vars:  NOTIFY_EMAIL, FROM_EMAIL, IP_SALT
 
+import { CATALOG } from './prices.js';
+
 export default {
   async fetch(request, env, ctx) {
     const url = new URL(request.url);
@@ -258,16 +260,17 @@ async function handleCheckout(request, env) {
     if (!items.length) return json({ error: 'Your cart is empty.' }, 400);
 
     const line_items = items.map((it) => {
+      const key = it.code || it.name;            // shop items use code, books use name
+      const cat = CATALOG[key];
+      if (!cat) throw new Error('Item not available: ' + key);   // fail closed; never trust client price
       const desc = [
         it.size && it.size !== 'One Size' ? 'Size: ' + it.size : null,
         it.color && it.color !== 'Default' ? 'Colour: ' + it.color : null,
       ].filter(Boolean).join(' \u00b7 ');
-      const amount = Math.round(Number(it.price) * 100);
-      if (!it.name || !(amount > 0)) throw new Error('Invalid item in cart');
-      const product_data = { name: String(it.name).slice(0, 120) };
+      const product_data = { name: cat.name };
       if (desc) product_data.description = desc;
       return {
-        price_data: { currency: 'gbp', product_data, unit_amount: amount },
+        price_data: { currency: 'gbp', product_data, unit_amount: Math.round(cat.price * 100) },
         quantity: Math.max(1, Math.min(20, Number(it.quantity) || 1)),
       };
     });
