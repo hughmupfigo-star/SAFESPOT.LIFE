@@ -20,11 +20,24 @@ NOTIFY_EMAIL = "enquiries@safespot.life"
 # Resend sending identity. NOT a mailbox — only needs the domain verified in Resend. Free.
 FROM_EMAIL = "SAFE Stories <stories@safespot.life>"
 
+# Blog voice reader (neural TTS). Voice + tone tweakable here; model defaults to
+# gpt-4o-mini-tts. OPENAI_API_KEY is a SECRET (set in the dashboard, not here).
+TTS_VOICE = "nova"
+TTS_INSTRUCTIONS = "Read in a warm, clear, natural narrator's voice. Calm and human, not robotic."
+# Good-news submissions auto-publish by default. Uncomment to hold them for your review instead:
+# NEWS_AUTOPUBLISH = "false"
+
 # Optional — enables the document upload. After `wrangler r2 bucket create safe-story-uploads`,
 # uncomment these three lines and redeploy.
 # [[r2_buckets]]
 # binding = "STORY_UPLOADS"
 # bucket_name = "safe-story-uploads"
+
+# Young-reporter document uploads (submit-news.html). Create the bucket, then uncomment:
+#   wrangler r2 bucket create safe-news-uploads
+# [[r2_buckets]]
+# binding = "NEWS_UPLOADS"
+# bucket_name = "safe-news-uploads"
 
 # Secrets are NOT stored here. Add them in the dashboard:
 #   Project -> Settings -> Variables and secrets -> Add -> Secret

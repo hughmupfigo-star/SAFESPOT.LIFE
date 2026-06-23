@@ -4,9 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Translate This Letter — SAFE</title>
-<meta name="description" content="Paste any official letter — from a council, a landlord, the Job Centre, the school, a debt collector — and get it explained in plain English. Dates pulled out. What to do next. Who to call for free help. No login. Nothing stored.">
+<meta name="description" content="Scared to open an official letter? Take a photo, upload a PDF, or paste the text — and SAFE explains it in plain English (or your language). Dates pulled out. What to do next. Who to call for free help. Nothing stored.">
 <meta property="og:title" content="Translate This Letter — SAFE">
-<meta property="og:description" content="Paste any letter you've been scared to open. SAFE explains it in plain English, pulls out the dates, tells you what to do.">
+<meta property="og:description" content="Photograph any letter you've been scared to open. SAFE reads it and explains it in plain English — or your own language — and tells you what to do.">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="canonical" href="translate-letter.html">
@@ -14,18 +14,84 @@
 <link rel="stylesheet" href="styles.css">
 <style>
 .tl-container { max-width: 820px; margin: 0 auto; padding: 40px 24px 80px; }
-.tl-header { margin-bottom: 28px; }
+.tl-header { margin-bottom: 24px; }
 .tl-eyebrow { font-family: var(--mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--mid); margin: 0 0 12px; }
 .tl-title { font-size: clamp(30px, 5vw, 48px); font-weight: 300; line-height: 1.1; margin: 0 0 16px; letter-spacing: -0.015em; }
 .tl-title em { font-style: italic; }
 .tl-lede { font-size: 16px; line-height: 1.7; color: var(--mid); margin: 0; max-width: 640px; }
 
-.tl-form { margin-top: 28px; }
+/* Safety / privacy note */
+.tl-safe {
+  margin-top: 22px;
+  padding: 16px 18px;
+  background: var(--off);
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--black);
+  border-radius: 4px;
+  font-size: 13px;
+  line-height: 1.65;
+  color: var(--black);
+}
+.tl-safe p { margin: 0 0 8px; }
+.tl-safe p:last-child { margin-bottom: 0; }
+.tl-safe strong { font-weight: 500; }
+.tl-safe .tl-safe-eg { color: var(--mid); }
+.tl-safe summary {
+  cursor: pointer; font-family: var(--mono); font-size: 11px;
+  text-transform: uppercase; letter-spacing: 0.08em; color: var(--mid);
+  margin-top: 6px;
+}
+.tl-safe summary:hover { color: var(--black); }
+.tl-safe details[open] summary { margin-bottom: 8px; }
+
+.tl-form { margin-top: 26px; }
+
+/* Upload zone */
+.tl-uploadzone {
+  border: 1.5px dashed var(--border);
+  border-radius: 8px;
+  padding: 30px 22px;
+  text-align: center;
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s;
+  background: var(--white);
+}
+.tl-uploadzone:hover, .tl-uploadzone.drag {
+  border-color: var(--black);
+  background: var(--off);
+}
+.tl-uploadzone svg { width: 26px; height: 26px; stroke: var(--mid); margin-bottom: 10px; }
+.tl-uz-main { font-size: 15px; color: var(--black); margin: 0 0 4px; }
+.tl-uz-sub { font-family: var(--mono); font-size: 11px; color: var(--mid); margin: 0; letter-spacing: 0.03em; }
+
+/* File preview */
+.tl-preview { display: none; margin-top: 4px; align-items: center; gap: 14px; padding: 12px 14px; border: 1px solid var(--border); border-radius: 8px; background: var(--off); }
+.tl-preview.show { display: flex; }
+.tl-preview img { width: 54px; height: 54px; object-fit: cover; border-radius: 4px; flex-shrink: 0; border: 1px solid var(--border); }
+.tl-preview .tl-pv-doc { width: 54px; height: 54px; display: flex; align-items: center; justify-content: center; background: var(--white); border: 1px solid var(--border); border-radius: 4px; font-family: var(--mono); font-size: 10px; color: var(--mid); flex-shrink: 0; }
+.tl-preview .tl-pv-meta { flex: 1; min-width: 0; }
+.tl-preview .tl-pv-name { font-size: 14px; color: var(--black); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.tl-preview .tl-pv-size { font-family: var(--mono); font-size: 11px; color: var(--mid); margin-top: 2px; }
+.tl-pv-remove { background: transparent; border: 1px solid var(--border); border-radius: 4px; color: var(--mid); cursor: pointer; font-size: 18px; line-height: 1; padding: 4px 10px; flex-shrink: 0; }
+.tl-pv-remove:hover { border-color: var(--black); color: var(--black); }
+
+.tl-or {
+  text-align: center; font-family: var(--mono); font-size: 11px;
+  text-transform: uppercase; letter-spacing: 0.12em; color: var(--mid);
+  margin: 16px 0; position: relative;
+}
+.tl-or::before, .tl-or::after {
+  content: ""; position: absolute; top: 50%; width: calc(50% - 36px);
+  height: 1px; background: var(--border);
+}
+.tl-or::before { left: 0; }
+.tl-or::after { right: 0; }
+
 .tl-textarea-wrap { position: relative; }
 .tl-textarea {
   width: 100%;
-  min-height: 220px;
-  padding: 22px 22px 56px;
+  min-height: 180px;
+  padding: 20px 20px 50px;
   font-family: var(--mono);
   font-size: 14px;
   line-height: 1.6;
@@ -44,7 +110,15 @@
   pointer-events: none;
 }
 
-.tl-controls { display: flex; gap: 14px; align-items: center; margin-top: 16px; flex-wrap: wrap; }
+.tl-controls { display: flex; gap: 14px; align-items: center; margin-top: 18px; flex-wrap: wrap; }
+.tl-lang-wrap { display: flex; align-items: center; gap: 8px; }
+.tl-lang-label { font-family: var(--mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--mid); }
+.tl-lang {
+  font-family: var(--mono); font-size: 12px;
+  padding: 11px 12px; border: 1px solid var(--border); border-radius: 4px;
+  background: var(--white); color: var(--black); cursor: pointer; max-width: 200px;
+}
+.tl-lang:focus { outline: none; border-color: var(--black); }
 .tl-btn {
   padding: 14px 28px;
   background: var(--black); color: white;
@@ -80,6 +154,8 @@
 
 .tl-results { display: none; margin-top: 32px; }
 .tl-results.show { display: block; }
+.tl-results[dir="rtl"] { text-align: right; }
+.tl-results[dir="rtl"] .r-block ul, .tl-results[dir="rtl"] .r-block ol { padding-left: 0; padding-right: 20px; }
 
 .r-pill {
   display: inline-block;
@@ -88,6 +164,29 @@
   padding: 7px 12px; border: 1px solid var(--black);
   border-radius: 999px; margin-bottom: 18px;
 }
+
+/* Listen / read-aloud bar */
+.tl-listen {
+  display: flex; align-items: center; gap: 12px;
+  padding: 10px 14px; margin-bottom: 18px;
+  background: var(--off); border: 1px solid var(--border); border-radius: 6px;
+}
+.tl-listen-btn {
+  width: 34px; height: 34px; flex-shrink: 0;
+  display: inline-flex; align-items: center; justify-content: center;
+  background: var(--black); color: #fff; border: 0; border-radius: 50%;
+  cursor: pointer; padding: 0; transition: opacity 0.15s;
+}
+.tl-listen-btn:hover { opacity: 0.85; }
+.tl-listen-btn svg { width: 14px; height: 14px; fill: currentColor; }
+.tl-listen-label { font-family: var(--mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--mid); }
+.tl-listen-stop {
+  margin-left: auto; background: transparent; border: 1px solid var(--border);
+  border-radius: 4px; color: var(--mid); cursor: pointer;
+  font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.06em;
+  padding: 6px 10px;
+}
+.tl-listen-stop:hover { border-color: var(--black); color: var(--black); }
 
 .r-block {
   background: var(--off);
@@ -176,19 +275,27 @@
 }
 .tl-loading.show { display: block; animation: pulse 1.4s ease-in-out infinite; }
 
-html[data-theme="dark"] .tl-textarea { background: #1a1a1a; color: #f5f5f5; border-color: #444; }
-html[data-theme="dark"] .tl-textarea:focus { border-color: #fff; }
-html[data-theme="dark"] .r-block, html[data-theme="dark"] .tl-disclaimer { background: #1a1a1a; border-color: #444; }
+html[data-theme="dark"] .tl-textarea, html[data-theme="dark"] .tl-uploadzone, html[data-theme="dark"] .tl-lang { background: #1a1a1a; color: #f5f5f5; border-color: #444; }
+html[data-theme="dark"] .tl-textarea:focus, html[data-theme="dark"] .tl-lang:focus { border-color: #fff; }
+html[data-theme="dark"] .tl-uploadzone:hover, html[data-theme="dark"] .tl-uploadzone.drag { background: #222; border-color: #fff; }
+html[data-theme="dark"] .tl-uz-main { color: #f5f5f5; }
+html[data-theme="dark"] .r-block, html[data-theme="dark"] .tl-disclaimer, html[data-theme="dark"] .tl-safe, html[data-theme="dark"] .tl-listen, html[data-theme="dark"] .tl-preview { background: #1a1a1a; border-color: #444; }
+html[data-theme="dark"] .tl-safe, html[data-theme="dark"] .tl-safe strong { color: #f5f5f5; }
+html[data-theme="dark"] .tl-preview .tl-pv-doc { background: #111; }
 html[data-theme="dark"] .r-block p, html[data-theme="dark"] .r-block li { color: #f5f5f5; }
 html[data-theme="dark"] .tl-error { background: #332200; color: #ffd699; border-color: #cc7a00; }
+html[data-theme="dark"] .r-pill, html[data-theme="dark"] .tl-safe { border-color: #555; }
 html[data-theme="dark"] .r-pill { border-color: #f5f5f5; color: #f5f5f5; }
+html[data-theme="dark"] .tl-listen-btn { background: #fff; color: #000; }
 
 @media (max-width: 640px) {
   .tl-container { padding: 24px 18px 60px; }
   .r-call-list li { grid-template-columns: 1fr; gap: 4px; padding: 14px 0; }
   .tl-promise { display: block; margin-left: 0; width: 100%; margin-top: 4px; }
+  .tl-lang { max-width: 150px; }
 }
 </style>
+  <script defer src="analytics.js"></script>
 </head>
 <body>
 
@@ -210,10 +317,40 @@ html[data-theme="dark"] .r-pill { border-color: #f5f5f5; color: #f5f5f5; }
   <header class="tl-header">
     <p class="tl-eyebrow">SAFE Tools &middot; 001</p>
     <h1 class="tl-title">Translate this <em>letter</em>.</h1>
-    <p class="tl-lede">Paste any official letter you've been scared to open &mdash; from a council, a landlord, the Job Centre, a school, a debt collector, a court. We'll explain it in plain English, pull out the dates, tell you what to do, and who to call for free help. Nothing is stored. Nothing leaves this page after you close it.</p>
+    <p class="tl-lede">Got an official letter you've been scared to open &mdash; from a council, a landlord, the Job Centre, a school, a debt collector, a court? <strong>Take a photo, upload a PDF, or paste the text.</strong> We'll read it and explain it in plain English &mdash; or your own language &mdash; pull out the dates, tell you what to do, and who to call for free help.</p>
   </header>
 
+  <div class="tl-safe" role="note">
+    <p><strong>Private &amp; safe.</strong> Nothing you paste or upload is saved, logged, or published anywhere. It's read once to explain it, then forgotten.</p>
+    <p>Share only what you need &mdash; you can cover or cross out your full name, address, and any reference numbers first. The explanation still works without them. Please don't upload letters or documents that aren't yours to share.</p>
+    <details>
+      <summary>Which letters to be extra careful with</summary>
+      <p class="tl-safe-eg">Take extra care before uploading: immigration or asylum papers, anything with a case number or National Insurance number, medical or mental-health letters, and anything that names other people. If you're unsure, paste just the part you don't understand. <strong>In danger right now?</strong> Call 999. Under 18 and need to talk? Childline 0800 1111.</p>
+    </details>
+  </div>
+
   <form id="tl-form" class="tl-form" autocomplete="off">
+    <div class="tl-uploadzone" id="tl-drop" tabindex="0" role="button" aria-label="Take a photo or upload a letter">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+        <path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="12" cy="13" r="3.5"/>
+      </svg>
+      <p class="tl-uz-main">Take a photo or upload your letter</p>
+      <p class="tl-uz-sub">JPG, PNG or PDF &middot; up to 8 MB &middot; tap to choose</p>
+      <input type="file" id="tl-file" accept="image/*,application/pdf" hidden>
+    </div>
+
+    <div class="tl-preview" id="tl-preview">
+      <div id="tl-pv-thumb"></div>
+      <div class="tl-pv-meta">
+        <div class="tl-pv-name" id="tl-pv-name">file.jpg</div>
+        <div class="tl-pv-size" id="tl-pv-size">—</div>
+      </div>
+      <button type="button" class="tl-pv-remove" id="tl-pv-remove" aria-label="Remove file">&times;</button>
+    </div>
+
+    <div class="tl-or">or paste the text</div>
+
     <div class="tl-textarea-wrap">
       <textarea id="tl-input" class="tl-textarea" placeholder="Paste the full letter here. Take a breath. We'll go through it together." aria-label="Paste your letter here"></textarea>
       <span id="tl-counter" class="tl-counter">0</span>
@@ -221,6 +358,10 @@ html[data-theme="dark"] .r-pill { border-color: #f5f5f5; color: #f5f5f5; }
 
     <div class="tl-controls">
       <button id="tl-btn" type="submit" class="tl-btn">Translate this letter</button>
+      <div class="tl-lang-wrap">
+        <label class="tl-lang-label" for="tl-lang">Explain in</label>
+        <select id="tl-lang" class="tl-lang" aria-label="Explain in which language"></select>
+      </div>
       <button id="tl-example" type="button" class="tl-link-btn">Try an example</button>
       <span class="tl-promise">Free. No login. Nothing saved.</span>
     </div>
@@ -242,7 +383,7 @@ html[data-theme="dark"] .r-pill { border-color: #f5f5f5; color: #f5f5f5; }
   </section>
 
   <p class="tl-disclaimer">
-    <strong>This is information, not legal advice.</strong> SAFE's Letter Translator helps you understand what a letter is saying in plain English. For anything that could affect your housing, money, or legal status, talk to a qualified human: <strong>Citizens Advice</strong> (0800 144 8848), <strong>Shelter</strong> (0808 800 4444), <strong>StepChange</strong> for debt (0800 138 1111), or <strong>LawWorks</strong> for a free legal clinic. If you are under 18 and in crisis, call <strong>Childline</strong> (0800 1111). Letters are sent to our server, processed by Claude (Anthropic) to produce the translation, and then forgotten &mdash; we don't store, log, or train on what you paste.
+    <strong>This is information, not legal advice.</strong> SAFE's Letter Translator helps you understand what a letter is saying in plain English. For anything that could affect your housing, money, or legal status, talk to a qualified human: <strong>Citizens Advice</strong> (0800 144 8848), <strong>Shelter</strong> (0808 800 4444), <strong>StepChange</strong> for debt (0800 138 1111), or <strong>LawWorks</strong> for a free legal clinic. If you are under 18 and in crisis, call <strong>Childline</strong> (0800 1111). Letters are sent to our server, read by Claude (Anthropic) to produce the explanation, and then forgotten &mdash; we don't store, log, or train on what you send.
   </p>
 </main>
 
@@ -263,34 +404,84 @@ html[data-theme="dark"] .r-pill { border-color: #f5f5f5; color: #f5f5f5; }
 (function(){
   'use strict';
 
-  var form     = document.getElementById('tl-form');
-  var input    = document.getElementById('tl-input');
-  var counter  = document.getElementById('tl-counter');
-  var btn      = document.getElementById('tl-btn');
+  // Languages — codes must match functions/api/translate-letter.js. v = BCP-47 hint for read-aloud.
+  var LANGS = [
+    {c:'en', n:'English',                 v:'en-GB'},
+    {c:'ar', n:'العربية · Arabic',        v:'ar-SA', rtl:1},
+    {c:'fa', n:'فارسی · Farsi',           v:'fa-IR', rtl:1},
+    {c:'ps', n:'پښتو · Pashto',           v:'ps-AF', rtl:1},
+    {c:'ku', n:'Kurdî · Kurdish',         v:'ckb',   rtl:1},
+    {c:'pl', n:'Polski · Polish',         v:'pl-PL'},
+    {c:'ro', n:'Română · Romanian',       v:'ro-RO'},
+    {c:'ru', n:'Русский · Russian',       v:'ru-RU'},
+    {c:'uk', n:'Українська · Ukrainian',  v:'uk-UA'},
+    {c:'so', n:'Soomaali · Somali',       v:'so-SO'},
+    {c:'ti', n:'ትግርኛ · Tigrinya',         v:'ti'},
+    {c:'am', n:'አማርኛ · Amharic',          v:'am-ET'},
+    {c:'sq', n:'Shqip · Albanian',        v:'sq-AL'},
+    {c:'ur', n:'اردو · Urdu',             v:'ur-PK', rtl:1},
+    {c:'pa', n:'ਪੰਜਾਬੀ · Punjabi',         v:'pa-IN'},
+    {c:'bn', n:'বাংলা · Bengali',          v:'bn-BD'},
+    {c:'gu', n:'ગુજરાતી · Gujarati',       v:'gu-IN'},
+    {c:'fr', n:'Français · French',       v:'fr-FR'},
+    {c:'es', n:'Español · Spanish',       v:'es-ES'},
+    {c:'pt', n:'Português · Portuguese',  v:'pt-PT'},
+    {c:'vi', n:'Tiếng Việt · Vietnamese', v:'vi-VN'},
+    {c:'zh', n:'中文 · Chinese',           v:'zh-CN'},
+    {c:'tr', n:'Türkçe · Turkish',        v:'tr-TR'}
+  ];
+  var LANG_BY_CODE = {};
+  LANGS.forEach(function(l){ LANG_BY_CODE[l.c] = l; });
+
+  var MAX_TEXT = 12000;
+  var MAX_BYTES = 8 * 1024 * 1024;   // 8 MB
+
+  var form       = document.getElementById('tl-form');
+  var input      = document.getElementById('tl-input');
+  var counter    = document.getElementById('tl-counter');
+  var btn        = document.getElementById('tl-btn');
   var exampleBtn = document.getElementById('tl-example');
-  var errorEl  = document.getElementById('tl-error');
-  var loading  = document.getElementById('tl-loading');
-  var results  = document.getElementById('tl-results');
+  var errorEl    = document.getElementById('tl-error');
+  var loading    = document.getElementById('tl-loading');
+  var results    = document.getElementById('tl-results');
+  var langSel    = document.getElementById('tl-lang');
+  var drop       = document.getElementById('tl-drop');
+  var fileInput  = document.getElementById('tl-file');
+  var preview    = document.getElementById('tl-preview');
+  var pvThumb    = document.getElementById('tl-pv-thumb');
+  var pvName     = document.getElementById('tl-pv-name');
+  var pvSize     = document.getElementById('tl-pv-size');
+  var pvRemove   = document.getElementById('tl-pv-remove');
+
+  // Holds the prepared upload: { kind:'image'|'pdf', media_type, data(base64) }
+  var pendingFile = null;
 
   var EXAMPLE = "Dear Tenant\n\nNOTICE SEEKING POSSESSION OF A PROPERTY LET ON AN ASSURED SHORTHOLD TENANCY\n\nSection 21(1) and (4) of the Housing Act 1988 as amended by section 98(2) and (3) of the Housing Act 1996.\n\nThis is notice under section 21 of the Housing Act 1988 that we, your landlords, require possession of the dwelling-house known as Flat 4, 22 Beck Road, Hackney, E8.\n\nWe give you notice that we require possession of the said dwelling-house after 25 August 2026.\n\nIf you do not leave the dwelling-house, your landlord must get an order for possession from the court before you can lawfully be evicted. Your landlord cannot apply for such an order before the notice has run out.\n\nYours faithfully,\nGreenacre Lettings (Acting on behalf of the landlord)\nDated: 12 June 2026";
 
+  // ---- language selector ----
+  LANGS.forEach(function(l){
+    var opt = document.createElement('option');
+    opt.value = l.c; opt.textContent = l.n;
+    langSel.appendChild(opt);
+  });
+
+  // ---- text counter ----
   function updateCounter(){
     var n = input.value.length;
-    counter.textContent = n + (n > 12000 ? ' / max 12000' : '');
+    counter.textContent = n + (n > MAX_TEXT ? ' / max ' + MAX_TEXT : '');
   }
   input.addEventListener('input', updateCounter);
 
   exampleBtn.addEventListener('click', function(){
+    clearFile();
     input.value = EXAMPLE;
     updateCounter();
     input.focus();
     input.setSelectionRange(0,0);
   });
 
-  function showError(msg){
-    errorEl.textContent = msg;
-    errorEl.classList.add('show');
-  }
+  // ---- error / loading helpers ----
+  function showError(msg){ errorEl.textContent = msg; errorEl.classList.add('show'); }
   function hideError(){ errorEl.classList.remove('show'); }
   function setLoading(on){
     btn.disabled = on;
@@ -302,108 +493,346 @@ html[data-theme="dark"] .r-pill { border-color: #f5f5f5; color: #f5f5f5; }
     return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
                     .replace(/"/g,'&quot;').replace(/'/g,'&#39;');
   }
+  function fmtSize(b){
+    if (b < 1024) return b + ' B';
+    if (b < 1024*1024) return Math.round(b/1024) + ' KB';
+    return (b/1024/1024).toFixed(1) + ' MB';
+  }
 
+  // ---- file handling ----
+  drop.addEventListener('click', function(){ fileInput.click(); });
+  drop.addEventListener('keydown', function(e){
+    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); fileInput.click(); }
+  });
+  ['dragenter','dragover'].forEach(function(ev){
+    drop.addEventListener(ev, function(e){ e.preventDefault(); drop.classList.add('drag'); });
+  });
+  ['dragleave','drop'].forEach(function(ev){
+    drop.addEventListener(ev, function(e){ e.preventDefault(); drop.classList.remove('drag'); });
+  });
+  drop.addEventListener('drop', function(e){
+    if (e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files[0]) handleFile(e.dataTransfer.files[0]);
+  });
+  fileInput.addEventListener('change', function(){
+    if (fileInput.files && fileInput.files[0]) handleFile(fileInput.files[0]);
+  });
+  pvRemove.addEventListener('click', clearFile);
+
+  function clearFile(){
+    pendingFile = null;
+    fileInput.value = '';
+    preview.classList.remove('show');
+    pvThumb.innerHTML = '';
+  }
+
+  function handleFile(file){
+    hideError();
+    var isImage = /^image\//.test(file.type);
+    var isPdf = file.type === 'application/pdf' || /\.pdf$/i.test(file.name);
+
+    if (!isImage && !isPdf) { showError("That's not a photo or PDF. Upload a JPG, PNG, or PDF of the letter."); return; }
+    if (file.size > MAX_BYTES * 1.2) { showError('That file is too big. Use a photo or PDF under 8 MB.'); return; }
+
+    input.value = '';            // a file takes priority over pasted text
+    updateCounter();
+
+    if (isImage) {
+      downscaleImage(file).then(function(out){
+        pendingFile = { kind:'image', media_type: out.media_type, data: out.data };
+        showPreview(file, out.previewUrl, fmtSize(approxBytes(out.data)));
+      }).catch(function(){
+        // fall back to raw read if canvas downscale fails
+        readAsBase64(file).then(function(b64){
+          pendingFile = { kind:'image', media_type: file.type || 'image/jpeg', data: b64 };
+          showPreview(file, 'data:'+(file.type||'image/jpeg')+';base64,'+b64, fmtSize(file.size));
+        }).catch(function(){ showError('Could not read that image. Try another photo.'); });
+      });
+    } else {
+      readAsBase64(file).then(function(b64){
+        if (approxBytes(b64) > MAX_BYTES) { showError('That PDF is too big. Try a photo of the page you need help with.'); return; }
+        pendingFile = { kind:'pdf', media_type:'application/pdf', data: b64 };
+        showPreview(file, null, fmtSize(file.size));
+      }).catch(function(){ showError('Could not read that PDF. Try a photo instead.'); });
+    }
+  }
+
+  function showPreview(file, imgUrl, sizeText){
+    pvThumb.innerHTML = '';
+    if (imgUrl) {
+      var im = document.createElement('img');
+      im.src = imgUrl; im.alt = 'Preview of your letter';
+      pvThumb.appendChild(im);
+    } else {
+      var d = document.createElement('div');
+      d.className = 'tl-pv-doc'; d.textContent = 'PDF';
+      pvThumb.appendChild(d);
+    }
+    pvName.textContent = file.name || (pendingFile && pendingFile.kind === 'pdf' ? 'letter.pdf' : 'photo.jpg');
+    pvSize.textContent = sizeText + ' · ready';
+    preview.classList.add('show');
+  }
+
+  function approxBytes(b64){
+    var pad = b64.endsWith('==') ? 2 : b64.endsWith('=') ? 1 : 0;
+    return Math.floor(b64.length * 3 / 4) - pad;
+  }
+
+  function readAsBase64(file){
+    return new Promise(function(resolve, reject){
+      var fr = new FileReader();
+      fr.onload = function(){
+        var s = String(fr.result);
+        var i = s.indexOf(',');
+        resolve(i >= 0 ? s.slice(i+1) : s);
+      };
+      fr.onerror = reject;
+      fr.readAsDataURL(file);
+    });
+  }
+
+  // Downscale big phone photos to <=1800px and re-encode as JPEG — faster, cheaper, clearer for OCR.
+  function downscaleImage(file){
+    return new Promise(function(resolve, reject){
+      var url = URL.createObjectURL(file);
+      var img = new Image();
+      img.onload = function(){
+        try {
+          var MAX = 1800;
+          var w = img.naturalWidth, h = img.naturalHeight;
+          var scale = Math.min(1, MAX / Math.max(w, h));
+          var cw = Math.max(1, Math.round(w * scale));
+          var ch = Math.max(1, Math.round(h * scale));
+          var canvas = document.createElement('canvas');
+          canvas.width = cw; canvas.height = ch;
+          var ctx = canvas.getContext('2d');
+          ctx.drawImage(img, 0, 0, cw, ch);
+          var dataUrl = canvas.toDataURL('image/jpeg', 0.85);
+          URL.revokeObjectURL(url);
+          var b64 = dataUrl.slice(dataUrl.indexOf(',') + 1);
+          resolve({ data: b64, media_type: 'image/jpeg', previewUrl: dataUrl });
+        } catch (err) { URL.revokeObjectURL(url); reject(err); }
+      };
+      img.onerror = function(){ URL.revokeObjectURL(url); reject(new Error('img')); };
+      img.src = url;
+    });
+  }
+
+  // ---- submit ----
   form.addEventListener('submit', async function(e){
     e.preventDefault();
     hideError();
+    stopSpeaking();
     results.classList.remove('show');
     results.innerHTML = '';
 
-    var text = input.value.trim();
-    if (text.length < 30) { showError("Paste a bit more of the letter — I need at least a few sentences to make sense of it."); return; }
-    if (text.length > 12000) { showError("That's a lot of text. Try pasting just the most important parts."); return; }
+    var lang = langSel.value || 'en';
+    var payload;
+
+    if (pendingFile) {
+      payload = { file: pendingFile, language: lang };
+    } else {
+      var text = input.value.trim();
+      if (text.length < 30) { showError("Add a bit more — paste a few sentences, or take a photo of the letter."); return; }
+      if (text.length > MAX_TEXT) { showError("That's a lot of text. Try pasting just the most important parts."); return; }
+      payload = { letter: text, language: lang };
+    }
 
     setLoading(true);
     try {
       var res = await fetch('/api/translate-letter', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ letter: text }),
+        body: JSON.stringify(payload),
       });
-      if (res.status === 404) {
-        throw new Error('not-deployed');
-      }
+      if (res.status === 404) throw new Error('not-deployed');
+      var data = await res.json().catch(function(){ return null; });
       if (!res.ok) {
-        var t = await res.text();
-        throw new Error(t || ('Error ' + res.status));
+        throw new Error((data && data.error) || ('Error ' + res.status));
       }
-      var data = await res.json();
-      renderResults(data);
+      renderResults(data || {}, lang);
     } catch (err) {
       if (err && err.message === 'not-deployed') {
-        showError("The Translate API isn't wired up on this server yet. (Dev note: drop /api/translate-letter.js into your Vercel project and set the ANTHROPIC_API_KEY env var.)");
+        showError("The translator isn't switched on yet. (Set the ANTHROPIC_API_KEY secret on the Cloudflare Pages project, then redeploy.)");
       } else {
-        showError("Something went wrong on our end. Try again in a minute, or paste a shorter section.");
+        showError((err && err.message) || "Something went wrong on our end. Try again in a minute.");
       }
-      console.error(err);
     } finally {
       setLoading(false);
     }
   });
 
-  function renderResults(data){
+  // ---- render ----
+  function renderResults(data, lang){
+    var L = LANG_BY_CODE[lang] || LANG_BY_CODE.en;
+    var rtl = !!L.rtl;
+
     var html = '';
-    if (data.letter_type) {
-      html += '<div class="r-pill">' + escapeHTML(data.letter_type) + '</div>';
-    }
+    html += buildListenBar();
+
+    if (data.letter_type) html += '<div class="r-pill">' + escapeHTML(data.letter_type) + '</div>';
     if (data.summary) {
-      html += '<div class="r-block">'
-            + '<p class="r-label">What this is actually saying</p>'
-            + '<p>' + escapeHTML(data.summary) + '</p>'
-            + '</div>';
+      html += '<div class="r-block"><p class="r-label">What this is actually saying</p><p>' + escapeHTML(data.summary) + '</p></div>';
     }
     if (data.key_dates && data.key_dates.length) {
-      html += '<div class="r-block r-block-warn">'
-            + '<p class="r-label">Dates to know</p>'
-            + '<ul>' + data.key_dates.map(function(d){
-                return '<li><strong>' + escapeHTML(d.date) + '</strong> &mdash; ' + escapeHTML(d.what) + '</li>';
-              }).join('') + '</ul>'
-            + '</div>';
+      html += '<div class="r-block r-block-warn"><p class="r-label">Dates to know</p><ul>'
+            + data.key_dates.map(function(d){ return '<li><strong>' + escapeHTML(d.date) + '</strong> &mdash; ' + escapeHTML(d.what) + '</li>'; }).join('')
+            + '</ul></div>';
     }
     if (data.what_to_do && data.what_to_do.length) {
-      html += '<div class="r-block">'
-            + '<p class="r-label">What to do, in order</p>'
-            + '<ol>' + data.what_to_do.map(function(a){ return '<li>' + escapeHTML(a) + '</li>'; }).join('') + '</ol>'
-            + '</div>';
+      html += '<div class="r-block"><p class="r-label">What to do, in order</p><ol>'
+            + data.what_to_do.map(function(a){ return '<li>' + escapeHTML(a) + '</li>'; }).join('')
+            + '</ol></div>';
     }
     if (data.your_rights) {
-      html += '<div class="r-block r-block-rights">'
-            + '<p class="r-label">Your rights</p>'
-            + '<p>' + escapeHTML(data.your_rights) + '</p>'
-            + '</div>';
+      html += '<div class="r-block r-block-rights"><p class="r-label">Your rights</p><p>' + escapeHTML(data.your_rights) + '</p></div>';
     }
     if (data.who_to_call && data.who_to_call.length) {
-      html += '<div class="r-block">'
-            + '<p class="r-label">Who to call (free, real people)</p>'
-            + '<ul class="r-call-list">' + data.who_to_call.map(function(c){
-                return '<li><strong>' + escapeHTML(c.name) + '</strong>'
-                     + '<span class="r-phone">' + escapeHTML(c.phone) + '</span>'
-                     + '<span class="r-when">' + escapeHTML(c.when_to_use || '') + '</span></li>';
-              }).join('') + '</ul>'
-            + '</div>';
+      html += '<div class="r-block"><p class="r-label">Who to call (free, real people)</p><ul class="r-call-list">'
+            + data.who_to_call.map(function(c){
+                return '<li><strong>' + escapeHTML(c.name) + '</strong><span class="r-phone">' + escapeHTML(c.phone) + '</span><span class="r-when">' + escapeHTML(c.when_to_use || '') + '</span></li>';
+              }).join('')
+            + '</ul></div>';
     }
     if (data.watch_out_for) {
-      html += '<div class="r-block r-block-warn">'
-            + '<p class="r-label">Watch out for</p>'
-            + '<p>' + escapeHTML(data.watch_out_for) + '</p>'
-            + '</div>';
+      html += '<div class="r-block r-block-warn"><p class="r-label">Watch out for</p><p>' + escapeHTML(data.watch_out_for) + '</p></div>';
     }
     html += '<button type="button" class="tl-reset" id="tl-reset">Start over &rarr;</button>';
+
+    // direction for RTL languages
+    if (rtl) { results.setAttribute('dir','rtl'); } else { results.removeAttribute('dir'); }
+    results.lang = L.v.split('-')[0];
 
     results.innerHTML = html;
     results.classList.add('show');
     results.scrollIntoView({ behavior: 'smooth', block: 'start' });
 
+    // stash the spoken text + voice hint on the element
+    speakState.text = buildSpeech(data);
+    speakState.lang = L.v;
+
+    wireListen();
+
     var reset = document.getElementById('tl-reset');
     if (reset) reset.addEventListener('click', function(){
-      input.value = '';
-      updateCounter();
-      results.classList.remove('show');
-      results.innerHTML = '';
+      stopSpeaking();
+      clearFile();
+      input.value = ''; updateCounter();
+      results.classList.remove('show'); results.innerHTML = '';
       input.focus();
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
+
+  // ---- read aloud (Web Speech API) ----
+  var speakState = { text: '', lang: 'en-GB', chunks: [], idx: 0, playing: false };
+  var canSpeak = ('speechSynthesis' in window) && ('SpeechSynthesisUtterance' in window);
+
+  function buildSpeech(d){
+    var parts = [];
+    if (d.letter_type) parts.push(d.letter_type + '.');
+    if (d.summary) parts.push(d.summary);
+    if (d.key_dates && d.key_dates.length) {
+      parts.push('Dates to know.');
+      d.key_dates.forEach(function(x){ parts.push(x.date + ': ' + x.what); });
+    }
+    if (d.what_to_do && d.what_to_do.length) {
+      parts.push('What to do.');
+      d.what_to_do.forEach(function(x, i){ parts.push((i+1) + '. ' + x); });
+    }
+    if (d.your_rights) { parts.push('Your rights.'); parts.push(d.your_rights); }
+    if (d.watch_out_for) { parts.push('Watch out for.'); parts.push(d.watch_out_for); }
+    return parts.join('\n');
+  }
+
+  function buildListenBar(){
+    if (!canSpeak) return '';
+    return '<div class="tl-listen">'
+         + '<button type="button" class="tl-listen-btn" id="tl-listen-btn" aria-label="Listen to this explanation">'
+         + '<svg id="tl-listen-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>'
+         + '</button>'
+         + '<span class="tl-listen-label" id="tl-listen-label">Listen</span>'
+         + '<button type="button" class="tl-listen-stop" id="tl-listen-stop">Stop</button>'
+         + '</div>';
+  }
+
+  function pickVoice(langHint){
+    var voices = window.speechSynthesis.getVoices() || [];
+    if (!voices.length) return null;
+    var base = langHint.split('-')[0].toLowerCase();
+    var exact = voices.filter(function(v){ return v.lang && v.lang.toLowerCase() === langHint.toLowerCase(); });
+    if (exact.length) return exact[0];
+    var partial = voices.filter(function(v){ return v.lang && v.lang.toLowerCase().indexOf(base) === 0; });
+    return partial.length ? partial[0] : null;
+  }
+
+  function setListenUI(playing){
+    var icon = document.getElementById('tl-listen-icon');
+    var label = document.getElementById('tl-listen-label');
+    if (!icon || !label) return;
+    if (playing) {
+      icon.innerHTML = '<path d="M6 5h4v14H6zM14 5h4v14h-4z"/>';   // pause
+      label.textContent = 'Pause';
+    } else {
+      icon.innerHTML = '<path d="M8 5v14l11-7z"/>';                 // play
+      label.textContent = speakState.idx > 0 ? 'Resume' : 'Listen';
+    }
+  }
+
+  function speakNext(){
+    if (speakState.idx >= speakState.chunks.length) { speakState.playing = false; speakState.idx = 0; setListenUI(false); return; }
+    var u = new SpeechSynthesisUtterance(speakState.chunks[speakState.idx]);
+    u.lang = speakState.lang;
+    var v = pickVoice(speakState.lang);
+    if (v) u.voice = v;
+    u.rate = 0.98;
+    u.onend = function(){ speakState.idx++; if (speakState.playing) speakNext(); };
+    u.onerror = function(){ speakState.idx++; if (speakState.playing) speakNext(); };
+    window.speechSynthesis.speak(u);
+  }
+
+  function startSpeaking(){
+    if (!canSpeak || !speakState.text) return;
+    window.speechSynthesis.cancel();
+    // split into sentence-ish chunks so long text doesn't get cut off mid-stream
+    // (no look-behind regex — keeps older Safari from choking on the whole script)
+    speakState.chunks = speakState.text
+      .replace(/([.!?。！？])\s+/g, '$1\n')
+      .split('\n')
+      .map(function(s){ return s.trim(); })
+      .filter(Boolean);
+    if (!speakState.chunks.length) speakState.chunks = [speakState.text];
+    speakState.idx = 0;
+    speakState.playing = true;
+    setListenUI(true);
+    speakNext();
+  }
+
+  function stopSpeaking(){
+    if (!canSpeak) return;
+    window.speechSynthesis.cancel();
+    speakState.playing = false;
+    speakState.idx = 0;
+    setListenUI(false);
+  }
+
+  function wireListen(){
+    var b = document.getElementById('tl-listen-btn');
+    var stop = document.getElementById('tl-listen-stop');
+    if (!b) return;
+    b.addEventListener('click', function(){
+      if (!speakState.playing && speakState.idx === 0) { startSpeaking(); return; }
+      if (speakState.playing) { window.speechSynthesis.pause(); speakState.playing = false; setListenUI(false); }
+      else { window.speechSynthesis.resume(); speakState.playing = true; setListenUI(true); }
+    });
+    if (stop) stop.addEventListener('click', stopSpeaking);
+  }
+
+  // voices often load async
+  if (canSpeak && typeof window.speechSynthesis.onvoiceschanged !== 'undefined') {
+    window.speechSynthesis.onvoiceschanged = function(){ /* warm the list */ window.speechSynthesis.getVoices(); };
+  }
+  // stop audio if the user leaves the page
+  window.addEventListener('beforeunload', stopSpeaking);
 })();
 </script>
 

@@ -209,32 +209,28 @@
   margin: 0;
 }
 
-@media (prefers-color-scheme: dark) {
-  .submit-intro {
+html[data-theme="dark"] .submit-intro {
     background: #1a1a1a;
-    border-left-color: var(--white);
+    border-left-color: var(--black);
   }
-
-  .form-input,
-  .form-textarea,
-  .form-select {
+html[data-theme="dark"] .form-input,
+html[data-theme="dark"] .form-textarea,
+html[data-theme="dark"] .form-select {
     background: #1a1a1a;
     border-color: #333;
-    color: var(--white);
+    color: var(--black);
   }
-
-  .form-input:focus,
-  .form-textarea:focus,
-  .form-select:focus {
-    border-color: var(--white);
+html[data-theme="dark"] .form-input:focus,
+html[data-theme="dark"] .form-textarea:focus,
+html[data-theme="dark"] .form-select:focus {
+    border-color: var(--black);
   }
-
-  .criteria-item {
+html[data-theme="dark"] .criteria-item {
     background: #0a0a0a;
     border-color: #333;
   }
-}
 </style>
+  <script defer src="analytics.js"></script>
 </head>
 <body>
 

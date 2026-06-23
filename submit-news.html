@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Share Good News — SAFE</title>
+<meta name="description" content="Are you a young reporter — or just someone with good news from your area? Send us your story or newsletter. We'll help you shape it and publish the best on our news page. Upload a document, add your sources, get your voice heard.">
+<meta property="og:title" content="Share Good News — SAFE">
+<meta property="og:description" content="Young reporters: send us the good news happening where you live. We help you shape it and publish it.">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="submit-news.html">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+.sn-container { max-width: 760px; margin: 0 auto; padding: 40px 24px 80px; }
+.sn-eyebrow { font-family: var(--mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--mid); margin: 0 0 12px; }
+.sn-title { font-size: clamp(30px, 5vw, 46px); font-weight: 300; line-height: 1.1; margin: 0 0 16px; letter-spacing: -0.015em; }
+.sn-title em { font-style: italic; }
+.sn-lede { font-size: 16px; line-height: 1.7; color: var(--mid); margin: 0; max-width: 620px; }
+
+.sn-safe { margin-top: 22px; padding: 16px 18px; background: var(--off); border: 1px solid var(--border); border-left: 4px solid var(--black); border-radius: 4px; font-size: 13px; line-height: 1.65; color: var(--black); }
+.sn-safe p { margin: 0 0 8px; } .sn-safe p:last-child { margin: 0; } .sn-safe strong { font-weight: 500; }
+
+.sn-form { margin-top: 30px; display: grid; gap: 20px; }
+.sn-row { display: grid; gap: 20px; grid-template-columns: 1fr 1fr; }
+.sn-field { display: flex; flex-direction: column; gap: 7px; }
+.sn-label { font-family: var(--mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--mid); }
+.sn-label .req { color: #cc7a00; }
+.sn-hint { font-size: 12px; color: var(--mid); margin: 0; }
+.sn-input, .sn-textarea, .sn-file {
+  width: 100%; box-sizing: border-box; padding: 13px 14px;
+  font-family: var(--sans, inherit); font-size: 15px;
+  border: 1px solid var(--border); border-radius: 6px; background: var(--white); color: var(--black);
+  transition: border-color 0.15s;
+}
+.sn-textarea { font-family: var(--mono); font-size: 14px; line-height: 1.6; min-height: 200px; resize: vertical; }
+.sn-input:focus, .sn-textarea:focus { outline: none; border-color: var(--black); }
+.sn-file { padding: 11px 14px; font-family: var(--mono); font-size: 12px; }
+
+.sn-consent { display: grid; gap: 12px; padding: 18px 20px; background: var(--off); border: 1px solid var(--border); border-radius: 6px; }
+.sn-check { display: grid; grid-template-columns: 20px 1fr; gap: 12px; align-items: start; font-size: 13px; line-height: 1.6; color: var(--black); cursor: pointer; }
+.sn-check input { width: 17px; height: 17px; margin-top: 2px; accent-color: var(--black); }
+
+.sn-hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+
+.sn-controls { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; margin-top: 4px; }
+.sn-btn { padding: 14px 30px; background: var(--black); color: #fff; border: 0; border-radius: 4px; cursor: pointer; font-family: var(--mono); font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; transition: opacity 0.15s; }
+.sn-btn:hover { opacity: 0.86; } .sn-btn:disabled { opacity: 0.5; cursor: wait; }
+.sn-note { font-size: 12px; color: var(--mid); font-style: italic; }
+
+.sn-msg { display: none; margin-top: 6px; padding: 14px 18px; border-radius: 6px; font-size: 14px; line-height: 1.6; }
+.sn-msg.show { display: block; }
+.sn-msg.err { background: #fff3cd; border-left: 3px solid #cc7a00; color: #663d00; }
+.sn-msg.ok { background: #e7f6ec; border-left: 3px solid #2e7d4f; color: #1d4d31; }
+
+html[data-theme="dark"] .sn-input, html[data-theme="dark"] .sn-textarea, html[data-theme="dark"] .sn-file { background: #1a1a1a; color: #f5f5f5; border-color: #444; }
+html[data-theme="dark"] .sn-input:focus, html[data-theme="dark"] .sn-textarea:focus { border-color: #fff; }
+html[data-theme="dark"] .sn-safe, html[data-theme="dark"] .sn-consent { background: #1a1a1a; border-color: #444; color: #f5f5f5; }
+html[data-theme="dark"] .sn-check { color: #f5f5f5; }
+html[data-theme="dark"] .sn-msg.err { background: #332200; color: #ffd699; }
+html[data-theme="dark"] .sn-msg.ok { background: #16301f; color: #b6e8c8; }
+
+@media (max-width: 620px) { .sn-row { grid-template-columns: 1fr; } .sn-container { padding: 24px 18px 60px; } }
+</style>
+  <script defer src="analytics.js"></script>
+</head>
+<body>
+
+<nav>
+  <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode">
+    <svg class="theme-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="18" height="18">
+      <circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+    </svg>
+  </button>
+  <button class="nav-toggle" aria-label="Open menu" aria-haspopup="dialog" aria-expanded="false">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" width="20" height="20">
+      <circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2.5"/><path d="M 18 8 L 20 6 L 22 8" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </button>
+  <a class="nav-logo" href="index.html">S&middot;A&middot;F&middot;E</a>
+</nav>
+
+<main class="sn-container">
+  <header>
+    <p class="sn-eyebrow">SAFE News &middot; Young Reporters</p>
+    <h1 class="sn-title">Share the <em>good news</em> from your area.</h1>
+    <p class="sn-lede">Something good happening where you live &mdash; a project, a person, a small win the news never covers? Tell us about it, or send a whole newsletter you've written. We'll help shape it and publish the best on our news page. This is <strong>not</strong> the same as Youth Stories &mdash; this is reporting good news, by you.</p>
+  </header>
+
+  <div class="sn-safe" role="note">
+    <p><strong>Before you send:</strong> share only what you're happy to see published. Don't include other people's private details, and don't name or photograph other people (especially other young people) without their permission.</p>
+    <p>We may lightly edit for clarity before publishing. We store your email so we can talk to you about your piece &mdash; it is never shown on the site.</p>
+  </div>
+
+  <form id="sn-form" class="sn-form" autocomplete="off">
+    <div class="sn-row">
+      <div class="sn-field">
+        <label class="sn-label" for="sn-name">How should we credit you? <span class="req">*</span></label>
+        <input class="sn-input" id="sn-name" name="name" type="text" maxlength="80" placeholder="First name, initials, or a pen name" required>
+      </div>
+      <div class="sn-field">
+        <label class="sn-label" for="sn-age">Your age</label>
+        <input class="sn-input" id="sn-age" name="age" type="number" min="8" max="120" placeholder="e.g. 16">
+      </div>
+    </div>
+
+    <div class="sn-row">
+      <div class="sn-field">
+        <label class="sn-label" for="sn-email">Email <span class="req">*</span></label>
+        <input class="sn-input" id="sn-email" name="email" type="email" maxlength="120" placeholder="So we can reach you (never published)" required>
+      </div>
+      <div class="sn-field">
+        <label class="sn-label" for="sn-location">Town / area</label>
+        <input class="sn-input" id="sn-location" name="location" type="text" maxlength="80" placeholder="e.g. Hackney, London">
+      </div>
+    </div>
+
+    <div class="sn-field">
+      <label class="sn-label" for="sn-headline">Headline <span class="req">*</span></label>
+      <input class="sn-input" id="sn-headline" name="headline" type="text" maxlength="140" placeholder="Give your good-news story a title" required>
+    </div>
+
+    <div class="sn-field">
+      <label class="sn-label" for="sn-body">Your story <span class="req">*</span></label>
+      <p class="sn-hint">What happened, who's involved, why it's good news. A few short paragraphs is perfect. If you have links or sources, paste them at the end.</p>
+      <textarea class="sn-textarea" id="sn-body" name="body" maxlength="20000" placeholder="Tell it your way. We'll help with the rest." required></textarea>
+    </div>
+
+    <div class="sn-field">
+      <label class="sn-label" for="sn-doc">Attach a document (optional)</label>
+      <p class="sn-hint">A write-up, newsletter, photos with permission, or your sources. PDF, Word, or image &middot; up to 15 MB.</p>
+      <input class="sn-file" id="sn-doc" name="document" type="file" accept=".pdf,.doc,.docx,.txt,.rtf,image/*">
+    </div>
+
+    <div class="sn-consent">
+      <label class="sn-check"><input type="checkbox" name="consent_publish" required> I'm happy for SAFE to publish this (it may be lightly edited) on the news page.</label>
+      <label class="sn-check"><input type="checkbox" name="consent_own" required> This is my own work and true as far as I know, and anyone named or pictured has agreed.</label>
+      <label class="sn-check"><input type="checkbox" name="consent_parent"> <span><strong>If I'm under 18:</strong> my parent or guardian has given permission for this to be shared publicly.</span></label>
+      <label class="sn-check"><input type="checkbox" name="subscribe"> Add me to the SAFE newsletter (optional).</label>
+    </div>
+
+    <!-- anti-spam honeypot: leave empty -->
+    <div class="sn-hp" aria-hidden="true"><label>Leave this empty<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
+
+    <div class="cf-turnstile" data-sitekey="0x4AAAAAADpO8Gw7SCeKoO-P" data-theme="auto"></div>
+
+    <div class="sn-controls">
+      <button id="sn-btn" type="submit" class="sn-btn">Send my good news</button>
+      <span class="sn-note">Free. We read every one.</span>
+    </div>
+
+    <div id="sn-msg" class="sn-msg" role="alert" aria-live="polite"></div>
+  </form>
+
+  <p class="sn-lede" style="margin-top:40px; font-size:14px;">Looking to share something personal about your own life instead? That's <a href="youth-stories.html" style="color:var(--black);border-bottom:1px solid var(--black);text-decoration:none;">Youth Stories</a> &mdash; a separate, more private space.</p>
+</main>
+
+<footer>
+  <span class="footer-left">S&middot;A&middot;F&middot;E &mdash; Steps Approaching Future Earth</span>
+  <span class="footer-right" style="display: flex; gap: 24px; font-size: 11px;">
+    <a href="news.html" style="color: inherit; text-decoration: none;">News</a>
+    <a href="help.html" style="color: inherit; text-decoration: none;">Help</a>
+    <a href="privacy.html" style="color: inherit; text-decoration: none;">Privacy</a>
+    <a href="terms.html" style="color: inherit; text-decoration: none;">Terms</a>
+    <a href="accessibility.html" style="color: inherit; text-decoration: none;">Access</a>
+  </span>
+</footer>
+
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+<script>
+(function(){
+  'use strict';
+  var form = document.getElementById('sn-form');
+  var btn  = document.getElementById('sn-btn');
+  var msg  = document.getElementById('sn-msg');
+  var ageEl = document.getElementById('sn-age');
+  var parentEl = form.querySelector('input[name="consent_parent"]');
+
+  function show(type, text){ msg.className = 'sn-msg show ' + type; msg.textContent = text; msg.scrollIntoView({behavior:'smooth', block:'center'}); }
+  function hide(){ msg.className = 'sn-msg'; }
+
+  form.addEventListener('submit', async function(e){
+    e.preventDefault();
+    hide();
+
+    var name = form.name.value.trim();
+    var email = form.email.value.trim();
+    var headline = form.headline.value.trim();
+    var body = form.body.value.trim();
+    var age = parseInt(ageEl.value, 10);
+
+    if (!name || !email || !headline || !body) { show('err', 'Please fill in your name, email, a headline, and your story.'); return; }
+    if (body.length < 50) { show('err', 'Please write a little more — at least a few sentences.'); return; }
+    if (!form.consent_publish.checked || !form.consent_own.checked) { show('err', 'Please tick the two consent boxes so we can publish your story.'); return; }
+    if (!isNaN(age) && age < 18 && !parentEl.checked) { show('err', "As you're under 18, we need your parent or guardian's permission — please tick that box."); return; }
+
+    var fd = new FormData(form);
+    var ts = document.querySelector('[name="cf-turnstile-response"]');
+    fd.append('cf-turnstile-response', ts ? ts.value : '');
+
+    btn.disabled = true; var label = btn.textContent; btn.textContent = 'Sending…';
+    try {
+      var res = await fetch('/api/news-submit', { method: 'POST', body: fd });
+      if (res.status === 404) throw new Error('not-deployed');
+      var data = await res.json().catch(function(){ return null; });
+      if (!res.ok) throw new Error((data && data.error) || ('Error ' + res.status));
+      form.reset();
+      if (window.turnstile) { try { window.turnstile.reset(); } catch(e){} }
+      show('ok', (data && data.status === 'pending')
+        ? 'Thank you! Your story has been sent for review. We’ll be in touch.'
+        : 'Thank you! Your good news is in — it should appear on the news page shortly. We may reach out to help shape it.');
+    } catch (err) {
+      if (err && err.message === 'not-deployed') show('err', "The submission service isn't switched on yet. (Deploy the Worker and create the news_posts table.)");
+      else show('err', (err && err.message) || 'Something went wrong sending your story. Please try again in a minute.');
+    } finally {
+      btn.disabled = false; btn.textContent = label;
+    }
+  });
+})();
+</script>
+
+<script src="theme.js"></script>
+<script src="bento.js" defer></script>
+</body>
+</html>

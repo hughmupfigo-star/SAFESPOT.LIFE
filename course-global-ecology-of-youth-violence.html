@@ -26,12 +26,11 @@
 .course-meta-value { font-size: 14px; color: var(--black); }
 .start-btn { display: inline-block; padding: 16px 40px; background: var(--black); color: var(--white); border: none; border-radius: 2px; font-family: var(--mono); font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; cursor: pointer; font-weight: 500; transition: background 0.15s; text-decoration: none; margin-top: 32px; }
 .start-btn:hover { background: var(--mid); }
-@media (prefers-color-scheme: dark) {
-  .course-intro { background: #1a1a1a; border-left-color: var(--white); }
-  .module-item { background: #1a1a1a; border-color: #333; }
-}
+html[data-theme="dark"] .course-intro { background: #1a1a1a; border-left-color: var(--white); }
+html[data-theme="dark"] .module-item { background: #1a1a1a; border-color: #333; }
 @media (max-width: 768px) { .course-intro { padding: 24px; } .module-item { padding: 18px; } }
 </style>
+  <script defer src="analytics.js"></script>
 </head>
 <body>
 

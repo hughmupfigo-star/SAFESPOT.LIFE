@@ -72,11 +72,10 @@ html[data-theme="dark"] .filter-btn.active {
   color: var(--white);
 }
 
-@media (prefers-color-scheme: dark) {
-  .filter-nav { border-bottom-color: var(--mid); background: var(--white); }
-  .filter-btn { border-color: var(--black); color: var(--black); background: var(--white); }
-  .filter-btn:hover, .filter-btn.active { background: var(--black); color: var(--white); }
-}
+html[data-theme="dark"] .filter-nav { border-bottom-color: var(--mid); background: var(--white); }
+html[data-theme="dark"] .filter-btn { border-color: var(--black); color: var(--black); background: var(--white); }
+html[data-theme="dark"] .filter-btn:hover,
+html[data-theme="dark"] .filter-btn.active { background: var(--black); color: var(--white); }
 
 /* ── Size Guide Modal ─────────────────────────────────── */
 .size-guide-modal {
@@ -482,6 +481,7 @@ html[data-theme="dark"] .filter-btn[data-filter="babyfigo-hoodies"].active { bac
 /* Lock icon on stripe CTA */
 .cart-drawer-cta svg.lock-icon { flex-shrink: 0; }
 </style>
+  <script defer src="analytics.js"></script>
 </head>
 <body>
 

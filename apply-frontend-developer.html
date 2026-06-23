@@ -105,24 +105,20 @@
   background: var(--mid);
 }
 
-@media (prefers-color-scheme: dark) {
-  .role-intro {
+html[data-theme="dark"] .role-intro {
     background: #1a1a1a;
-    border-left-color: var(--white);
+    border-left-color: var(--black);
   }
-
-  .form-input,
-  .form-textarea {
+html[data-theme="dark"] .form-input,
+html[data-theme="dark"] .form-textarea {
     background: #1a1a1a;
     border-color: #333;
-    color: var(--white);
+    color: var(--black);
   }
-
-  .form-input:focus,
-  .form-textarea:focus {
-    border-color: var(--white);
+html[data-theme="dark"] .form-input:focus,
+html[data-theme="dark"] .form-textarea:focus {
+    border-color: var(--black);
   }
-}
 
 .success-message {
   display: none;
@@ -214,6 +210,7 @@
   margin-right: 6px;
 }
 </style>
+  <script defer src="analytics.js"></script>
 </head>
 <body>
 

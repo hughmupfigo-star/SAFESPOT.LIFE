@@ -145,17 +145,14 @@
   background: var(--mid);
 }
 
-@media (prefers-color-scheme: dark) {
-  .course-intro {
+html[data-theme="dark"] .course-intro {
     background: #1a1a1a;
-    border-left-color: var(--white);
+    border-left-color: var(--black);
   }
-
-  .module-item {
+html[data-theme="dark"] .module-item {
     background: #1a1a1a;
     border-color: #333;
   }
-}
 
 @media (max-width: 768px) {
   .course-intro {
@@ -167,6 +164,7 @@
   }
 }
 </style>
+  <script defer src="analytics.js"></script>
 </head>
 <body>
 
